@@ -3,19 +3,19 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: Do. Or do not.
+subtitle: There is no try.
 description:
 keywords:
-author: John Doe
-language:
-timezone:
+author: HSUFIT
+language: zh-TW
+timezone: asia/taipei
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://hsufit.github.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year-:month-:day/:title/
 permalink_defaults:
 
 # Directory
