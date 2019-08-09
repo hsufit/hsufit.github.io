@@ -21,7 +21,7 @@ Or just deploy it to your enviroment.
 ## Hexo Layout
 ### What is Fallback mechanism
 If the layout is not exist, it use the Fallback layout.
-It's not about things below at beginning of your post.
+It's not about front-matter at the begin of your post. for example:
 ```markdown
 ---
 title: hexo-generate-your-content.md
