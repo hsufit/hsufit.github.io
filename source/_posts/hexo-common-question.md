@@ -1,7 +1,7 @@
 ---
 title: Hexo Common Question
 date: 2019-08-04 16:05:39
-tags:
+tags: hexo
 ---
 
 ## About Deployment
@@ -16,3 +16,12 @@ Install deployment tool with this command:
 ```bash
 npm install hexo-deployer-git --save
 ```
+
+## Misc
+### How to delete a post
+run:
+```
+rm ./source/_post/<post you want to delete>
+hexo clean
+```
+then regenerate the page 
