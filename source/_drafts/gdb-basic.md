@@ -23,16 +23,33 @@ tags: gdb
 		- run program with arument: `(gdb) r <arg1> <arg2> ...`
 
 ## tracing
-	- set break point
-```
-		(gdb) break <function name>
-```
+	- break point
+		- set: `(gdb) break <function name>`
+		- info: `(gdb) info breakpoints`
+		- relative commands: xbreak, tbreak, display, undisplay, commands, 
+					disable, enable, clear, delete
+	- watch point
+		- set variable: `(gdb) watch <variable name or address>` 
+		- set condition: `(gdb) watch <expression>` 
+		- info: `(gdb) info watchpoints
+		- relative commands: awatch, rwatch`
 	- flow control
 		- next step: `(gdb) next`
 		- continue run: `(gdb) continue`
+		- run a loop: `(gdb)until`
+		- return to last frame: `(gdb) return`
+	- variable control
+		- set, show
+		- enviroment variable: `(gdb) set env`
+	- frame
+		- frame, up, down, backtrace
 	- show code
 		- show source code around this step: `(gdb) line`
 		- show disassembly: `(gdb) disas`
+	- show variable
+		- print
+		- print array: `(gdb) print <array member>@<print count>`
+		- info locals
 	- show info
 		- stack info: stack
 		- registers: registers
@@ -48,6 +65,7 @@ tags: gdb
 		- threads
 		- breakpoints
 		- watchpoints
+	- attach detach
 	- relative commands
 		- show source code by address: `(gdb) line *<address>`
 - advance usage
