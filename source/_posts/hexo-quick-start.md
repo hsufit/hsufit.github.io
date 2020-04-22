@@ -10,9 +10,9 @@ tags:
 ``` bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-### Install Node.js
+### Install Node.js, and V12 has better compatibility with hexo then 14
 ``` bash
-nvm install node
+nvm install node 12
 ```
 ### Install hexo
 ``` bash
