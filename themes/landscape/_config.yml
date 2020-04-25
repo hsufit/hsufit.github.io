@@ -1,7 +1,9 @@
 # Header
 menu:
   Home: /
+  About: /about
   Archives: /archives
+  Squirrel: /squirrel
 rss: /atom.xml
 
 # Content
