@@ -48,7 +48,11 @@
         
           <a class="main-nav-link" href="/">Home</a>
         
+          <a class="main-nav-link" href="/about">About</a>
+        
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/squirrel">Squirrel</a>
         
       </nav>
       <nav id="sub-nav">
@@ -99,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2020-04-22/useful-tool-for-c-programming/" data-id="ck9d0i7oe000en9m5xa2yl8wy" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2020-04-22/useful-tool-for-c-programming/" data-id="ck9fakubc000gk8m5w79b6mxx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
@@ -135,17 +139,17 @@
       
         <h2 id="Install-Node-js-and-hexo"><a href="#Install-Node-js-and-hexo" class="headerlink" title="Install Node js and hexo"></a>Install Node js and hexo</h2><h3 id="Install-nvm-to-manage-Node-js-version"><a href="#Install-nvm-to-manage-Node-js-version" class="headerlink" title="Install nvm to manage Node.js version"></a>Install nvm to manage Node.js version</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
 
-<h3 id="Install-Node-js-and-V12-has-better-compatibility-with-hexo-then-14"><a href="#Install-Node-js-and-V12-has-better-compatibility-with-hexo-then-14" class="headerlink" title="Install Node.js, and V12 has better compatibility with hexo then 14"></a>Install Node.js, and V12 has better compatibility with hexo then 14</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install node 12</span><br></pre></td></tr></table></figure>
+<h3 id="Install-Node-js-use-v12-with-better-compatibility"><a href="#Install-Node-js-use-v12-with-better-compatibility" class="headerlink" title="Install Node.js, use v12 with better compatibility"></a>Install Node.js, use v12 with better compatibility</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install node 12</span><br></pre></td></tr></table></figure>
 
 <h3 id="Install-hexo"><a href="#Install-hexo" class="headerlink" title="Install hexo"></a>Install hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
 <h2 id="Install-hexo-modules-in-your-hexo-folder"><a href="#Install-hexo-modules-in-your-hexo-folder" class="headerlink" title="Install hexo modules in your hexo folder"></a>Install hexo modules in your hexo folder</h2><h3 id="For-essestial-command"><a href="#For-essestial-command" class="headerlink" title="For essestial command"></a>For essestial command</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
 
-<h3 id="For-server"><a href="#For-server" class="headerlink" title="For server"></a>For server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server</span><br></pre></td></tr></table></figure>
+<h3 id="For-test-server-and-auto-deploy"><a href="#For-test-server-and-auto-deploy" class="headerlink" title="For test server and auto deploy"></a>For test server and auto deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
-<h3 id="Other-dependency"><a href="#Other-dependency" class="headerlink" title="Other dependency:"></a>Other dependency:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-admin --save</span><br><span class="line">npm install hexo-generator-archive --save</span><br><span class="line">npm install hexo-generator-feed --save</span><br><span class="line">npm install hexo-generator-search --save</span><br><span class="line">npm install hexo-generator-tag --save</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure>
+<h3 id="Other-dependency"><a href="#Other-dependency" class="headerlink" title="Other dependency"></a>Other dependency</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-admin --save</span><br><span class="line">npm install hexo-generator-archive --save</span><br><span class="line">npm install hexo-generator-feed --save</span><br><span class="line">npm install hexo-generator-search --save</span><br><span class="line">npm install hexo-generator-tag --save</span><br><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure>
 
-<h3 id="Or-autometically-install-all-dependency"><a href="#Or-autometically-install-all-dependency" class="headerlink" title="Or autometically install all dependency"></a>Or autometically install all dependency</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h3 id="Or-install-all-dependency-autometically"><a href="#Or-install-all-dependency-autometically" class="headerlink" title="Or install all dependency autometically"></a>Or install all dependency autometically</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
 <h2 id="Then-join-hexo-with-fun"><a href="#Then-join-hexo-with-fun" class="headerlink" title="Then join hexo with fun"></a>Then join hexo with fun</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
@@ -153,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2020-04-22/hexo-quick-start/" data-id="ck9d0i7o5000an9m5vl86sp74" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2020-04-22/hexo-quick-start/" data-id="ck9fakub2000ck8m5koj7zhw4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -207,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-09/markdown-note/" data-id="ck9d0i7o6000bn9m5a0bfn3zm" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-09/markdown-note/" data-id="ck9fakub3000dk8m5dcfxb5ex" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
@@ -257,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-04/hexo-create-your-content/" data-id="ck9d0i7o30009n9m5tnxopa8v" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-04/hexo-create-your-content/" data-id="ck9fakuay000bk8m5oc34bf4s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -305,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-04/hexo-common-question/" data-id="ck9d0i7o10007n9m5ftbc7zsa" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-04/hexo-common-question/" data-id="ck9fakuaw0009k8m57ya5mhhv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -356,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-04/hello-world/" data-id="ck9d0i7nz0005n9m5vt8606vr" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-04/hello-world/" data-id="ck9fakuaq0007k8m5u8tuhw8p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -454,7 +458,11 @@
   
     <a href="/" class="mobile-nav-link">Home</a>
   
+    <a href="/about" class="mobile-nav-link">About</a>
+  
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/squirrel" class="mobile-nav-link">Squirrel</a>
   
 </nav>
     
