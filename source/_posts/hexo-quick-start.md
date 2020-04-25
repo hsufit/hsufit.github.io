@@ -10,7 +10,7 @@ tags:
 ``` bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 ```
-### Install Node.js, and V12 has better compatibility with hexo then 14
+### Install Node.js, use v12 with better compatibility
 ``` bash
 nvm install node 12
 ```
@@ -23,21 +23,21 @@ npm install -g hexo-cli
 ``` bash
 npm install hexo --save
 ```
-### For server
+### For test server and auto deploy
 ``` bash
 npm install hexo-server
+npm install hexo-deployer-git --save
 ```
-### Other dependency:
+### Other dependency
 ``` bash
 npm install hexo-admin --save
 npm install hexo-generator-archive --save
 npm install hexo-generator-feed --save
 npm install hexo-generator-search --save
 npm install hexo-generator-tag --save
-npm install hexo-deployer-git --save
 npm install hexo-generator-sitemap --save
 ```
-### Or autometically install all dependency
+### Or install all dependency autometically 
 ```
 npm install
 ```
