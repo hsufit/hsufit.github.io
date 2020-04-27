@@ -7,13 +7,19 @@ tags:
 ---
 
 ## cdecl
-a tool to explain the c expression in english, or english to c
+A tool to explain the c expression in english, or from english to c.
 
 ## clang, gcc
 - Sanitizer (compiler document contain various info)
-- --analyze and use -Xclang to pass arg (such ad -analyzer-checker)
+- \-\-analyze for static analysis and use -Xclang to pass arg (such as add -analyzer-checker)
 - -fsyntax-only to check the syntax only (without compilation)
 
 ## valgrind
-used for analysis memory leak
+Useful to analysis memory leak.
+
+## perf
+A sample based performance optimization tool.
+
+## gnuplot
+A tool for generate graph to visualize the math function or experiment result.
 
