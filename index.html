@@ -70,6 +70,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-git-useful-commands" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020-05-20/git-useful-commands/" class="article-date">
+  <time datetime="2020-05-20T13:56:05.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020-05-20/git-useful-commands/">Git Useful Commands</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="List-useful-logs"><a href="#List-useful-logs" class="headerlink" title="List useful logs"></a>List useful logs</h2><h3 id="List-log-and-modified-file-with-path-only"><a href="#List-log-and-modified-file-with-path-only" class="headerlink" title="List log and modified file with path only"></a>List log and modified file with path only</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --name-only</span><br></pre></td></tr></table></figure>
+
+<h3 id="List-log-and-modified-file-with-path-and-modified-status"><a href="#List-log-and-modified-file-with-path-and-modified-status" class="headerlink" title="List log and modified file with path and modified status"></a>List log and modified file with path and modified status</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --name-status</span><br></pre></td></tr></table></figure>
+
+<h3 id="List-log-and-modified-file-with-path-and-modified-line-summary"><a href="#List-log-and-modified-file-with-path-and-modified-line-summary" class="headerlink" title="List log and modified file with path and modified line summary"></a>List log and modified file with path and modified line summary</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --stat</span><br></pre></td></tr></table></figure>
+
+<h3 id="list-history-of-one-file"><a href="#list-history-of-one-file" class="headerlink" title="list history of one file"></a>list history of one file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --full-history  -- myfile</span><br></pre></td></tr></table></figure>
+
+<h2 id="Find-some-pattern-in-git"><a href="#Find-some-pattern-in-git" class="headerlink" title="Find some pattern in git"></a>Find some pattern in git</h2><h3 id="Find-a-deleted-file"><a href="#Find-a-deleted-file" class="headerlink" title="Find a deleted file"></a>Find a deleted file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --diff-filter=D --summary | grep delete</span><br></pre></td></tr></table></figure>
+
+<h3 id="Find-a-commit-message"><a href="#Find-a-commit-message" class="headerlink" title="Find a commit message"></a>Find a commit message</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --grep=word</span><br></pre></td></tr></table></figure>
+
+<h3 id="Find-a-new-or-deleted-modifycation"><a href="#Find-a-new-or-deleted-modifycation" class="headerlink" title="Find a new or deleted modifycation"></a>Find a new or deleted modifycation</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git log -S&lt;string&gt;</span><br><span class="line">$ git log -G&lt;regular expression&gt;</span><br></pre></td></tr></table></figure>
+
+<p>reference:<br><a href="https://stackoverflow.com/questions/1337320/how-to-grep-git-commit-diffs-or-contents-for-a-certain-word" target="_blank" rel="noopener">https://stackoverflow.com/questions/1337320/how-to-grep-git-commit-diffs-or-contents-for-a-certain-word</a><br><a href="https://stackoverflow.com/questions/7203515/how-to-find-a-deleted-file-in-the-project-commit-history" target="_blank" rel="noopener">https://stackoverflow.com/questions/7203515/how-to-find-a-deleted-file-in-the-project-commit-history</a><br><a href="https://stackoverflow.com/questions/1528513/git-find-deleted-code" target="_blank" rel="noopener">https://stackoverflow.com/questions/1528513/git-find-deleted-code</a><br><a href="https://stackoverflow.com/questions/6839398/find-when-a-file-was-deleted-in-git" target="_blank" rel="noopener">https://stackoverflow.com/questions/6839398/find-when-a-file-was-deleted-in-git</a><br><a href="https://stackoverflow.com/questions/1230084/how-to-have-git-log-show-filenames-like-svn-log-v/1230094" target="_blank" rel="noopener">https://stackoverflow.com/questions/1230084/how-to-have-git-log-show-filenames-like-svn-log-v/1230094</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hsufit.github.io/2020-05-20/git-useful-commands/" data-id="ckaff6t13000688m59mo4darr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-useful-tool-for-c-programming" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020-04-22/useful-tool-for-c-programming/" class="article-date">
@@ -92,18 +145,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="cdecl"><a href="#cdecl" class="headerlink" title="cdecl"></a>cdecl</h2><p>a tool to explain the c expression in english, or english to c</p>
+        <h2 id="cdecl"><a href="#cdecl" class="headerlink" title="cdecl"></a>cdecl</h2><p>A tool to explain the c expression in english, or from english to c.</p>
 <h2 id="clang-gcc"><a href="#clang-gcc" class="headerlink" title="clang, gcc"></a>clang, gcc</h2><ul>
 <li>Sanitizer (compiler document contain various info)</li>
-<li>–analyze and use -Xclang to pass arg (such ad -analyzer-checker)</li>
+<li>--analyze for static analysis and use -Xclang to pass arg (such as add -analyzer-checker)</li>
 <li>-fsyntax-only to check the syntax only (without compilation)</li>
 </ul>
-<h2 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a>valgrind</h2><p>used for analysis memory leak</p>
+<h2 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a>valgrind</h2><p>Useful to analysis memory leak.</p>
+<h2 id="perf"><a href="#perf" class="headerlink" title="perf"></a>perf</h2><p>A sample based performance optimization tool.</p>
+<h2 id="gnuplot"><a href="#gnuplot" class="headerlink" title="gnuplot"></a>gnuplot</h2><p>A tool for generate graph to visualize the math function or experiment result.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2020-04-22/useful-tool-for-c-programming/" data-id="ck9fakubc000gk8m5w79b6mxx" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2020-04-22/useful-tool-for-c-programming/" data-id="ckaff6t1q000f88m52qhbbm9z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
@@ -157,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2020-04-22/hexo-quick-start/" data-id="ck9fakub2000ck8m5koj7zhw4" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2020-04-22/hexo-quick-start/" data-id="ckaff6t1h000c88m5e4f8tn5x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -211,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-09/markdown-note/" data-id="ck9fakub3000dk8m5dcfxb5ex" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-09/markdown-note/" data-id="ckaff6t1j000e88m52byj4y2l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
@@ -261,7 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-04/hexo-create-your-content/" data-id="ck9fakuay000bk8m5oc34bf4s" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-04/hexo-create-your-content/" data-id="ckaff6t1e000b88m5jr50cyuh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -309,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-04/hexo-common-question/" data-id="ck9fakuaw0009k8m57ya5mhhv" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-04/hexo-common-question/" data-id="ckaff6t1c000a88m5kym5dedd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -360,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hsufit.github.io/2019-08-04/hello-world/" data-id="ck9fakuaq0007k8m5u8tuhw8p" class="article-share-link">Share</a>
+      <a data-url="http://hsufit.github.io/2019-08-04/hello-world/" data-id="ckaff6t15000788m5pb6hdpbe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -385,7 +440,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">標籤</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/programming/">programming</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/programming/">programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a></li></ul>
     </div>
   </div>
 
@@ -395,7 +450,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">標籤雲</h3>
     <div class="widget tagcloud">
-      <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/programming/" style="font-size: 10px;">programming</a>
+      <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/programming/" style="font-size: 10px;">programming</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a>
     </div>
   </div>
 
@@ -404,7 +459,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">彙整</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
     </div>
   </div>
 
@@ -415,6 +470,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020-05-20/git-useful-commands/">Git Useful Commands</a>
+          </li>
         
           <li>
             <a href="/2020-04-22/useful-tool-for-c-programming/">Useful Tool For C Programming</a>
@@ -430,10 +489,6 @@
         
           <li>
             <a href="/2019-08-04/hexo-create-your-content/">Hexo Create Your Content</a>
-          </li>
-        
-          <li>
-            <a href="/2019-08-04/hexo-common-question/">Hexo Common Question</a>
           </li>
         
       </ul>

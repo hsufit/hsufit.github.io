@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Git Useful Commands | Do. Or do not.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="List useful logsList log and modified file with path only1$ git log --name-only  List log and modified file with path and modified status1$ git log --name-status  List log and modified file with path">
+<meta name="keywords" content="git,tool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git Useful Commands">
+<meta property="og:url" content="http://hsufit.github.io/2020-05-20/git-useful-commands/index.html">
+<meta property="og:site_name" content="Do. Or do not.">
+<meta property="og:description" content="List useful logsList log and modified file with path only1$ git log --name-only  List log and modified file with path and modified status1$ git log --name-status  List log and modified file with path">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2020-05-20T14:04:39.634Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git Useful Commands">
+<meta name="twitter:description" content="List useful logsList log and modified file with path only1$ git log --name-only  List log and modified file with path and modified status1$ git log --name-status  List log and modified file with path">
+  
+    <link rel="alternate" href="/atom.xml" title="Do. Or do not." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Do. Or do not.</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">There is no try.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/squirrel">Squirrel</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hsufit.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git-useful-commands" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020-05-20/git-useful-commands/" class="article-date">
+  <time datetime="2020-05-20T13:56:05.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git Useful Commands
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="List-useful-logs"><a href="#List-useful-logs" class="headerlink" title="List useful logs"></a>List useful logs</h2><h3 id="List-log-and-modified-file-with-path-only"><a href="#List-log-and-modified-file-with-path-only" class="headerlink" title="List log and modified file with path only"></a>List log and modified file with path only</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --name-only</span><br></pre></td></tr></table></figure>
+
+<h3 id="List-log-and-modified-file-with-path-and-modified-status"><a href="#List-log-and-modified-file-with-path-and-modified-status" class="headerlink" title="List log and modified file with path and modified status"></a>List log and modified file with path and modified status</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --name-status</span><br></pre></td></tr></table></figure>
+
+<h3 id="List-log-and-modified-file-with-path-and-modified-line-summary"><a href="#List-log-and-modified-file-with-path-and-modified-line-summary" class="headerlink" title="List log and modified file with path and modified line summary"></a>List log and modified file with path and modified line summary</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --stat</span><br></pre></td></tr></table></figure>
+
+<h3 id="list-history-of-one-file"><a href="#list-history-of-one-file" class="headerlink" title="list history of one file"></a>list history of one file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --full-history  -- myfile</span><br></pre></td></tr></table></figure>
+
+<h2 id="Find-some-pattern-in-git"><a href="#Find-some-pattern-in-git" class="headerlink" title="Find some pattern in git"></a>Find some pattern in git</h2><h3 id="Find-a-deleted-file"><a href="#Find-a-deleted-file" class="headerlink" title="Find a deleted file"></a>Find a deleted file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --diff-filter=D --summary | grep delete</span><br></pre></td></tr></table></figure>
+
+<h3 id="Find-a-commit-message"><a href="#Find-a-commit-message" class="headerlink" title="Find a commit message"></a>Find a commit message</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --grep=word</span><br></pre></td></tr></table></figure>
+
+<h3 id="Find-a-new-or-deleted-modifycation"><a href="#Find-a-new-or-deleted-modifycation" class="headerlink" title="Find a new or deleted modifycation"></a>Find a new or deleted modifycation</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git log -S&lt;string&gt;</span><br><span class="line">$ git log -G&lt;regular expression&gt;</span><br></pre></td></tr></table></figure>
+
+<p>reference:<br><a href="https://stackoverflow.com/questions/1337320/how-to-grep-git-commit-diffs-or-contents-for-a-certain-word" target="_blank" rel="noopener">https://stackoverflow.com/questions/1337320/how-to-grep-git-commit-diffs-or-contents-for-a-certain-word</a><br><a href="https://stackoverflow.com/questions/7203515/how-to-find-a-deleted-file-in-the-project-commit-history" target="_blank" rel="noopener">https://stackoverflow.com/questions/7203515/how-to-find-a-deleted-file-in-the-project-commit-history</a><br><a href="https://stackoverflow.com/questions/1528513/git-find-deleted-code" target="_blank" rel="noopener">https://stackoverflow.com/questions/1528513/git-find-deleted-code</a><br><a href="https://stackoverflow.com/questions/6839398/find-when-a-file-was-deleted-in-git" target="_blank" rel="noopener">https://stackoverflow.com/questions/6839398/find-when-a-file-was-deleted-in-git</a><br><a href="https://stackoverflow.com/questions/1230084/how-to-have-git-log-show-filenames-like-svn-log-v/1230094" target="_blank" rel="noopener">https://stackoverflow.com/questions/1230084/how-to-have-git-log-show-filenames-like-svn-log-v/1230094</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hsufit.github.io/2020-05-20/git-useful-commands/" data-id="ckaff6t13000688m59mo4darr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020-04-22/useful-tool-for-c-programming/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Useful Tool For C Programming</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/programming/">programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/programming/" style="font-size: 10px;">programming</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020-05-20/git-useful-commands/">Git Useful Commands</a>
+          </li>
+        
+          <li>
+            <a href="/2020-04-22/useful-tool-for-c-programming/">Useful Tool For C Programming</a>
+          </li>
+        
+          <li>
+            <a href="/2020-04-22/hexo-quick-start/">Hexo Quick Start</a>
+          </li>
+        
+          <li>
+            <a href="/2019-08-09/markdown-note/">Markdown Note</a>
+          </li>
+        
+          <li>
+            <a href="/2019-08-04/hexo-create-your-content/">Hexo Create Your Content</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 HSUFIT<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/squirrel" class="mobile-nav-link">Squirrel</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
