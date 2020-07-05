@@ -7,6 +7,9 @@ A squirrel that save everything on the moon.
 ## the c programming language
 - [Chris Wellons, Why Aren't There C Conferences?](https://nullprogram.com/blog/2018/11/21/)
 - [Arthur Bakker, The C Abstract Machine Model, vrihe university amsterdam - system programming 2014-2015](https://phoenix.labs.vu.nl/sysprog/cabs.pdf)
+- 21st Century C, 2nd Edition
+- Learn C the Hard Way: Practical Exercises on the Computational Subjects You Keep Avoiding (Like C) (Zed Shaw's Hard Way Series) 
+- C Traps and Pitfalls
 
 ## computer architecture
 - [Onur Mutlu, computer architecture, ethz 2019](https://safari.ethz.ch/architecture/fall2019/doku.php?id=schedule)
