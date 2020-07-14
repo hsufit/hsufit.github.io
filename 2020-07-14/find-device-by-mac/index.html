@@ -5,15 +5,20 @@
   
 
   
-  <title>Tag: c | Do. Or do not.</title>
+  <title>Find Device by Mac | Do. Or do not.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Do. Or do not.">
-<meta property="og:url" content="http://hsufit.github.io/tags/c/index.html">
+  <meta name="description" content="The way to find Raspberry pi in LAN.1. Update local arp table by ICMP echo reply (ping)1nmap -sP 192.168.1.0/24  or 1ping 192.168.1.255  2. List ip and mac mapping by tools12apt install net-toolsarp -">
+<meta name="keywords" content="network,tool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Find Device by Mac">
+<meta property="og:url" content="http://hsufit.github.io/2020-07-14/find-device-by-mac/index.html">
 <meta property="og:site_name" content="Do. Or do not.">
+<meta property="og:description" content="The way to find Raspberry pi in LAN.1. Update local arp table by ICMP echo reply (ping)1nmap -sP 192.168.1.0/24  or 1ping 192.168.1.255  2. List ip and mac mapping by tools12apt install net-toolsarp -">
 <meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2020-07-14T13:57:27.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Do. Or do not.">
+<meta name="twitter:title" content="Find Device by Mac">
+<meta name="twitter:description" content="The way to find Raspberry pi in LAN.1. Update local arp table by ICMP echo reply (ping)1nmap -sP 192.168.1.0/24  or 1ping 192.168.1.255  2. List ip and mac mapping by tools12apt install net-toolsarp -">
   
     <link rel="alternate" href="/atom.xml" title="Do. Or do not." type="application/atom+xml">
   
@@ -68,40 +73,67 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020-04-22/useful-tool-for-c-programming/" class="archive-article-date">
-  <time datetime="2020-04-22T14:42:08.000Z" itemprop="datePublished">4月 22</time>
+        <section id="main"><article id="post-find-device-by-mac" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020-07-14/find-device-by-mac/" class="article-date">
+  <time datetime="2020-07-14T13:55:01.000Z" itemprop="datePublished">2020-07-14</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020-04-22/useful-tool-for-c-programming/">Useful Tool For C Programming</a>
+    <h1 class="article-title" itemprop="name">
+      Find Device by Mac
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="The-way-to-find-Raspberry-pi-in-LAN"><a href="#The-way-to-find-Raspberry-pi-in-LAN" class="headerlink" title="The way to find Raspberry pi in LAN."></a>The way to find Raspberry pi in LAN.</h2><h3 id="1-Update-local-arp-table-by-ICMP-echo-reply-ping"><a href="#1-Update-local-arp-table-by-ICMP-echo-reply-ping" class="headerlink" title="1. Update local arp table by ICMP echo reply (ping)"></a>1. Update local arp table by ICMP echo reply (ping)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP 192.168.1.0/24</span><br></pre></td></tr></table></figure>
 
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.1.255</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-List-ip-and-mac-mapping-by-tools"><a href="#2-List-ip-and-mac-mapping-by-tools" class="headerlink" title="2. List ip and mac mapping by tools"></a>2. List ip and mac mapping by tools</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install net-tools</span><br><span class="line">arp -an</span><br></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip neighbor</span><br></pre></td></tr></table></figure>
+
+<h2 id="One-line"><a href="#One-line" class="headerlink" title="One line:"></a>One line:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -sP 192.168.1.0/24 &gt;/dev/null &amp;&amp; arp -an | grep &lt;mac address here&gt; | awk &apos;&#123;print $2&#125;&apos; | sed &apos;s/[()]//g&apos;</span><br></pre></td></tr></table></figure>
+
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h2><p><a href="http://wiki.weithenn.org/cgi-bin/wiki.pl?Nmap-%E6%8E%83%E7%9E%84%E4%B8%BB%E6%A9%9F%E6%89%80%E9%96%8B%E5%95%9F%E7%9A%84_Port" target="_blank" rel="noopener">Nmap-掃瞄主機所開啟的 Port</a><br><a href="https://blog.gtwang.org/linux/nmap-command-examples-tutorials/" target="_blank" rel="noopener">Nmap 網路診斷工具基本使用技巧與教學</a><br><a href="https://stackoverflow.com/questions/13552881/can-i-determine-the-current-ip-from-a-known-mac-address" target="_blank" rel="noopener">Can I determine the current IP from a known MAC Address?</a></p>
+<h2 id="tools"><a href="#tools" class="headerlink" title="tools:"></a>tools:</h2><p>ip<br>nmap<br>arp</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hsufit.github.io/2020-07-14/find-device-by-mac/" data-id="ckcm066hv000877m5lhl0c5jc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020-05-20/git-useful-commands/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git Useful Commands</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
