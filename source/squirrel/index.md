@@ -33,23 +33,30 @@ A squirrel that save everything on the moon.
 - Logan's Note [(English)](https://logan.tw/)/[(Traditional Chinese)](https://zh-blog.logan.tw/)
   Find Undefined Behavior with Clang UBSan, The Case of the Missing Supercomputer Performance 心得,
   使用 perf\_events 分析程式效能, 簡介 perf\_events 與 Call Graph 
+
 - [網路黑貓 BlackCat dot Net ](https://champyen.blogspot.com/)
   Sampling v. tracing 閱讀心得
+
 - [Felix Chern](https://medium.com/@fchern)
   關於變強這檔事
   設計高效能的Hash Table ([一][high performance hash table 1]/[二][high performance hash table 2])
   [high performance hash table 1]: https://medium.com/@fchern/%E8%A8%AD%E8%A8%88%E9%AB%98%E6%95%88%E8%83%BD%E7%9A%84hash-table-%E4%B8%80-303d9713abab
   [high performance hash table 2]: https://medium.com/@fchern/%E8%A8%AD%E8%A8%88%E9%AB%98%E6%95%88%E8%83%BD%E7%9A%84hash-table-%E4%BA%8C-9b5dc744219f
+
 - [Agner Fog](https://www.agner.org/?e=0)
   Software optimization resources
+
 - [Shyamal Mitra](https://www.cs.utexas.edu/~mitra/)
   [CS 313E: Elements of Software Design](https://www.cs.utexas.edu/~mitra/csSpring2020/cs313/cs313.html),
   [Classes of Algorithms](https://www.cs.utexas.edu/~mitra/csSpring2017/cs313/lectures/algo_classes.html)
+
 - [David Galles](https://www.cs.usfca.edu/~galles/)
   [Data Structure Visualizations][David Galles, Data Structure Visualizations]
   [Computer Science 411: Automata Theory](https://www.cs.usfca.edu/~galles/cs411/)
   [David Galles, Data Structure Visualizations]: https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+
 - [Preshing on Programming](https://preshing.com/about/)
+
 - [Eli Bendersky's website](https://eli.thegreenplace.net/)
   [Measuring context switching and memory overheads for Linux threads](https://eli.thegreenplace.net/2018/measuring-context-switching-and-memory-overheads-for-linux-threads/)
 
