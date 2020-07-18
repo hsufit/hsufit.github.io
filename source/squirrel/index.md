@@ -60,6 +60,16 @@ A squirrel that save everything on the moon.
 - [Eli Bendersky's website](https://eli.thegreenplace.net/)
   [Measuring context switching and memory overheads for Linux threads](https://eli.thegreenplace.net/2018/measuring-context-switching-and-memory-overheads-for-linux-threads/)
 
+- [fcamel](https://medium.com/@fcamel)
+  [在 Linux 下開發 C/C++ 的新手指南](https://medium.com/fcamels-notes/%E5%9C%A8-linux-%E4%B8%8B%E9%96%8B%E7%99%BC-c-c-%E7%9A%84%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97-735fcd960b0)
+  [Test-Driven Development 解決了什麼問題？或是製造更多問題？](https://medium.com/fcamels-notes/test-driven-development-%E8%A7%A3%E6%B1%BA%E4%BA%86%E4%BB%80%E9%BA%BC%E5%95%8F%E9%A1%8C-%E6%88%96%E6%98%AF%E8%A3%BD%E9%80%A0%E6%9B%B4%E5%A4%9A%E5%95%8F%E9%A1%8C-937db879f695)
+  [《真正的問題是什麼，你想通了嗎？》讀後心得](https://medium.com/fcamels-notes/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E6%98%AF%E4%BB%80%E9%BA%BC-%E4%BD%A0%E6%83%B3%E9%80%9A%E4%BA%86%E5%97%8E-%E8%AE%80%E5%BE%8C%E5%BF%83%E5%BE%97-66555607d9c7)
+
+- [yinwang](http://www.yinwang.org/)
+  [对智商的怀疑](http://www.yinwang.org/blog-cn/2020/03/23/wisdom-of-intelligence)
+  [测试的道理](http://www.yinwang.org/blog-cn/2016/09/14/tests)
+  [编程的智慧](http://www.yinwang.org/blog-cn/2015/11/21/programming-philosophy)
+
 
 ## misc, or mixed
 - [Intel, Recommand Reading List for Developers](https://www.intel.cn/content/dam/www/public/us/en/documents/white-papers/developer-reading-list.pdf)
