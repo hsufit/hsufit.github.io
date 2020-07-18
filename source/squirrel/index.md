@@ -74,5 +74,8 @@ A squirrel that save everything on the moon.
 ## misc, or mixed
 - [Intel, Recommand Reading List for Developers](https://www.intel.cn/content/dam/www/public/us/en/documents/white-papers/developer-reading-list.pdf)
 - [TI, Multicore Programming Guide](http://www.ti.com/lit/an/sprab27b/sprab27b.pdf?&ts=1590156457301)
+- Structure and Interpretation of Computer Programs (SICP) ([course](https://mitpress.mit.edu/sites/default/files/sicp/index.html)/[pdf](https://github.com/numbbbbb/sicp/blob/master/sicp.pdf))
+  [我如何用二十天刷完 SICP](http://numbbbbb.com/2016/03/28/20160328_%E6%88%91%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%A4%E5%91%A8%E6%97%B6%E9%97%B4%E5%88%B7%E5%AE%8C%20SICP/)
+  [Programming by poking: why MIT stopped teaching SICP](http://lambda-the-ultimate.org/node/5335)
 
 
