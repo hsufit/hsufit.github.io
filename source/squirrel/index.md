@@ -70,6 +70,10 @@ A squirrel that save everything on the moon.
   [测试的道理](http://www.yinwang.org/blog-cn/2016/09/14/tests)
   [编程的智慧](http://www.yinwang.org/blog-cn/2015/11/21/programming-philosophy)
 
+- [bps.space](https://bps.space/) may your sky be blue and winds be low
+  [Sprint - Test Flights 6 and 7](https://www.youtube.com/watch?v=BoevqNVv4ck&t=7m17s)
+  [Dan Simon, Optimal State Estimation: Kalman, H Infinity, and Nonlinear Approaches](https://www.amazon.com/gp/product/0471708585/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0471708585&linkCode=as2&tag=bps04-20&linkId=497a3ff6002cb340ec28ec73c731f00b)
+  [Bernard Freedland, Control System Design: An Introduction to State-Space Methods (Dover Books on Electrical Engineering)](https://www.amazon.com/gp/product/0486442780/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0486442780&linkCode=as2&tag=bps04-20&linkId=f679878d6cbe1e5b94b06bc0f2f7cf22)
 
 ## misc, or mixed
 - [Intel, Recommand Reading List for Developers](https://www.intel.cn/content/dam/www/public/us/en/documents/white-papers/developer-reading-list.pdf)
