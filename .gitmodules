@@ -1,0 +1,3 @@
+[submodule "astro-paper-hsufit"]
+	path = astro-paper-hsufit
+	url = git@github.com:hsufit/astro-paper-hsufit.git
