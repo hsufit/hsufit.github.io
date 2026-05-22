@@ -111,6 +111,18 @@ tags:
 - The page also uses canonical.
 - JavaScript redirects users faster.
 - `noindex` keeps old pages out of search.
+- I checked the old URL in DevTools.
+- The request returned `200 OK`.
+- That was expected.
+- The page is a static HTML file.
+- GitHub Pages served it normally.
+- The redirect happened inside the browser.
+- It was not an HTTP `301`.
+- Meta refresh is weaker for SEO.
+- Canonical helps search engines consolidate.
+- `noindex` avoids indexing the old page.
+- A real `301` would be better.
+- GitHub Pages cannot configure it directly.
 
 Design choice:
 
@@ -118,6 +130,29 @@ Design choice:
 - Use `pubDatetime` for the date path.
 - Reuse `getPath` for the new target.
 - Keep the route independent from posts UI.
+- Accept `200 OK` for static-host compatibility.
+- Use meta refresh as the SEO fallback.
+- Use JavaScript for faster user navigation.
+- Do not expect Network panel to show `301`.
+
+How to check:
+
+- Open an old Hexo URL.
+- Confirm it loads a generated HTML page.
+- Confirm the page contains meta refresh.
+- Confirm the page contains canonical.
+- Confirm the final URL becomes `/posts/.../`.
+- Confirm the old page has `noindex`.
+- Check page source, not only Network.
+
+Delay choice:
+
+- Use `0` seconds for old post redirects.
+- A delay slows users down.
+- A delay does not turn it into `301`.
+- A delay can make crawlers treat it less clearly.
+- Add delay only for a human-facing notice page.
+- Keep instant redirect for migrated permalinks.
 
 Important files:
 
