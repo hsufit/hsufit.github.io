@@ -1,6 +1,8 @@
 ---
 title: Markdown Note
 date: 2019-08-09 13:25:55
+pubDatetime: 2019-08-09T13:25:55+08:00
+description: Markdown notes covering inline code, code blocks, escaping backticks, highlighting options, and reference links.
 tags:
 - hexo
 - markdown

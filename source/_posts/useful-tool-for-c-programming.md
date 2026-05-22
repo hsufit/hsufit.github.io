@@ -1,6 +1,8 @@
 ---
 title: Useful Tool For C Programming
 date: 2020-04-22 22:42:08
+pubDatetime: 2020-04-22T22:42:08+08:00
+description: A short list of useful C programming tools including cdecl, clang, gcc, valgrind, perf, and gnuplot.
 tags:
 - programming
 - c

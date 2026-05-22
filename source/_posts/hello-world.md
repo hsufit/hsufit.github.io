@@ -1,6 +1,8 @@
 ---
 title: Hello World
 date: 2019-08-04 13:05:39
+pubDatetime: 2019-08-04T13:05:39+08:00
+description: A first Hexo post with quick-start commands for creating posts, running the server, generating files, and deploying.
 tags:
 - hexo
 ---

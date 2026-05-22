@@ -1,6 +1,8 @@
 ---
 title: Hexo Create Your Content
 date: 2019-08-04 21:48:41
+pubDatetime: 2019-08-04T21:48:41+08:00
+description: Notes on creating Hexo posts, editing content, previewing output, layout fallback behavior, and editor references.
 tags:
 - hexo
 ---

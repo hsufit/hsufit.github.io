@@ -1,7 +1,10 @@
 ---
 title: Hexo Common Question
 date: 2019-08-04 16:05:39
-tags: hexo
+pubDatetime: 2019-08-04T16:05:39+08:00
+description: Common Hexo notes for deployment, installing the git deployer, and deleting posts.
+tags:
+- hexo
 ---
 
 ## About Deployment
