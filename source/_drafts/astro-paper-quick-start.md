@@ -212,6 +212,84 @@ astro-paper-hsufit/src/layouts/SquirrelLayout.astro
 astro-paper-hsufit/src/components/Header.astro
 ```
 
+## Nut icon
+
+- I wanted the Squirrel page in the header.
+- Text worked first.
+- Then I wanted an icon.
+- I tried a squirrel SVG.
+- The original SVG was huge.
+- It came from a filled trace.
+- It had a very large viewBox.
+- It did not match `IconArchive`.
+- I generated a nut icon idea first.
+- I used Gemini with Nano Banana.
+- I asked for a line-style nut.
+- The output was a PNG.
+- I converted PNG to SVG.
+- I used Potrace for tracing.
+- Potrace made a large SVG.
+- The SVG path was usable.
+- The wrapper was not icon-ready.
+- The header icons expect `24x24`.
+- I resized the SVG wrapper.
+- I used `viewBox="0 0 24 24"`.
+- I used `width="24"`.
+- I used `height="24"`.
+- The icon then fit the header.
+- The next issue was color.
+- `IconArchive` is a stroke icon.
+- It uses `stroke="currentColor"`.
+- The active class used `stroke-accent`.
+- The nut icon was a filled shape.
+- It used `fill="currentColor"`.
+- `stroke-accent` did not change its visible color.
+- I tried making it stroke-based.
+- A filled trace is not a true outline icon.
+- With `fill="none"`, it can look weak.
+- With `fill="currentColor"`, it colors like text.
+- I used an LLM to shrink the wrapper.
+- The LLM kept the path data.
+- The LLM changed the SVG contract.
+- The final pass was design work.
+- I compared it with `IconArchive`.
+- I adjusted size and color behavior.
+- I tested it in the header.
+
+Design choice:
+
+- Match size inside the SVG file.
+- Keep one-off layout classes in `Header.astro`.
+- Use stroke icons with `stroke-accent`.
+- Use filled icons with `text-accent` or `fill-accent`.
+- Prefer a real outline SVG if matching Tabler icons.
+- Avoid converting a filled trace into an outline by only changing `fill`.
+- Remove unused icon imports.
+
+Workflow:
+
+- Generate line-style nut PNG.
+- Use Gemini with Nano Banana.
+- Convert PNG to SVG.
+- Use [Potrace](https://potrace.sourceforge.net/?utm_source=chatgpt.com). 
+- Keep the traced path.
+- Replace the huge SVG wrapper.
+- Use a `24x24` viewBox.
+- Use `currentColor`.
+- Choose `fill` or `stroke` intentionally.
+- Add header active-state styling.
+- Compare with `IconArchive`.
+- Finish by checking the page.
+
+Important files:
+
+```txt
+astro-paper-hsufit/src/assets/icons/IconArchive.svg
+astro-paper-hsufit/src/assets/icons/IconNut.svg
+astro-paper-hsufit/src/assets/icons/IconNut2.svg
+astro-paper-hsufit/src/components/Header.astro
+```
+
 ## Banner
 
 - The AstroPaper homepage felt generic.
