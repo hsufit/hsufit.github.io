@@ -51,6 +51,6 @@ Avoid upgrading blindly to the latest version while the upstream ecosystem is st
 
 ### Additional info
 This quick start is based on:
-node: v22.22.3
-astro-paper: f3005328e548805226aba54414122c7174645e83
+- node: v22.22.3
+- astro-paper: f3005328e548805226aba54414122c7174645e83
 
