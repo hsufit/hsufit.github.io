@@ -2,6 +2,7 @@
 title: Hexo Quick Start
 date: 2020-04-22 22:04:34
 pubDatetime: 2020-04-22T22:04:34+08:00
+modDatetime: 2020-04-25T15:00:49+08:00
 description: Quick-start notes for installing Node.js, Hexo, common Hexo modules, and initializing a Hexo site.
 tags:
 - hexo
