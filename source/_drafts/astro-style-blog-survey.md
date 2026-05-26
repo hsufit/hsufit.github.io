@@ -22,6 +22,10 @@ tags:
   - github: [hoochanlon/hoochanlon.github.io](https://github.com/hoochanlon/hoochanlon.github.io)
   - example site: https://blog.hoochanlon.moe/
 
+- web dong blog
+  - github: [riceball-tw/web-dong-blog](https://github.com/riceball-tw/web-dong-blog)
+  - example site: https://www.webdong.dev/zh-tw/post/slidev-build-presentation-with-markdown/
+
 ## Visual personal blog themes
 
 - fuwari
