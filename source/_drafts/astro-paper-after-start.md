@@ -405,6 +405,46 @@ Install and build:
 - `npm ci` is better for CI than `npm install`.
 - It requires a committed `package-lock.json`.
 - The Google verification value comes from GitHub Actions variables.
+- At first, I only looked at the workflow YAML.
+- The YAML line was correct.
+- But the GitHub repository variable also had to exist.
+- The workflow reads from `vars.PUBLIC_GOOGLE_SITE_VERIFICATION`.
+- That means the value must be configured as a repository variable.
+- If I put the value in GitHub Secrets instead, the YAML must use `secrets`.
+
+Missing setting lesson:
+
+- Repository variable is the stored value in GitHub.
+- Environment variable is the runtime value passed to the build command.
+- The workflow bridges them:
+
+```yaml
+env:
+  PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
+```
+
+- This means:
+  - read `PUBLIC_GOOGLE_SITE_VERIFICATION` from GitHub repository variables
+  - expose it as `PUBLIC_GOOGLE_SITE_VERIFICATION` during `npm run build`
+  - let Astro read it through `astro:env/client`
+- The name must match in all three places.
+- GitHub variable name:
+
+```txt
+PUBLIC_GOOGLE_SITE_VERIFICATION
+```
+
+- Workflow env name:
+
+```txt
+PUBLIC_GOOGLE_SITE_VERIFICATION
+```
+
+- Astro env schema name:
+
+```txt
+PUBLIC_GOOGLE_SITE_VERIFICATION
+```
 
 Deploy:
 
