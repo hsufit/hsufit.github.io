@@ -316,6 +316,242 @@ astro-paper-hsufit/astro.config.ts
 astro-paper-hsufit/src/pages/robots.txt.ts
 ```
 
+## GitHub Actions deploy flow
+
+- I wanted the AstroPaper site to deploy automatically.
+- The source branch is `astro-paper`.
+- The output branch is `gh-pages`.
+- The framework lives in a submodule:
+
+```txt
+astro-paper-hsufit
+```
+
+- The content lives in the root repo:
+
+```txt
+source/_posts
+```
+
+- The CI flow needs both pieces.
+- GitHub Actions must checkout submodules.
+- The build must run inside `astro-paper-hsufit`.
+- The deploy step must publish `astro-paper-hsufit/dist`.
+
+Final flow:
+
+- Checkout the source branch.
+- Checkout submodules recursively.
+- Setup Node.js.
+- Install dependencies with `npm ci`.
+- Build the AstroPaper site.
+- Pass Google Search Console verification by env var.
+- Add `.nojekyll`.
+- Deploy `dist` to `gh-pages`.
+
+Workflow shape:
+
+```yaml
+on:
+  push:
+    branches:
+      - astro-paper
+  workflow_dispatch:
+
+permissions:
+  contents: write
+```
+
+- `workflow_dispatch` lets me run deploy manually.
+- `contents: write` lets the action push to `gh-pages`.
+- The deploy action uses `GITHUB_TOKEN`.
+
+Submodule choice:
+
+```yaml
+- name: Checkout source
+  uses: actions/checkout@v5
+  with:
+    submodules: recursive
+    fetch-depth: 0
+```
+
+- `submodules: recursive` is required.
+- Without it, `astro-paper-hsufit` may be empty or incomplete.
+- `fetch-depth: 0` keeps full history available.
+
+Install and build:
+
+```yaml
+- name: Setup Node.js
+  uses: actions/setup-node@v5
+  with:
+    node-version: 22
+    package-manager-cache: false
+
+- name: Install dependencies
+  working-directory: astro-paper-hsufit
+  run: npm ci
+
+- name: Build site
+  working-directory: astro-paper-hsufit
+  env:
+    PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
+  run: npm run build
+```
+
+- `working-directory` is important.
+- The Astro app is not at the repo root.
+- `npm ci` is better for CI than `npm install`.
+- It requires a committed `package-lock.json`.
+- The Google verification value comes from GitHub Actions variables.
+
+Deploy:
+
+```yaml
+- name: Disable Jekyll
+  run: touch astro-paper-hsufit/dist/.nojekyll
+
+- name: Deploy to gh-pages
+  uses: peaceiris/actions-gh-pages@v4.1.0
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_branch: gh-pages
+    publish_dir: astro-paper-hsufit/dist
+```
+
+- `.nojekyll` is needed for GitHub Pages static assets.
+- It prevents GitHub Pages from treating underscore folders specially.
+- `publish_dir` must point to Astro's build output.
+
+Small future work:
+
+- GitHub also has a newer official Pages deploy flow.
+- It uses `actions/upload-pages-artifact` and `actions/deploy-pages`.
+- That flow deploys through the GitHub Pages environment.
+- The current workflow uses `peaceiris/actions-gh-pages`.
+- The main replacement would be the final deploy stage.
+- The build stage can stay almost the same.
+- This is a cleanup task for later, not required for the first working deploy.
+
+CI issue: npm cache path
+
+- The first CI issue was from dependency caching.
+- The error said:
+
+```txt
+Some specified paths were not resolved, unable to cache dependencies.
+```
+
+- The workflow had `setup-node` cache settings.
+- The cache path was fragile for this nested project.
+- I removed the explicit cache setting first.
+- Later, after moving to `setup-node@v5`, I disabled automatic package-manager cache.
+
+Design choice:
+
+- Keep dependency install simple.
+- Do not make caching part of the first working deploy.
+- Add cache later only after the deploy is stable.
+
+CI issue: missing lockfile
+
+- `npm ci` failed when CI could not find a valid `package-lock.json`.
+- `npm ci` requires a lockfile.
+- The fix was to generate and commit `astro-paper-hsufit/package-lock.json`.
+- The preferred flow is:
+
+```powershell
+cd astro-paper-hsufit
+npm install
+```
+
+- Then commit the lockfile.
+- Keep CI using `npm ci`.
+
+Design choice:
+
+- Do not replace `npm ci` with `npm install` in CI.
+- Use `npm install` locally to update the lockfile.
+- Use `npm ci` in GitHub Actions for reproducible deploy builds.
+
+CI issue: Rollup optional dependency
+
+- Another failure was:
+
+```txt
+Cannot find module '@rollup/rollup-linux-x64-gnu'
+```
+
+- This is related to npm optional dependencies.
+- Rollup uses platform-specific native packages.
+- The Linux CI runner needs the Linux Rollup optional package.
+- The clean fix is to refresh the lockfile locally.
+- Then commit the updated `package-lock.json`.
+
+Design choice:
+
+- Do not delete `package-lock.json` inside CI.
+- Do not run `npm install` inside CI as a workaround.
+- Fix the lockfile at the source.
+- Let `npm ci` install exactly what the lockfile describes.
+
+CI warning: Node 20 actions
+
+- GitHub Actions warned that Node.js 20 actions are deprecated.
+- `actions/checkout@v4` and `actions/setup-node@v4` used Node 20.
+- I updated them to:
+
+```yaml
+actions/checkout@v5
+actions/setup-node@v5
+```
+
+- `peaceiris/actions-gh-pages@v4` also used Node 20.
+- I pinned it to:
+
+```yaml
+peaceiris/actions-gh-pages@v4.1.0
+```
+
+- That version runs on Node 24.
+- This is different from `node-version: 22`.
+- `node-version: 22` controls the Node.js used to build Astro.
+- The action runtime controls how GitHub runs the action itself.
+
+Important GitHub settings:
+
+- Set Pages source:
+
+```txt
+Settings -> Pages -> Deploy from a branch -> gh-pages / root
+```
+
+- Set the verification variable:
+
+```txt
+Settings -> Secrets and variables -> Actions -> Variables
+PUBLIC_GOOGLE_SITE_VERIFICATION=...
+```
+
+Submodule reminder:
+
+- Changes inside `astro-paper-hsufit` belong to the submodule repo.
+- The root repo only records the submodule pointer.
+- If I update AstroPaper code:
+  - push the submodule repo first
+  - update the submodule pointer in the root repo
+  - push the root repo
+
+Important files:
+
+```txt
+.github/workflows/deploy.yml
+astro-paper-hsufit/package.json
+astro-paper-hsufit/package-lock.json
+astro-paper-hsufit/astro.config.ts
+```
+
 ## Final shape
 
 - `source` owns content.
