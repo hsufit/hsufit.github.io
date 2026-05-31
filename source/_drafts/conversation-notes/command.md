@@ -1,0 +1,1 @@
+I want to record a new draft post. help me convert the following conversation into english and using the bullet point style to record the content. give it a file name relative to discussion topic.
