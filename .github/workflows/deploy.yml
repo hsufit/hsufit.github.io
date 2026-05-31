@@ -1,0 +1,52 @@
+name: Deploy AstroPaper to GitHub Pages
+
+on:
+  push:
+    branches:
+      - astro-paper
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: astro-paper-hsufit/package-lock.json
+
+      - name: Install dependencies
+        working-directory: astro-paper-hsufit
+        run: npm ci
+
+      - name: Build site
+        working-directory: astro-paper-hsufit
+        env:
+          PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
+        run: npm run build
+
+      - name: Disable Jekyll
+        run: touch astro-paper-hsufit/dist/.nojekyll
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: astro-paper-hsufit/dist
