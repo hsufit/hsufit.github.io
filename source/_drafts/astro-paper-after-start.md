@@ -246,6 +246,76 @@ astro-paper-hsufit/src/pages/index.astro
 astro-paper-hsufit/public/images/banner.jpg
 ```
 
+## Google verification and sitemap
+
+- I wanted to track the site in Google Search Console.
+- My first try was on the old Hexo page.
+- I added `google-site-verification` into the old Hexo `index.html`.
+- That proved site ownership.
+- But it did not mean Google would index the page.
+- Later I found the page still was not indexed.
+- The problem was discoverability.
+- There was no clear incoming link from outside.
+- The sitemap also had not been added.
+- Google could verify the site.
+- But Google still needed a way to discover the pages.
+- Verification and indexing are different steps.
+- Verification says: this site belongs to me.
+- Sitemap says: these are the pages I want you to crawl.
+- Links say: this page is connected to the web.
+
+Design choice:
+
+- Do the verification flow again in AstroPaper.
+- Do not hardcode the verification meta tag in the page.
+- Use AstroPaper's existing environment variable support.
+- Set `PUBLIC_GOOGLE_SITE_VERIFICATION` at deploy stage.
+- Let `Layout.astro` generate the meta tag.
+- Keep the verification token outside content.
+- Keep `SITE.website` pointed to the production URL.
+- Use Astro's sitemap integration.
+- Submit the generated sitemap in Google Search Console.
+
+AstroPaper flow:
+
+- `Layout.astro` already reads `PUBLIC_GOOGLE_SITE_VERIFICATION`.
+- If the env var exists, it adds:
+
+```html
+<meta name="google-site-verification" content="..." />
+```
+
+- `astro.config.ts` already uses `@astrojs/sitemap`.
+- `SITE.website` decides the final sitemap URLs.
+- Running build generates the sitemap files.
+- The expected sitemap entry is:
+
+```txt
+https://hsufit.github.io/sitemap-index.xml
+```
+
+How to check:
+
+- Build the AstroPaper site.
+- Open the generated homepage HTML.
+- Confirm the Google verification meta tag exists.
+- Open `dist/sitemap-index.xml`.
+- Confirm the post URLs are listed through the sitemap.
+- Open `dist/robots.txt`.
+- Confirm it points to the sitemap.
+- Deploy the site.
+- Submit `https://hsufit.github.io/sitemap-index.xml` to Google Search Console.
+- Use URL Inspection for important pages.
+
+Important files:
+
+```txt
+astro-paper-hsufit/src/layouts/Layout.astro
+astro-paper-hsufit/src/config.ts
+astro-paper-hsufit/astro.config.ts
+astro-paper-hsufit/src/pages/robots.txt.ts
+```
+
 ## Final shape
 
 - `source` owns content.
