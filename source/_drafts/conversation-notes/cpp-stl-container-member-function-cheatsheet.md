@@ -48,9 +48,6 @@ tags:
   - `stack`, `queue`, and `priority_queue` are adapters.
   - adapters expose a smaller interface.
   - adapters do not expose normal iterators.
-  - `priority_queue` uses `push`, `pop`, and `top`.
-  - `stack` uses `push`, `pop`, and `top`.
-  - `queue` uses `push`, `pop`, `front`, and `back`.
 
 ## Big STL Memory Table
 
