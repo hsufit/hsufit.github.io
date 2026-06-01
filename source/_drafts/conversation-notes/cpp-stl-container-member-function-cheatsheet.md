@@ -37,24 +37,20 @@ tags:
 
 ## Common Functions Shared by Many Containers
 
-- Many STL containers support:
-
-```cpp
-size()
-empty()
-clear()
-begin()
-end()
-insert()
-erase()
-```
-
-- Fast memory:
+- Most STL containers support:
   - number of elements -> `size()`
   - is empty -> `empty()`
   - remove all -> `clear()`
   - iterate -> `begin()`, `end()`
   - add/remove -> `insert()`, `erase()`
+
+- Special cases:
+  - `stack`, `queue`, and `priority_queue` are adapters.
+  - adapters expose a smaller interface.
+  - adapters do not expose normal iterators.
+  - `priority_queue` uses `push`, `pop`, and `top`.
+  - `stack` uses `push`, `pop`, and `top`.
+  - `queue` uses `push`, `pop`, `front`, and `back`.
 
 ## Big STL Memory Table
 
@@ -132,21 +128,13 @@ vector -> deque -> list
 | Main strength | unique sorted keys | sorted keys with duplicates |
 | Main weakness | no direct index access | no direct index access |
 
-- Fast memory:
+- Memory rule:
   - insert -> `insert`
   - erase -> `erase`
   - find value -> `find`
   - count existence -> `count`
   - range query -> `lower_bound`, `upper_bound`
-
-- Most competitive programming cases use:
-
-```cpp
-insert()
-erase()
-find()
-lower_bound()
-```
+  - most competitive programming cases use `insert`, `erase`, `find`, and `lower_bound`
 
 ## Ordered Map Family
 
@@ -208,22 +196,13 @@ auto it = mp.find(x);
 ## Hash Family
 
 - Hash containers are unordered versions of set/map.
-- Main containers:
-
-```cpp
-unordered_set
-unordered_map
-```
-
+- Main containers are `unordered_set` and `unordered_map`.
 - Common functions are similar to ordered containers:
-
-```cpp
-insert()
-erase()
-find()
-count()
-operator[] // unordered_map only
-```
+  - insert -> `insert`
+  - erase -> `erase`
+  - search -> `find`
+  - count existence -> `count`
+  - key access for `unordered_map` -> `operator[]`
 
 ## Ordered vs Hash
 
