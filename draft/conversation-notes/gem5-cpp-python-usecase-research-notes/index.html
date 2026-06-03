@@ -1,0 +1,913 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://hsufit.github.io/draft/conversation-notes/gem5-cpp-python-usecase-research-notes/"><meta name="generator" content="Astro v5.18.2"><!-- Load Font --><style>@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-de078a87b11e4a86","Google Sans Code-de078a87b11e4a86 fallback: Courier New",monospace;}</style><!-- General Meta Tags --><title>gem5 C++ and Python Use Case Research Notes | Draft | Hsufit.dev</title><meta name="title" content="gem5 C++ and Python Use Case Research Notes | Draft | Hsufit.dev"><meta name="description" content="Overview of how gem5 uses C++ and Python for CPU behavior modeling, dependency modules, configuration, and workloads."><meta name="author" content="hsufit"><meta name="robots" content="noindex, nofollow"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="gem5 C++ and Python Use Case Research Notes | Draft | Hsufit.dev"><meta property="og:description" content="Overview of how gem5 uses C++ and Python for CPU behavior modeling, dependency modules, configuration, and workloads."><meta property="og:url" content="https://hsufit.github.io/draft/conversation-notes/gem5-cpp-python-usecase-research-notes/"><meta property="og:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Article Published/Modified time --><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hsufit.github.io/draft/conversation-notes/gem5-cpp-python-usecase-research-notes/"><meta property="twitter:title" content="gem5 C++ and Python Use Case Research Notes | Draft | Hsufit.dev"><meta property="twitter:description" content="Overview of how gem5 uses C++ and Python for CPU behavior modeling, dependency modules, configuration, and workloads."><meta property="twitter:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"gem5 C++ and Python Use Case Research Notes | Draft | Hsufit.dev","image":"https://hsufit.github.io/images/banner.jpg","author":[{"@type":"Person","name":"hsufit","url":"https://hsufit.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Hsufit.dev" href="https://hsufit.github.io/rss.xml"><meta name="theme-color" content=""><meta name="google-site-verification" content="lOXTD09oOxgSJ7OtnDe9hrmLOu1-j4YfCjQjcbaWH1s"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.C-UD7B35.css">
+<style>:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: gem5; }@layer astro { ::view-transition-old(gem5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(gem5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(gem5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(gem5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: cpp; }@layer astro { ::view-transition-old(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: python; }@layer astro { ::view-transition-old(python) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(python) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(python) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(python) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: cpu; }@layer astro { ::view-transition-old(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: simulation; }@layer astro { ::view-transition-old(simulation) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(simulation) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(simulation) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(simulation) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-6"] { view-transition-name: research-notes; }@layer astro { ::view-transition-old(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Hsufit.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/squirrel" title="Squirrel" aria-label="squirrel" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block" transform="translate(0 4)">
+<path d="M10.1 2.3c-1.5.5-2 .9-2 1.7 0 .5-.3.9-1.5 2.1C5 7.7 4.4 9 4.4 10.8c0 .9.2 1.7.5 2.7.2.5.3 1 .3 1.3 0 .7.5 1.1 1.3 1.1.4 0 1.2.2 1.8.4 2.7.8 5-.1 7.8-3 .9-.9 1.2-1 1.6-.9.7.2 1.3-.3 1.8-1.4 1-2.3.5-5.3-1.3-7.1l-.5-.5.7-.7c.4-.4.6-.8.5-1-.2-.4-.3-.4-1.1.4l-.7.7-.9-.5c-2-1.1-4.3-1.4-6.1-.7z" />
+<path d="M9.1 3.3 18 12" />
+</svg> <span class="sm:sr-only">Squirrel</span>  </a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <main id="main-content" class="app-layout py-8" data-pagefind-ignore> <a href="/draft/" class="text-sm text-accent underline-offset-4 hover:underline">
+Back to draft index
+</a> <h1 class="mt-6 text-2xl font-bold text-accent sm:text-3xl"> gem5 C++ and Python Use Case Research Notes </h1> <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-accent/75">  <span>source/_drafts/conversation-notes/gem5-cpp-python-usecase-research-notes.md</span> </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="question">Question</h2>
+<ul>
+<li>
+<p>I wanted to refresh my C++ and Python skills by looking at a real codebase.</p>
+</li>
+<li>
+<p>gem5 is useful for this because it uses:</p>
+<ul>
+<li>C++ for simulator behavior</li>
+<li>Python for configuration and composition</li>
+<li>guest applications as workloads</li>
+</ul>
+</li>
+<li>
+<p>The main question is:</p>
+<ul>
+<li>how does gem5 use C++ and Python?</li>
+<li>is there any special role for the application?</li>
+<li>which parts are already covered by my C++/Python notes?</li>
+<li>which parts are not covered yet?</li>
+</ul>
+</li>
+</ul>
+<h2 id="part-1-top-level-gem5-overview">Part 1: Top-Level gem5 Overview</h2>
+<ul>
+<li>gem5 is layered.</li>
+<li>A simple mental model is:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>guest app / workload</span></span>
+<span class="line"><span>  -> Python config or gem5 stdlib</span></span>
+<span class="line"><span>  -> Python SimObject declarations</span></span>
+<span class="line"><span>  -> C++ SimObject implementations</span></span>
+<span class="line"><span>  -> CPU / memory / system behavior</span></span>
+<span class="line"><span>  -> stats / debug / checkpoints</span></span></code></pre>
+<ul>
+<li>
+<p>The guest application is not the CPU model.</p>
+</li>
+<li>
+<p>The guest application is the workload that runs on the simulated CPU.</p>
+</li>
+<li>
+<p>The application generates:</p>
+<ul>
+<li>instruction stream</li>
+<li>memory accesses</li>
+<li>branches</li>
+<li>syscalls</li>
+<li>page faults</li>
+<li>cache pressure</li>
+</ul>
+</li>
+<li>
+<p>The Python layer usually decides:</p>
+<ul>
+<li>which CPU model to use</li>
+<li>which ISA to use</li>
+<li>how many cores to build</li>
+<li>which cache hierarchy to connect</li>
+<li>which memory system to connect</li>
+<li>which workload to run</li>
+</ul>
+</li>
+<li>
+<p>The C++ layer implements:</p>
+<ul>
+<li>CPU pipeline behavior</li>
+<li>instruction execution behavior</li>
+<li>memory request behavior</li>
+<li>event scheduling</li>
+<li>stats</li>
+<li>probes</li>
+<li>checkpoints</li>
+</ul>
+</li>
+</ul>
+<h2 id="special-role-of-the-app">Special Role of the App</h2>
+<ul>
+<li>
+<p>The app is special as a workload and measurement controller.</p>
+</li>
+<li>
+<p>It does not implement the CPU pipeline.</p>
+</li>
+<li>
+<p>It can still affect CPU research strongly because it controls what behavior is exercised.</p>
+</li>
+<li>
+<p>Important app use cases:</p>
+<ul>
+<li>run real benchmark behavior</li>
+<li>run microbenchmarks for a specific CPU feature</li>
+<li>mark the Region of Interest</li>
+<li>reset or dump simulator stats</li>
+<li>request checkpoints</li>
+<li>end the simulation</li>
+</ul>
+</li>
+<li>
+<p>gem5 provides <code>m5ops</code> for this app-to-simulator control path.</p>
+</li>
+<li>
+<p>Example operations include:</p>
+<ul>
+<li><code>m5_work_begin</code></li>
+<li><code>m5_work_end</code></li>
+<li><code>m5_reset_stats</code></li>
+<li><code>m5_dump_stats</code></li>
+<li><code>m5_checkpoint</code></li>
+<li><code>m5_exit</code></li>
+</ul>
+</li>
+<li>
+<p>Memory rule:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>app -> stimulates behavior</span></span>
+<span class="line"><span>m5ops -> controls measurement</span></span>
+<span class="line"><span>C++ CPU model -> defines behavior</span></span></code></pre>
+<h2 id="part-2-c-side-use-cases">Part 2: C++ Side Use Cases</h2>
+<ul>
+<li>
+<p>C++ is where gem5 models most simulator behavior.</p>
+</li>
+<li>
+<p>CPU behavior is mainly in directories such as:</p>
+<ul>
+<li><code>gem5/src/cpu/simple</code></li>
+<li><code>gem5/src/cpu/minor</code></li>
+<li><code>gem5/src/cpu/o3</code></li>
+<li><code>gem5/src/cpu/pred</code></li>
+<li><code>gem5/src/arch</code></li>
+<li><code>gem5/src/mem</code></li>
+<li><code>gem5/src/sim</code></li>
+</ul>
+</li>
+<li>
+<p>Important anchors:</p>
+<ul>
+<li><code>BaseCPU</code> is the abstract CPU base.</li>
+<li><code>o3::CPU</code> is the out-of-order CPU model.</li>
+<li><code>MinorCPU</code> is the in-order pipeline CPU model.</li>
+<li><code>m5ops.h</code> exposes guest app calls into simulator operations.</li>
+</ul>
+</li>
+</ul>
+<h2 id="c-topics-already-mentioned-in-my-notes">C++ Topics Already Mentioned in My Notes</h2>
+<ul>
+<li>
+<p>STL containers appear often in gem5.</p>
+</li>
+<li>
+<p>These match the C++ STL container notes:</p>
+<ul>
+<li><code>std::vector</code></li>
+<li><code>std::list</code></li>
+<li><code>std::queue</code></li>
+<li><code>std::set</code></li>
+<li><code>std::map</code></li>
+<li><code>std::unordered_map</code></li>
+<li><code>std::deque</code></li>
+</ul>
+</li>
+<li>
+<p>Typical gem5 use:</p>
+<ul>
+<li><code>std::vector</code> for lists of ports, ranges, threads, stats, and children</li>
+<li><code>std::list</code> for ordered simulator object lists and queues with stable iterators</li>
+<li><code>std::set</code> for unique registered objects or thread contexts</li>
+<li><code>std::map</code> and <code>std::unordered_map</code> for name-to-object or address-to-data lookup</li>
+<li><code>std::deque</code> for queue-like structures</li>
+</ul>
+</li>
+<li>
+<p>STL algorithms also appear.</p>
+</li>
+<li>
+<p>These match the C++ algorithm notes:</p>
+<ul>
+<li><code>std::find</code></li>
+<li><code>std::is_sorted</code></li>
+<li><code>std::min</code></li>
+<li><code>std::max</code></li>
+</ul>
+</li>
+<li>
+<p>C++ idioms from the useful-idioms note also appear:</p>
+<ul>
+<li><code>auto</code></li>
+<li><code>const auto&#x26;</code></li>
+<li>structured binding</li>
+<li><code>std::tie</code></li>
+<li>lambda callbacks</li>
+<li><code>using</code></li>
+<li><code>emplace</code></li>
+<li>iterator-based loops</li>
+</ul>
+</li>
+<li>
+<p>Example memory rule:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>container notes -> how gem5 stores simulator state</span></span>
+<span class="line"><span>algorithm notes -> how gem5 searches/checks data</span></span>
+<span class="line"><span>idiom notes     -> how gem5 keeps C++ code readable</span></span></code></pre>
+<h2 id="c-topics-not-yet-covered-or-only-lightly-covered">C++ Topics Not Yet Covered or Only Lightly Covered</h2>
+<ul>
+<li>gem5 uses many C++ patterns that are beyond basic STL and idiom recall.</li>
+<li>These are good next topics if I want to read gem5 more fluently.</li>
+</ul>
+<h3 id="inheritance-and-abstract-base-classes">Inheritance and Abstract Base Classes</h3>
+<ul>
+<li>
+<p>gem5 uses inheritance to define simulator interfaces.</p>
+</li>
+<li>
+<p>Example:</p>
+<ul>
+<li><code>BaseCPU</code> is a common CPU interface.</li>
+<li><code>MinorCPU</code> and <code>o3::CPU</code> derive from it.</li>
+</ul>
+</li>
+<li>
+<p>Important concepts:</p>
+<ul>
+<li>base class</li>
+<li>derived class</li>
+<li>virtual function</li>
+<li>override</li>
+<li>abstract interface</li>
+</ul>
+</li>
+</ul>
+<h3 id="polymorphic-cpu-interfaces">Polymorphic CPU Interfaces</h3>
+<ul>
+<li>
+<p>Different CPU models can be selected from Python config.</p>
+</li>
+<li>
+<p>They still share common behavior through <code>BaseCPU</code>.</p>
+</li>
+<li>
+<p>This supports:</p>
+<ul>
+<li>CPU switching</li>
+<li>common ports</li>
+<li>common stats</li>
+<li>common thread context handling</li>
+</ul>
+</li>
+</ul>
+<h3 id="simobject-lifecycle-and-generated-params">SimObject Lifecycle and Generated Params</h3>
+<ul>
+<li>gem5 C++ classes often receive generated parameter objects.</li>
+<li>Example style:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="cpp"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">CPU</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#D32F2F;--shiki-light-font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> BaseO3CPUParams </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">&#x26;</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">params);</span></span></code></pre>
+<ul>
+<li>Important lifecycle concepts:
+<ul>
+<li>construction</li>
+<li><code>init</code></li>
+<li><code>startup</code></li>
+<li><code>drain</code></li>
+<li><code>serialize</code></li>
+<li><code>unserialize</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="templates-and-perfect-forwarding">Templates and Perfect Forwarding</h3>
+<ul>
+<li>
+<p>gem5 uses templates for reusable helper behavior.</p>
+</li>
+<li>
+<p>It also uses variadic templates and forwarding in some utility paths.</p>
+</li>
+<li>
+<p>Important concepts:</p>
+<ul>
+<li><code>template &#x3C;class T></code></li>
+<li><code>typename... Args</code></li>
+<li><code>std::forward</code></li>
+<li>generic helper functions</li>
+</ul>
+</li>
+</ul>
+<h3 id="smart-pointers-and-raii">Smart Pointers and RAII</h3>
+<ul>
+<li>
+<p>gem5 uses modern C++ ownership tools.</p>
+</li>
+<li>
+<p>Examples include:</p>
+<ul>
+<li><code>std::unique_ptr</code></li>
+<li><code>std::shared_ptr</code></li>
+<li><code>std::make_unique</code></li>
+<li><code>std::make_shared</code></li>
+</ul>
+</li>
+<li>
+<p>Memory rule:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>raw pointer    -> relationship or non-owning access</span></span>
+<span class="line"><span>unique_ptr     -> unique ownership</span></span>
+<span class="line"><span>shared_ptr     -> shared ownership</span></span>
+<span class="line"><span>RAII           -> cleanup tied to object lifetime</span></span></code></pre>
+<h3 id="event-driven-callbacks">Event-Driven Callbacks</h3>
+<ul>
+<li>
+<p>gem5 is an event-driven simulator.</p>
+</li>
+<li>
+<p>CPU models and system components schedule future work.</p>
+</li>
+<li>
+<p>Important concepts:</p>
+<ul>
+<li><code>Event</code></li>
+<li><code>EventFunctionWrapper</code></li>
+<li><code>std::function</code></li>
+<li>lambda callbacks</li>
+<li>scheduling and rescheduling</li>
+</ul>
+</li>
+</ul>
+<h3 id="ownership-boundaries">Ownership Boundaries</h3>
+<ul>
+<li>
+<p>gem5 has a mix of:</p>
+<ul>
+<li>raw pointers</li>
+<li>references</li>
+<li>smart pointers</li>
+<li>container-owned objects</li>
+<li>Python-created SimObjects</li>
+</ul>
+</li>
+<li>
+<p>This is more complex than competitive-programming C++.</p>
+</li>
+<li>
+<p>Reading gem5 requires asking:</p>
+<ul>
+<li>who owns this object?</li>
+<li>who only observes it?</li>
+<li>who schedules it?</li>
+<li>who serializes it?</li>
+</ul>
+</li>
+</ul>
+<h3 id="namespaces-friends-macros-debug-and-stats">Namespaces, Friends, Macros, Debug, and Stats</h3>
+<ul>
+<li>
+<p>gem5 uses:</p>
+<ul>
+<li>namespaces such as <code>gem5</code> and <code>gem5::o3</code></li>
+<li><code>friend class</code> for tightly coupled components</li>
+<li>macros and generated code for SimObjects</li>
+<li>debug flags</li>
+<li>statistics groups</li>
+<li>probe points</li>
+</ul>
+</li>
+<li>
+<p>These are important for simulator engineering.</p>
+</li>
+<li>
+<p>They are not covered deeply in the current STL-focused notes.</p>
+</li>
+</ul>
+<h2 id="part-3-python-side-use-cases">Part 3: Python Side Use Cases</h2>
+<ul>
+<li>
+<p>Python in gem5 is mainly used as a configuration and composition language.</p>
+</li>
+<li>
+<p>It is not usually where the detailed CPU pipeline behavior is implemented.</p>
+</li>
+<li>
+<p>Important Python anchors:</p>
+<ul>
+<li><code>BaseCPU.py</code> exposes C++ CPU parameters to Python.</li>
+<li><code>BaseCPUCore</code> wraps a C++ <code>BaseCPU</code> SimObject.</li>
+<li><code>BaseCPUProcessor</code> groups CPU cores.</li>
+<li><code>AbstractBoard.set_workload()</code> dispatches workload setup dynamically.</li>
+<li>config scripts compose processor, memory, cache, board, workload, and simulator.</li>
+</ul>
+</li>
+</ul>
+<h2 id="python-topics-already-mentioned-in-my-notes">Python Topics Already Mentioned in My Notes</h2>
+<ul>
+<li>
+<p>Python containers from the container notes appear in gem5 config and stdlib code:</p>
+<ul>
+<li><code>list</code></li>
+<li><code>dict</code></li>
+<li><code>set</code></li>
+</ul>
+</li>
+<li>
+<p>Typical gem5 use:</p>
+<ul>
+<li><code>list</code> for cores, ports, workloads, and resources</li>
+<li><code>dict</code> for workload parameters and resource metadata</li>
+<li><code>set</code> for unique groups or filtering</li>
+</ul>
+</li>
+<li>
+<p>Python algorithm and standard-library ideas also appear:</p>
+<ul>
+<li>iteration</li>
+<li>sorting resource lists</li>
+<li>filtering lists</li>
+<li>path handling with <code>Path</code></li>
+</ul>
+</li>
+<li>
+<p>Python idioms from the useful-idioms note also appear:</p>
+<ul>
+<li><code>**kwargs</code></li>
+<li>mapping expansion</li>
+<li>iteration over containers</li>
+<li>list/dict-style construction</li>
+</ul>
+</li>
+<li>
+<p>A very important gem5 pattern is:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="python"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">func</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">**</span><span style="--shiki-light:#212121;--shiki-dark:#82AAFF">workload.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">get_parameters</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">())</span></span></code></pre>
+<ul>
+<li>This is exactly the <code>**mapping</code> idea:
+<ul>
+<li>take a dictionary of parameters</li>
+<li>expand it into keyword arguments</li>
+</ul>
+</li>
+</ul>
+<h2 id="python-topics-not-yet-covered-or-only-lightly-covered">Python Topics Not Yet Covered or Only Lightly Covered</h2>
+<ul>
+<li>gem5 Python code uses patterns that go beyond algorithm-problem Python.</li>
+<li>These are good next Python study topics.</li>
+</ul>
+<h3 id="class-based-configuration-dsl">Class-Based Configuration DSL</h3>
+<ul>
+<li>
+<p>gem5 Python is not only scripting.</p>
+</li>
+<li>
+<p>It behaves like a configuration DSL.</p>
+</li>
+<li>
+<p>Example style:</p>
+<ul>
+<li>define a Python class</li>
+<li>give it parameters</li>
+<li>bind it to a C++ class</li>
+<li>let gem5 instantiate the C++ object</li>
+</ul>
+</li>
+</ul>
+<h3 id="class-attributes-as-declarative-metadata">Class Attributes as Declarative Metadata</h3>
+<ul>
+<li>
+<p>SimObject Python classes often use class-level metadata.</p>
+</li>
+<li>
+<p>Examples:</p>
+<ul>
+<li><code>type</code></li>
+<li><code>abstract</code></li>
+<li><code>cxx_header</code></li>
+<li><code>cxx_class</code></li>
+<li><code>Param.*</code></li>
+<li><code>VectorParam.*</code></li>
+</ul>
+</li>
+<li>
+<p>Memory rule:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Python class attribute -> simulator configuration metadata</span></span>
+<span class="line"><span>C++ class              -> simulator behavior implementation</span></span></code></pre>
+<h3 id="inheritance-and-abstract-base-classes-1">Inheritance and Abstract Base Classes</h3>
+<ul>
+<li>
+<p>gem5 stdlib uses inheritance for reusable configuration components.</p>
+</li>
+<li>
+<p>Examples:</p>
+<ul>
+<li>board classes</li>
+<li>processor classes</li>
+<li>core wrappers</li>
+<li>resource classes</li>
+</ul>
+</li>
+<li>
+<p>It also uses abstract interfaces for boards and components.</p>
+</li>
+</ul>
+<h3 id="decorators">Decorators</h3>
+<ul>
+<li>
+<p>gem5 Python code uses decorators such as:</p>
+<ul>
+<li><code>@abstractmethod</code></li>
+<li><code>@overrides</code></li>
+</ul>
+</li>
+<li>
+<p>These are not container or algorithm topics.</p>
+</li>
+<li>
+<p>They are part of interface design and framework structure.</p>
+</li>
+</ul>
+<h3 id="type-hints">Type Hints</h3>
+<ul>
+<li>
+<p>gem5 Python uses type hints from <code>typing</code>.</p>
+</li>
+<li>
+<p>Examples:</p>
+<ul>
+<li><code>Optional</code></li>
+<li><code>List</code></li>
+<li><code>Dict</code></li>
+<li><code>Sequence</code></li>
+<li><code>Tuple</code></li>
+<li><code>Union</code></li>
+</ul>
+</li>
+<li>
+<p>This helps document the configuration interface.</p>
+</li>
+</ul>
+<h3 id="reflection-and-dynamic-dispatch">Reflection and Dynamic Dispatch</h3>
+<ul>
+<li>
+<p><code>AbstractBoard.set_workload()</code> uses dynamic lookup.</p>
+</li>
+<li>
+<p>Important tools:</p>
+<ul>
+<li><code>getattr</code></li>
+<li><code>inspect.signature</code></li>
+</ul>
+</li>
+<li>
+<p>This allows a workload resource to say which board function should be called.</p>
+</li>
+<li>
+<p>Memory rule:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>workload function string -> getattr(board, function_name)</span></span>
+<span class="line"><span>parameters dict          -> func(**parameters)</span></span></code></pre>
+<h3 id="factory-and-resource-patterns">Factory and Resource Patterns</h3>
+<ul>
+<li>
+<p>gem5 uses resource objects to represent:</p>
+<ul>
+<li>binaries</li>
+<li>kernels</li>
+<li>disk images</li>
+<li>checkpoints</li>
+<li>workloads</li>
+<li>suites</li>
+</ul>
+</li>
+<li>
+<p><code>obtain_resource()</code> acts like a factory.</p>
+</li>
+<li>
+<p><code>WorkloadResource</code> stores:</p>
+<ul>
+<li>workload ID</li>
+<li>function name</li>
+<li>parameters</li>
+</ul>
+</li>
+</ul>
+<h3 id="dependency-injection-through-components">Dependency Injection Through Components</h3>
+<ul>
+<li>gem5 config scripts pass components into other components.</li>
+<li>Example structure:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="python"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">board </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6"> SimpleBoard</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">(</span></span>
+<span class="line"><span style="--shiki-light:#212121;--shiki-dark:#D7DBE0">    clk_freq</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">1GHz</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D9F5DD">,</span></span>
+<span class="line"><span style="--shiki-light:#212121;--shiki-dark:#D7DBE0">    processor</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#212121;--shiki-dark:#82AAFF">processor</span><span style="--shiki-light:#212121;--shiki-dark:#D9F5DD">,</span></span>
+<span class="line"><span style="--shiki-light:#212121;--shiki-dark:#D7DBE0">    memory</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#212121;--shiki-dark:#82AAFF">memory</span><span style="--shiki-light:#212121;--shiki-dark:#D9F5DD">,</span></span>
+<span class="line"><span style="--shiki-light:#212121;--shiki-dark:#D7DBE0">    cache_hierarchy</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#212121;--shiki-dark:#82AAFF">cache_hierarchy</span><span style="--shiki-light:#212121;--shiki-dark:#D9F5DD">,</span></span>
+<span class="line"><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">)</span></span></code></pre>
+<ul>
+<li>This is dependency injection:
+<ul>
+<li>board does not create everything internally</li>
+<li>caller provides processor, memory, and cache hierarchy</li>
+</ul>
+</li>
+</ul>
+<h3 id="python-to-c-binding-through-m5objects">Python-to-C++ Binding Through <code>m5.objects</code></h3>
+<ul>
+<li>
+<p>Python config imports C++-backed SimObjects through <code>m5.objects</code>.</p>
+</li>
+<li>
+<p>Example:</p>
+<ul>
+<li><code>RiscvO3CPU</code></li>
+<li><code>X86TimingSimpleCPU</code></li>
+<li><code>System</code></li>
+<li><code>MemCtrl</code></li>
+</ul>
+</li>
+<li>
+<p>The Python object is the configuration handle.</p>
+</li>
+<li>
+<p>The C++ object performs the simulation behavior.</p>
+</li>
+</ul>
+<h2 id="final-summary">Final Summary</h2>
+<ul>
+<li>Doing these three topics at once is manageable if the goal is a mapping note.</li>
+<li>It would be too complex only if the goal were a complete gem5 architecture guide.</li>
+<li>The clean split is:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>top-level overview -> where app, Python, and C++ fit</span></span>
+<span class="line"><span>C++ side           -> simulator behavior and CPU model implementation</span></span>
+<span class="line"><span>Python side        -> configuration, composition, and resource dispatch</span></span></code></pre>
+<ul>
+<li>
+<p>The special app use case is:</p>
+<ul>
+<li>stimulate CPU behavior</li>
+<li>mark ROI</li>
+<li>control stats/checkpoints through <code>m5ops</code></li>
+</ul>
+</li>
+<li>
+<p>The app is not where CPU behavior is designed.</p>
+</li>
+<li>
+<p>CPU behavior is designed in C++.</p>
+</li>
+<li>
+<p>Dependency and composition APIs are mostly exposed through Python SimObjects and stdlib components.</p>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <ul class="flex flex-wrap gap-3"> <li> <a href="/tags/gem5/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> gem5 </a> </li><li> <a href="/tags/cpp/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> cpp </a> </li><li> <a href="/tags/python/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> python </a> </li><li> <a href="/tags/cpu/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> cpu </a> </li><li> <a href="/tags/simulation/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> simulation </a> </li><li> <a href="/tags/research-notes/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-6"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> research-notes </a> </li> </ul> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/satnaing/astro-paper" title="Hsufit.dev on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Hsufit.dev on GitHub</span>  </a><a href="https://x.com/username" title="Hsufit.dev on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Hsufit.dev on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="Hsufit.dev on LinkedIn" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">Hsufit.dev on LinkedIn</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to Hsufit.dev" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Hsufit.dev</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html>

@@ -1,0 +1,885 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://hsufit.github.io/draft/conversation-notes/ooo-cpu-lsu-clustered-dataflow-notes/"><meta name="generator" content="Astro v5.18.2"><!-- Load Font --><style>@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-de078a87b11e4a86","Google Sans Code-de078a87b11e4a86 fallback: Courier New",monospace;}</style><!-- General Meta Tags --><title>OoO CPU LSU, Clustered Scheduler, and Dataflow Notes | Draft | Hsufit.dev</title><meta name="title" content="OoO CPU LSU, Clustered Scheduler, and Dataflow Notes | Draft | Hsufit.dev"><meta name="description" content="Discussion notes about multiple LSU design, clustered OoO synchronization, and the evolution from Tomasulo to modern tag-driven execution."><meta name="author" content="hsufit"><meta name="robots" content="noindex, nofollow"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="OoO CPU LSU, Clustered Scheduler, and Dataflow Notes | Draft | Hsufit.dev"><meta property="og:description" content="Discussion notes about multiple LSU design, clustered OoO synchronization, and the evolution from Tomasulo to modern tag-driven execution."><meta property="og:url" content="https://hsufit.github.io/draft/conversation-notes/ooo-cpu-lsu-clustered-dataflow-notes/"><meta property="og:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Article Published/Modified time --><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hsufit.github.io/draft/conversation-notes/ooo-cpu-lsu-clustered-dataflow-notes/"><meta property="twitter:title" content="OoO CPU LSU, Clustered Scheduler, and Dataflow Notes | Draft | Hsufit.dev"><meta property="twitter:description" content="Discussion notes about multiple LSU design, clustered OoO synchronization, and the evolution from Tomasulo to modern tag-driven execution."><meta property="twitter:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"OoO CPU LSU, Clustered Scheduler, and Dataflow Notes | Draft | Hsufit.dev","image":"https://hsufit.github.io/images/banner.jpg","author":[{"@type":"Person","name":"hsufit","url":"https://hsufit.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Hsufit.dev" href="https://hsufit.github.io/rss.xml"><meta name="theme-color" content=""><meta name="google-site-verification" content="lOXTD09oOxgSJ7OtnDe9hrmLOu1-j4YfCjQjcbaWH1s"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.C-UD7B35.css">
+<style>:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: cpu; }@layer astro { ::view-transition-old(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: microarchitecture; }@layer astro { ::view-transition-old(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: ooo; }@layer astro { ::view-transition-old(ooo) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(ooo) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(ooo) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(ooo) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: lsu; }@layer astro { ::view-transition-old(lsu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(lsu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(lsu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(lsu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: dataflow; }@layer astro { ::view-transition-old(dataflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(dataflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(dataflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(dataflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Hsufit.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/squirrel" title="Squirrel" aria-label="squirrel" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block" transform="translate(0 4)">
+<path d="M10.1 2.3c-1.5.5-2 .9-2 1.7 0 .5-.3.9-1.5 2.1C5 7.7 4.4 9 4.4 10.8c0 .9.2 1.7.5 2.7.2.5.3 1 .3 1.3 0 .7.5 1.1 1.3 1.1.4 0 1.2.2 1.8.4 2.7.8 5-.1 7.8-3 .9-.9 1.2-1 1.6-.9.7.2 1.3-.3 1.8-1.4 1-2.3.5-5.3-1.3-7.1l-.5-.5.7-.7c.4-.4.6-.8.5-1-.2-.4-.3-.4-1.1.4l-.7.7-.9-.5c-2-1.1-4.3-1.4-6.1-.7z" />
+<path d="M9.1 3.3 18 12" />
+</svg> <span class="sm:sr-only">Squirrel</span>  </a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <main id="main-content" class="app-layout py-8" data-pagefind-ignore> <a href="/draft/" class="text-sm text-accent underline-offset-4 hover:underline">
+Back to draft index
+</a> <h1 class="mt-6 text-2xl font-bold text-accent sm:text-3xl"> OoO CPU LSU, Clustered Scheduler, and Dataflow Notes </h1> <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-accent/75">  <span>source/_drafts/conversation-notes/ooo-cpu-lsu-clustered-dataflow-notes.md</span> </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="story">Story</h2>
+<ul>
+<li>I wanted to understand whether multiple LSU design is still an active CPU design topic.</li>
+<li>The answer is yes.</li>
+<li>Modern CPUs already use multiple load/store resources.</li>
+<li>The hard part is no longer just adding more LSU pipes.</li>
+<li>The hard part is scaling the memory subsystem without exploding timing, power, and replay complexity.</li>
+</ul>
+<h2 id="multiple-lsu-design-issues">Multiple LSU Design Issues</h2>
+<ul>
+<li>Multiple LSU means multiple Load/Store Units.</li>
+<li>It is common in modern superscalar and OoO CPUs.</li>
+<li>The difficult topics are:
+<ul>
+<li>memory ordering complexity</li>
+<li>load queue scalability</li>
+<li>store queue scalability</li>
+<li>replay storms</li>
+<li>AGU bottlenecks</li>
+<li>L1D cache bandwidth</li>
+<li>coherence traffic</li>
+<li>energy efficiency</li>
+</ul>
+</li>
+</ul>
+<h2 id="load-queue-and-store-queue-scalability">Load Queue and Store Queue Scalability</h2>
+<ul>
+<li>The LSQ is one of the most painful parts of an OoO CPU.</li>
+<li>Going from one LSU to two LSU is already hard.</li>
+<li>Going from two to three or four is much harder.</li>
+<li>The complexity grows quickly because memory operations compare against each other.</li>
+<li>A load must check older stores.</li>
+<li>A store must check younger loads for ordering violations.</li>
+<li>The hardware must detect speculation failures.</li>
+<li>The hardware must find store-to-load forwarding candidates.</li>
+<li>This creates large associative searches.</li>
+<li>Large CAM searches burn power.</li>
+<li>Large CAM searches also hurt timing closure.</li>
+<li>LSQ scaling is one of the reasons memory backend design is so expensive.</li>
+</ul>
+<h2 id="memory-dependence-speculation">Memory Dependence Speculation</h2>
+<ul>
+<li>Modern CPUs cannot wait for every older store address before issuing a load.</li>
+<li>Loads often execute speculatively.</li>
+<li>If an older store later resolves to the same address, the load must replay.</li>
+<li>With more LSU resources, more speculative memory operations can be in flight.</li>
+<li>This can create replay storms.</li>
+<li>Replay storms are worse with:
+<ul>
+<li>SMT</li>
+<li>server workloads</li>
+<li>pointer chasing</li>
+<li>cache misses</li>
+<li>unresolved store addresses</li>
+</ul>
+</li>
+<li>The CPU needs memory dependence prediction to reduce useless speculation.</li>
+</ul>
+<h2 id="agu-bottleneck">AGU Bottleneck</h2>
+<ul>
+<li>LSU is not only about cache access.</li>
+<li>AGU means Address Generation Unit.</li>
+<li>AGU calculates effective addresses.</li>
+<li>Address generation may include:
+<ul>
+<li>base register</li>
+<li>index register</li>
+<li>scale</li>
+<li>offset</li>
+<li>TLB access</li>
+<li>alias prediction</li>
+</ul>
+</li>
+<li>AGU timing can become a bottleneck.</li>
+<li>More LSU pipes do not always mean more effective memory throughput.</li>
+<li>AMD Zen 2 is often described as having:
+<ul>
+<li>three AGUs</li>
+<li>two load pipes</li>
+<li>one store pipe</li>
+</ul>
+</li>
+<li>Many Intel cores also limit memory address generation per cycle.</li>
+<li>The Zen 2 references in the References section are useful for this AGU/LSU bandwidth example.</li>
+</ul>
+<h2 id="lsq-and-mshr-interaction">LSQ and MSHR Interaction</h2>
+<ul>
+<li>MSHR means Miss Status Holding Register.</li>
+<li>It tracks outstanding cache misses.</li>
+<li>A load miss may occupy:
+<ul>
+<li>a Load Queue entry</li>
+<li>an MSHR entry</li>
+<li>speculative state</li>
+</ul>
+</li>
+<li>The CPU must coordinate them.</li>
+<li>Important questions:
+<ul>
+<li>What happens if a cache miss is pending while older store addresses are unresolved?</li>
+<li>When should the CPU detect a memory ordering violation?</li>
+<li>How does replay interact with pending cache misses?</li>
+</ul>
+</li>
+<li>This is why LSQ and MSHR interaction is a real design topic.</li>
+<li>The Stack Overflow LSQ/MSHR discussion in the References section is the discussion link that matches this topic.</li>
+</ul>
+<h2 id="store-to-load-forwarding">Store-to-Load Forwarding</h2>
+<ul>
+<li>Store-to-load forwarding becomes harder with more LSU bandwidth.</li>
+<li>Example case:
+<ul>
+<li>four loads</li>
+<li>two stores</li>
+<li>same cycle</li>
+<li>partial overlap</li>
+<li>unaligned access</li>
+</ul>
+</li>
+<li>Forwarding logic becomes an N-by-M compare fabric.</li>
+<li>It must consider:
+<ul>
+<li>address match</li>
+<li>byte mask</li>
+<li>alignment</li>
+<li>partial forwarding</li>
+</ul>
+</li>
+<li>This is a critical path risk in high-frequency CPUs.</li>
+</ul>
+<h2 id="cache-bandwidth-wall">Cache Bandwidth Wall</h2>
+<ul>
+<li>More LSU pipes are useless if the L1D cache cannot provide enough bandwidth.</li>
+<li>L1D ports are expensive.</li>
+<li>More ports mean:
+<ul>
+<li>more area</li>
+<li>harder routing</li>
+<li>higher power</li>
+<li>harder timing</li>
+</ul>
+</li>
+<li>Common techniques:
+<ul>
+<li>banked L1D cache</li>
+<li>pipelined cache access</li>
+<li>clustered LSU</li>
+<li>load/store bandwidth balancing</li>
+</ul>
+</li>
+<li>Apple cores are often aggressive in memory backend width.</li>
+<li>AMD and Intel are usually careful about power and area tradeoffs.</li>
+<li>WikiChip and AnandTech Zen 2 references are useful examples for load/store bandwidth descriptions.</li>
+</ul>
+<h2 id="replay-system">Replay System</h2>
+<ul>
+<li>Replay is a huge part of modern OoO CPU backend complexity.</li>
+<li>Replay may happen because of:
+<ul>
+<li>speculative load violation</li>
+<li>cache bank conflict</li>
+<li>TLB miss</li>
+<li>line fill collision</li>
+<li>failed forwarding</li>
+</ul>
+</li>
+<li>A replay system can behave like a small scheduler.</li>
+<li>It must avoid flushing too much work.</li>
+<li>Selective replay is much better than replaying everything.</li>
+</ul>
+<h2 id="energy-efficiency">Energy Efficiency</h2>
+<ul>
+<li>LSU logic consumes a lot of power.</li>
+<li>Expensive parts include:
+<ul>
+<li>associative searches</li>
+<li>forwarding compares</li>
+<li>coherence snoops</li>
+<li>wakeup and replay logic</li>
+</ul>
+</li>
+<li>Modern design is not about blindly adding LSU pipes.</li>
+<li>Better options may include:
+<ul>
+<li>smarter memory dependence prediction</li>
+<li>better prefetching</li>
+<li>better cache banking</li>
+<li>better replay control</li>
+</ul>
+</li>
+</ul>
+<h2 id="smt-makes-lsu-harder">SMT Makes LSU Harder</h2>
+<ul>
+<li>SMT means Simultaneous Multithreading.</li>
+<li>Multiple threads may share:
+<ul>
+<li>LSQ resources</li>
+<li>cache ports</li>
+<li>MSHRs</li>
+<li>replay bandwidth</li>
+</ul>
+</li>
+<li>Problems include:
+<ul>
+<li>starvation</li>
+<li>fairness</li>
+<li>replay amplification</li>
+<li>port contention</li>
+</ul>
+</li>
+<li>SMT plus multiple LSU makes arbitration much harder.</li>
+</ul>
+<h2 id="modern-trend">Modern Trend</h2>
+<ul>
+<li>Modern CPUs do not simply increase LSU count without limit.</li>
+<li>Intel and AMD often improve:
+<ul>
+<li>OoO window size</li>
+<li>prefetching</li>
+<li>memory dependence prediction</li>
+<li>cache behavior</li>
+</ul>
+</li>
+<li>Apple tends to build very wide and aggressive memory backends.</li>
+<li>The tradeoff is area and power.</li>
+</ul>
+<h2 id="what-is-the-loadstore-pipeline">What Is the Load/Store Pipeline?</h2>
+<ul>
+<li>The load/store pipeline is not only used for cache misses.</li>
+<li>It is used for normal memory operations too.</li>
+<li>It usually includes:
+<ul>
+<li>address generation</li>
+<li>address translation</li>
+<li>memory ordering checks</li>
+<li>store-to-load forwarding</li>
+<li>cache access</li>
+<li>miss handling</li>
+<li>replay handling</li>
+</ul>
+</li>
+<li>Cache miss is only one possible event in the load/store pipeline.</li>
+</ul>
+<h2 id="clustered-scheduler-problem">Clustered Scheduler Problem</h2>
+<ul>
+<li>Clustered scheduling is one of the hardest parts of modern OoO CPUs.</li>
+<li>The goal is to split the scheduler to reduce timing and power.</li>
+<li>The problem is synchronization.</li>
+<li>A cluster cannot be fully independent.</li>
+<li>Real designs are closer to:
+<ul>
+<li>shared dependency universe</li>
+<li>partitioned scheduling domains</li>
+</ul>
+</li>
+<li>The CPU wants local scheduling without breaking the global OoO illusion.</li>
+</ul>
+<h2 id="wakeup-synchronization">Wakeup Synchronization</h2>
+<ul>
+<li>Wakeup is the core synchronization problem.</li>
+<li>Example:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="asm"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">MUL</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> x1, x2, x3</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">ADD</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> x4, x1, x5</span></span></code></pre>
+<ul>
+<li>The multiply may execute in one cluster.</li>
+<li>The add may wait in another cluster.</li>
+<li>The add must know when <code>x1</code> is ready.</li>
+<li>Modern CPUs solve this with tag broadcast.</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>          result tag broadcast</span></span>
+<span class="line"><span>                   |</span></span>
+<span class="line"><span>   +---------------+---------------+</span></span>
+<span class="line"><span>   v               v               v</span></span>
+<span class="line"><span> ALU queue      AGU queue       FPU queue</span></span></code></pre>
+<ul>
+<li>Scheduling can be local.</li>
+<li>Dependency wakeup is still global or semi-global.</li>
+<li>This global wakeup network is expensive.</li>
+</ul>
+<h2 id="loadstore-ordering-synchronization">Load/Store Ordering Synchronization</h2>
+<ul>
+<li>Memory ordering is harder than normal ALU dependency.</li>
+<li>A store may be in one memory cluster.</li>
+<li>A load may be in another memory cluster.</li>
+<li>The ordering must still be globally correct.</li>
+<li>The LSQ often remains the global memory ordering authority.</li>
+<li>Even with clustered schedulers, the memory ordering domain is usually centralized or semi-centralized.</li>
+</ul>
+<h2 id="replay-across-clusters">Replay Across Clusters</h2>
+<ul>
+<li>Replay is difficult when dependent instructions have already issued in different clusters.</li>
+<li>A failed load may affect:
+<ul>
+<li>ALU cluster instructions</li>
+<li>AGU cluster instructions</li>
+<li>FPU cluster instructions</li>
+</ul>
+</li>
+<li>Modern CPUs try to use selective replay.</li>
+<li>The CPU marks dependent chains invalid.</li>
+<li>Then it re-wakes and re-schedules them.</li>
+<li>This avoids flushing the entire backend.</li>
+</ul>
+<h2 id="tag-based-synchronization">Tag-Based Synchronization</h2>
+<ul>
+<li>Modern OoO CPUs rely on physical register tags.</li>
+<li>After register renaming, instructions stop depending on architectural registers.</li>
+<li>They depend on physical registers.</li>
+<li>Example:
+<ul>
+<li>architectural register: <code>x1</code></li>
+<li>physical register: <code>P37</code></li>
+</ul>
+</li>
+<li>The wakeup network broadcasts that <code>P37</code> is ready.</li>
+<li>All clusters compare local waiting operands against the broadcast tag.</li>
+</ul>
+<h2 id="cluster-synchronization-summary">Cluster Synchronization Summary</h2>
+<ul>
+<li>Cluster synchronization is usually not direct queue-to-queue communication.</li>
+<li>It is based on:
+<ul>
+<li>shared physical register namespace</li>
+<li>tag broadcast</li>
+<li>shared ROB</li>
+<li>shared or semi-shared LSQ</li>
+</ul>
+</li>
+<li>The key challenge is maintaining global dependency consistency.</li>
+</ul>
+<h2 id="hierarchical-wakeup">Hierarchical Wakeup</h2>
+<ul>
+<li>Global wakeup is expensive.</li>
+<li>Modern designs may use hierarchical wakeup.</li>
+<li>Local wakeup can be fast.</li>
+<li>Remote wakeup can be slower.</li>
+<li>Example:
+<ul>
+<li>same cluster wakeup: 1 cycle</li>
+<li>cross cluster wakeup: 2 cycles or more</li>
+</ul>
+</li>
+<li>This creates non-uniform scheduling latency.</li>
+<li>Modern schedulers start to look a little like NUMA systems.</li>
+</ul>
+<h2 id="frontend-backend-and-retirement">Frontend, Backend, and Retirement</h2>
+<ul>
+<li>Modern OoO CPU can be viewed as three worlds:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Frontend   ->   OoO Backend   ->   Retirement</span></span>
+<span class="line"><span>in-order        dataflow-ish       in-order</span></span></code></pre>
+<ul>
+<li>Frontend is mostly in-order.</li>
+<li>Backend is tag-driven and dataflow-like.</li>
+<li>Retirement restores the in-order architectural illusion.</li>
+</ul>
+<h2 id="why-frontend-is-mostly-in-order">Why Frontend Is Mostly In-Order</h2>
+<ul>
+<li>Frontend work is PC-driven.</li>
+<li>It includes:
+<ul>
+<li>fetch</li>
+<li>branch prediction</li>
+<li>decode</li>
+<li>rename</li>
+<li>dispatch</li>
+</ul>
+</li>
+<li>Instruction order matters before rename.</li>
+<li>Fetch depends on predicted control flow.</li>
+<li>OoO decode is usually not worth the cost.</li>
+</ul>
+<h2 id="rename-is-the-boundary">Rename Is the Boundary</h2>
+<ul>
+<li>Rename is the important boundary.</li>
+<li>Before rename:
+<ul>
+<li>instructions use architectural registers</li>
+<li>the machine looks sequential</li>
+</ul>
+</li>
+<li>After rename:
+<ul>
+<li>instructions use physical registers</li>
+<li>dependencies become explicit</li>
+<li>WAR and WAW hazards are removed</li>
+</ul>
+</li>
+<li>After rename, the backend behaves like a dataflow engine.</li>
+</ul>
+<h2 id="ooo-backend-as-dataflow-like-machine">OoO Backend as Dataflow-Like Machine</h2>
+<ul>
+<li>Backend does not mainly ask: what is next in program order?</li>
+<li>Backend asks:
+<ul>
+<li>are operands ready?</li>
+<li>are resources ready?</li>
+<li>are memory dependencies satisfied?</li>
+</ul>
+</li>
+<li>Instructions wait in queues.</li>
+<li>When dependencies are ready, instructions issue.</li>
+<li>This is why OoO backend feels like event-driven graph execution.</li>
+</ul>
+<h2 id="rob-restores-sequential-illusion">ROB Restores Sequential Illusion</h2>
+<ul>
+<li>Pure dataflow would complete instructions out of order.</li>
+<li>ISA requires precise architectural state.</li>
+<li>ROB means Reorder Buffer.</li>
+<li>The ROB forces in-order retirement.</li>
+<li>The outside world sees a sequential CPU.</li>
+<li>Internally, the backend may have executed instructions out of order.</li>
+</ul>
+<h2 id="modern-cpu-conceptual-model">Modern CPU Conceptual Model</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>             +-------------+</span></span>
+<span class="line"><span>             | Frontend    |</span></span>
+<span class="line"><span>             | sequential  |</span></span>
+<span class="line"><span>             +------+------+</span></span>
+<span class="line"><span>                    |</span></span>
+<span class="line"><span>                    v</span></span>
+<span class="line"><span>             +-------------+</span></span>
+<span class="line"><span>             | Rename      |</span></span>
+<span class="line"><span>             | dependency  |</span></span>
+<span class="line"><span>             | graph gen   |</span></span>
+<span class="line"><span>             +------+------+</span></span>
+<span class="line"><span>                    |</span></span>
+<span class="line"><span>                    v</span></span>
+<span class="line"><span>      +-----------------------------+</span></span>
+<span class="line"><span>      | OoO Backend                 |</span></span>
+<span class="line"><span>      | distributed dataflow-ish    |</span></span>
+<span class="line"><span>      | schedulers + queues         |</span></span>
+<span class="line"><span>      +-------------+---------------+</span></span>
+<span class="line"><span>                    |</span></span>
+<span class="line"><span>                    v</span></span>
+<span class="line"><span>              +-----------+</span></span>
+<span class="line"><span>              | ROB       |</span></span>
+<span class="line"><span>              | reorder   |</span></span>
+<span class="line"><span>              +-----+-----+</span></span>
+<span class="line"><span>                    |</span></span>
+<span class="line"><span>                    v</span></span>
+<span class="line"><span>          architectural state</span></span></code></pre>
+<h2 id="token-vs-tag">Token vs Tag</h2>
+<ul>
+<li>Classic dataflow machines are token-driven.</li>
+<li>Tomasulo and modern OoO CPUs are tag-driven.</li>
+<li>They look similar, but the mechanism is different.</li>
+</ul>
+<h2 id="classic-dataflow-token">Classic Dataflow Token</h2>
+<ul>
+<li>A token carries actual data.</li>
+<li>A token also carries routing information.</li>
+<li>Example:
+<ul>
+<li>value: <code>5</code></li>
+<li>destination: <code>node42.inputA</code></li>
+</ul>
+</li>
+<li>When all input tokens arrive, the node fires.</li>
+<li>The program is a graph.</li>
+<li>Execution is driven by data movement.</li>
+</ul>
+<h2 id="tomasulo-tag">Tomasulo Tag</h2>
+<ul>
+<li>A tag is not the data.</li>
+<li>A tag identifies who will produce the data.</li>
+<li>Example:
+<ul>
+<li>operand not ready</li>
+<li>wait for producer <code>RS3</code></li>
+</ul>
+</li>
+<li>The reservation station waits until the tag is resolved.</li>
+<li>When the producer broadcasts the result, waiting instructions wake up.</li>
+</ul>
+<h2 id="token-vs-tag-difference">Token vs Tag Difference</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Topic</th><th>Dataflow token</th><th>Tomasulo / OoO tag</th></tr></thead><tbody><tr><td>What it is</td><td>actual data packet</td><td>producer identifier</td></tr><tr><td>Contains value</td><td>yes</td><td>no</td></tr><tr><td>Contains dependency info</td><td>implicit</td><td>explicit</td></tr><tr><td>Execution trigger</td><td>token arrival</td><td>tag readiness</td></tr><tr><td>Storage model</td><td>distributed graph</td><td>RS, ROB, PRF, queues</td></tr></tbody></table>
+<h2 id="tomasulo-and-modern-ooo">Tomasulo and Modern OoO</h2>
+<ul>
+<li>Tomasulo looks dataflow-like because instructions wait for operands.</li>
+<li>The reservation station behaves like a small dataflow node.</li>
+<li>But modern CPUs are not pure Tomasulo machines.</li>
+<li>They are Tomasulo-like in dependency tracking.</li>
+<li>They also use:
+<ul>
+<li>physical register files</li>
+<li>reorder buffers</li>
+<li>speculative execution</li>
+<li>clustered schedulers</li>
+</ul>
+</li>
+</ul>
+<h2 id="reservation-station-centric-tomasulo">Reservation Station-Centric Tomasulo</h2>
+<ul>
+<li>Early Tomasulo stores operands inside reservation stations.</li>
+<li>A reservation station stores:
+<ul>
+<li>instruction</li>
+<li>operand values</li>
+<li>dependency tags</li>
+</ul>
+</li>
+<li>When operands are ready, the instruction issues.</li>
+<li>The Common Data Bus broadcasts results to waiting reservation stations.</li>
+</ul>
+<h2 id="why-rs-centric-design-does-not-scale">Why RS-Centric Design Does Not Scale</h2>
+<ul>
+<li>It creates large broadcast networks.</li>
+<li>It duplicates operand storage.</li>
+<li>It makes every reservation station compare incoming tags.</li>
+<li>It increases CAM power.</li>
+<li>It creates long wires and difficult timing.</li>
+</ul>
+<h2 id="modern-prf-centric-ooo">Modern PRF-Centric OoO</h2>
+<ul>
+<li>Modern CPUs usually use a Physical Register File.</li>
+<li>PRF stores the actual operand values.</li>
+<li>Issue queues store mostly tags and scheduling metadata.</li>
+<li>When an instruction issues, it reads operands from the PRF.</li>
+<li>This is more scalable than storing operand values in every reservation station.</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Tomasulo RS-centric</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        RESULT BUS</span></span>
+<span class="line"><span>            |</span></span>
+<span class="line"><span>   +--------+--------+</span></span>
+<span class="line"><span>   v        v        v</span></span>
+<span class="line"><span>  RS1      RS2      RS3</span></span>
+<span class="line"><span> [val]    [val]    [val]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Modern PRF-centric</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        wakeup tags</span></span>
+<span class="line"><span>            |</span></span>
+<span class="line"><span>   +--------+--------+</span></span>
+<span class="line"><span>   v        v        v</span></span>
+<span class="line"><span>  IQ1      IQ2      IQ3</span></span>
+<span class="line"><span> [tag]    [tag]    [tag]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>            |</span></span>
+<span class="line"><span>            v</span></span>
+<span class="line"><span>   +------------------+</span></span>
+<span class="line"><span>   | Physical RF      |</span></span>
+<span class="line"><span>   | actual operands  |</span></span>
+<span class="line"><span>   +------------------+</span></span></code></pre>
+<h2 id="real-hardware-and-references-to-read">Real Hardware and References to Read</h2>
+<ul>
+<li>IBM System/360 Model 91 / Tomasulo original paper
+<ul>
+<li><a href="https://courses.cs.washington.edu/courses/cse548/05wi/files/inclass/Jan24_Tomasulo.pdf">An Efficient Algorithm for Exploiting Multiple Arithmetic Units</a></li>
+</ul>
+</li>
+<li>Intel P6 / Pentium Pro
+<ul>
+<li>important OoO milestone</li>
+</ul>
+</li>
+<li>Alpha 21264
+<ul>
+<li><a href="https://cseweb.ucsd.edu/classes/fa07/cse240a/Papers/alpha21264.pdf">The Alpha 21264 Microprocessor Architecture</a></li>
+</ul>
+</li>
+<li>Intel Core / Skylake
+<ul>
+<li>modern PRF-centric OoO style</li>
+</ul>
+</li>
+<li>Apple Firestorm
+<ul>
+<li>aggressive wide OoO backend</li>
+</ul>
+</li>
+<li>BOOM
+<ul>
+<li><a href="https://docs.boom-core.org/">RISC-V BOOM documentation</a></li>
+</ul>
+</li>
+<li>XiangShan
+<ul>
+<li><a href="https://xiangshan.cc/">XiangShan project</a></li>
+</ul>
+</li>
+<li>AMD Zen 2 LSU / AGU examples
+<ul>
+<li><a href="https://en.wikichip.org/wiki/amd/microarchitectures/zen_2">WikiChip Zen 2</a></li>
+<li><a href="https://www.anandtech.com/show/14525/amd-zen-2-microarchitecture-analysis-ryzen-3000-and-epyc-rome">AnandTech Zen 2 microarchitecture analysis</a></li>
+</ul>
+</li>
+<li>LSQ and MSHR discussion
+<ul>
+<li><a href="https://stackoverflow.com/questions/65851556/how-does-load-store-queue-work-in-the-presence-of-mshr">How does Load Store Queue work in the presence of MSHR?</a></li>
+</ul>
+</li>
+<li>Hennessy and Patterson
+<ul>
+<li><em>Computer Architecture: A Quantitative Approach</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="further-topics-mentioned">Further Topics Mentioned</h2>
+<ul>
+<li>Intel Sunny Cove / Golden Cove LSU details.</li>
+<li>Apple M1 / M2 memory subsystem.</li>
+<li>Load Queue CAM RTL structure.</li>
+<li>Store forwarding hardware.</li>
+<li>Replay engine architecture.</li>
+<li>Memory disambiguation predictors.</li>
+<li>GPU LSU versus CPU LSU differences.</li>
+<li>Clustered LSU architecture.</li>
+<li>Banked L1D cache design.</li>
+<li>Multi-LSU timing closure.</li>
+<li>Why Apple can build very wide memory backends.</li>
+<li>How BOOM and XiangShan implement LSU and replay.</li>
+</ul>
+<h2 id="final-summary">Final Summary</h2>
+<ul>
+<li>Multiple LSU design is a real modern CPU problem.</li>
+<li>The hard part is memory ordering, LSQ scaling, forwarding, cache bandwidth, replay, and power.</li>
+<li>Clustered schedulers reduce local timing pressure but still need global dependency visibility.</li>
+<li>Modern OoO backend is best understood as a speculative, tag-driven, dataflow-like engine.</li>
+<li>The frontend is mostly in-order.</li>
+<li>The backend is event-driven.</li>
+<li>The ROB restores in-order architectural state.</li>
+<li>Classic dataflow machines move tokens carrying data.</li>
+<li>Tomasulo and modern OoO CPUs use tags to track future producers.</li>
+<li>Modern CPUs evolved from RS-centric Tomasulo toward PRF-centric OoO designs.</li>
+</ul> </article> <hr class="my-8 border-dashed"> <ul class="flex flex-wrap gap-3"> <li> <a href="/tags/cpu/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> cpu </a> </li><li> <a href="/tags/microarchitecture/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> microarchitecture </a> </li><li> <a href="/tags/ooo/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> ooo </a> </li><li> <a href="/tags/lsu/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> lsu </a> </li><li> <a href="/tags/dataflow/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> dataflow </a> </li> </ul> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/satnaing/astro-paper" title="Hsufit.dev on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Hsufit.dev on GitHub</span>  </a><a href="https://x.com/username" title="Hsufit.dev on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Hsufit.dev on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="Hsufit.dev on LinkedIn" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">Hsufit.dev on LinkedIn</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to Hsufit.dev" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Hsufit.dev</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html>

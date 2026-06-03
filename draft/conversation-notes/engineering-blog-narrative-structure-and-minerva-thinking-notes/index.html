@@ -1,0 +1,764 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://hsufit.github.io/draft/conversation-notes/engineering-blog-narrative-structure-and-minerva-thinking-notes/"><meta name="generator" content="Astro v5.18.2"><!-- Load Font --><style>@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-de078a87b11e4a86","Google Sans Code-de078a87b11e4a86 fallback: Courier New",monospace;}</style><!-- General Meta Tags --><title>Engineering Blog Narrative Structure and Minerva Thinking Notes | Draft | Hsufit.dev</title><meta name="title" content="Engineering Blog Narrative Structure and Minerva Thinking Notes | Draft | Hsufit.dev"><meta name="description" content="Notes about choosing blog-post structures, using Before-After-Why for engineering migration stories, and applying Minerva-style thinking habits as writing prompts."><meta name="author" content="hsufit"><meta name="robots" content="noindex, nofollow"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Engineering Blog Narrative Structure and Minerva Thinking Notes | Draft | Hsufit.dev"><meta property="og:description" content="Notes about choosing blog-post structures, using Before-After-Why for engineering migration stories, and applying Minerva-style thinking habits as writing prompts."><meta property="og:url" content="https://hsufit.github.io/draft/conversation-notes/engineering-blog-narrative-structure-and-minerva-thinking-notes/"><meta property="og:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Article Published/Modified time --><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hsufit.github.io/draft/conversation-notes/engineering-blog-narrative-structure-and-minerva-thinking-notes/"><meta property="twitter:title" content="Engineering Blog Narrative Structure and Minerva Thinking Notes | Draft | Hsufit.dev"><meta property="twitter:description" content="Notes about choosing blog-post structures, using Before-After-Why for engineering migration stories, and applying Minerva-style thinking habits as writing prompts."><meta property="twitter:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Engineering Blog Narrative Structure and Minerva Thinking Notes | Draft | Hsufit.dev","image":"https://hsufit.github.io/images/banner.jpg","author":[{"@type":"Person","name":"hsufit","url":"https://hsufit.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Hsufit.dev" href="https://hsufit.github.io/rss.xml"><meta name="theme-color" content=""><meta name="google-site-verification" content="lOXTD09oOxgSJ7OtnDe9hrmLOu1-j4YfCjQjcbaWH1s"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.C-UD7B35.css">
+<style>:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: writing; }@layer astro { ::view-transition-old(writing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(writing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(writing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(writing) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: blog; }@layer astro { ::view-transition-old(blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: engineering-blog; }@layer astro { ::view-transition-old(engineering-blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(engineering-blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(engineering-blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(engineering-blog) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: minerva; }@layer astro { ::view-transition-old(minerva) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(minerva) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(minerva) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(minerva) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: thinking; }@layer astro { ::view-transition-old(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Hsufit.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/squirrel" title="Squirrel" aria-label="squirrel" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block" transform="translate(0 4)">
+<path d="M10.1 2.3c-1.5.5-2 .9-2 1.7 0 .5-.3.9-1.5 2.1C5 7.7 4.4 9 4.4 10.8c0 .9.2 1.7.5 2.7.2.5.3 1 .3 1.3 0 .7.5 1.1 1.3 1.1.4 0 1.2.2 1.8.4 2.7.8 5-.1 7.8-3 .9-.9 1.2-1 1.6-.9.7.2 1.3-.3 1.8-1.4 1-2.3.5-5.3-1.3-7.1l-.5-.5.7-.7c.4-.4.6-.8.5-1-.2-.4-.3-.4-1.1.4l-.7.7-.9-.5c-2-1.1-4.3-1.4-6.1-.7z" />
+<path d="M9.1 3.3 18 12" />
+</svg> <span class="sm:sr-only">Squirrel</span>  </a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <main id="main-content" class="app-layout py-8" data-pagefind-ignore> <a href="/draft/" class="text-sm text-accent underline-offset-4 hover:underline">
+Back to draft index
+</a> <h1 class="mt-6 text-2xl font-bold text-accent sm:text-3xl"> Engineering Blog Narrative Structure and Minerva Thinking Notes </h1> <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-accent/75">  <span>source/_drafts/conversation-notes/engineering-blog-narrative-structure-and-minerva-thinking-notes.md</span> </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="question">Question</h2>
+<ul>
+<li>I wanted to know what structure is better for a blog post.</li>
+<li>The possible structure was compared with STAR.</li>
+<li>The topic example was a blog architecture change:
+<ul>
+<li>moving from Hexo to Astro Paper</li>
+<li>separating content from site implementation</li>
+<li>changing repository and workflow boundaries</li>
+</ul>
+</li>
+<li>I also wanted to add:
+<ul>
+<li>a summary of Minerva University’s thinking habits / HCs</li>
+<li>an interview with Li Jiada, a Minerva graduate</li>
+<li>the interview link:
+<ul>
+<li><a href="https://www.youtube.com/watch?v=yMLMJuHHoIw&#x26;t=1403s">https://www.youtube.com/watch?v=yMLMJuHHoIw&#x26;t=1403s</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="short-answer">Short Answer</h2>
+<ul>
+<li>For blog posts, STAR is usually not the most natural structure.</li>
+<li>STAR feels like an interview answer or project report.</li>
+<li>Engineering blog posts usually work better with:
+<ul>
+<li>story</li>
+<li>evolution</li>
+<li>decision making</li>
+<li>reasoning</li>
+<li>tradeoffs</li>
+</ul>
+</li>
+</ul>
+<h2 id="common-blog-post-structures">Common Blog Post Structures</h2>
+<ul>
+<li>
+<p>Common engineering blog patterns:</p>
+<ul>
+<li>Before -> After -> Why</li>
+<li>Problem -> Solution -> Impact</li>
+<li>Learning / Journey Narrative</li>
+</ul>
+</li>
+<li>
+<p>These work better than STAR when the post is about:</p>
+<ul>
+<li>migration</li>
+<li>workflow redesign</li>
+<li>architecture evolution</li>
+<li>personal infrastructure</li>
+<li>tooling setup</li>
+</ul>
+</li>
+</ul>
+<h2 id="why-not-star">Why Not STAR?</h2>
+<ul>
+<li>STAR means:
+<ul>
+<li>Situation</li>
+<li>Task</li>
+<li>Action</li>
+<li>Result</li>
+</ul>
+</li>
+<li>It is useful for interviews.</li>
+<li>But a blog post usually needs a different reader experience.</li>
+<li>Readers expect:
+<ul>
+<li>context</li>
+<li>story flow</li>
+<li>why the old approach stopped working</li>
+<li>why the new approach was chosen</li>
+<li>what tradeoffs came with the change</li>
+</ul>
+</li>
+</ul>
+<h2 id="best-fit-for-this-topic">Best Fit for This Topic</h2>
+<ul>
+<li>The Hexo to Astro Paper content architecture topic fits:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Before -> After -> Why</span></span></code></pre>
+<ul>
+<li>Reason:
+<ul>
+<li>the topic is about workflow and architecture evolution.</li>
+<li>the reader needs to see how the old setup became insufficient.</li>
+<li>the value comes from understanding the design choice.</li>
+</ul>
+</li>
+</ul>
+<h2 id="before---after---why-flow">Before -> After -> Why Flow</h2>
+<ul>
+<li>A natural flow:
+<ul>
+<li>how the blog worked before</li>
+<li>what limitation appeared</li>
+<li>why the limitation started to matter</li>
+<li>what changed</li>
+<li>what the new repository/workflow structure looks like</li>
+<li>what tradeoffs and benefits came from the change</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>old workflow</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>new pressure / new needs</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>architecture decision</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>new workflow</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>why it is better</span></span></code></pre>
+<h2 id="problem---solution---impact-flow">Problem -> Solution -> Impact Flow</h2>
+<ul>
+<li>
+<p>This is also good for engineering writing.</p>
+</li>
+<li>
+<p>Example shape:</p>
+<ul>
+<li>Problem:
+<ul>
+<li>content updates and frontend changes were mixed together.</li>
+</ul>
+</li>
+<li>Solution:
+<ul>
+<li>separate content and site implementation.</li>
+</ul>
+</li>
+<li>Impact:
+<ul>
+<li>clearer history.</li>
+<li>easier framework upgrades.</li>
+<li>more modular workflow.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>This is more direct than Before -> After -> Why.</p>
+</li>
+<li>
+<p>It is good when the post is short or practical.</p>
+</li>
+</ul>
+<h2 id="learning--journey-narrative-flow">Learning / Journey Narrative Flow</h2>
+<ul>
+<li>
+<p>This is good when the post is personal.</p>
+</li>
+<li>
+<p>Example shape:</p>
+<ul>
+<li>I started with Hexo.</li>
+<li>I moved to Astro Paper.</li>
+<li>I hit new customization needs.</li>
+<li>I realized content and framework have different lifecycles.</li>
+<li>I changed the repo architecture.</li>
+<li>Here is what I learned.</li>
+</ul>
+</li>
+<li>
+<p>This style keeps the excitement of discovery.</p>
+</li>
+<li>
+<p>It works well for a personal dev blog.</p>
+</li>
+</ul>
+<h2 id="suggested-opening-topic">Suggested Opening Topic</h2>
+<ul>
+<li>Possible title idea:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>From Hexo to Astro: Separating Blog Content from Site Architecture</span></span></code></pre>
+<ul>
+<li>Possible Chinese title idea:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>從 Hexo 到 Astro：重新拆分 Blog 的 Content 與 Site Architecture</span></span></code></pre>
+<h2 id="suggested-opening-draft">Suggested Opening Draft</h2>
+<ul>
+<li>
+<p>Old workflow:</p>
+<ul>
+<li>When I maintained the blog with Hexo, the workflow was simple.</li>
+<li>Most of my attention was on writing posts.</li>
+<li>The website design and structure stayed mostly fixed.</li>
+</ul>
+</li>
+<li>
+<p>New situation:</p>
+<ul>
+<li>After moving to Astro Paper, the situation changed.</li>
+<li>I started adjusting more than content.</li>
+<li>I also changed:
+<ul>
+<li>layouts</li>
+<li>components</li>
+<li>styling</li>
+<li>static pages</li>
+<li>theme customization</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Key realization:</p>
+<ul>
+<li>content and site implementation have different lifecycles.</li>
+<li>blog posts evolve like knowledge records.</li>
+<li>frontend framework code evolves like software.</li>
+</ul>
+</li>
+</ul>
+<h2 id="problem-with-one-repository-boundary">Problem With One Repository Boundary</h2>
+<ul>
+<li>If content and framework stay too tightly coupled, several problems appear:
+<ul>
+<li>content updates and frontend changes mix together.</li>
+<li>theme upgrades may affect post structure.</li>
+<li>repository boundaries become unclear.</li>
+<li>future migration cost becomes higher.</li>
+<li>git history becomes harder to read.</li>
+</ul>
+</li>
+</ul>
+<h2 id="architecture-decision">Architecture Decision</h2>
+<ul>
+<li>
+<p>The new architecture separates:</p>
+<ul>
+<li>content management</li>
+<li>site development</li>
+</ul>
+</li>
+<li>
+<p>Example direction:</p>
+<ul>
+<li>content lives in a separate repository or separate source boundary.</li>
+<li>the Astro site focuses on the static site implementation.</li>
+<li>content can be introduced through a controlled path such as Git submodule or external source configuration.</li>
+</ul>
+</li>
+</ul>
+<h2 id="why-this-is-better">Why This Is Better</h2>
+<ul>
+<li>
+<p>Benefits:</p>
+<ul>
+<li>content history becomes easier to track.</li>
+<li>framework changes become easier to review.</li>
+<li>Astro Paper can be upgraded more safely.</li>
+<li>the migration path stays clearer.</li>
+<li>site customization can evolve independently.</li>
+</ul>
+</li>
+<li>
+<p>The main idea:</p>
+<ul>
+<li>content has a long-term knowledge lifecycle.</li>
+<li>framework code has a technical lifecycle.</li>
+<li>separating them makes both easier to maintain.</li>
+</ul>
+</li>
+</ul>
+<h2 id="tradeoffs-to-mention">Tradeoffs to Mention</h2>
+<ul>
+<li>
+<p>This architecture also has tradeoffs:</p>
+<ul>
+<li>path configuration becomes more important.</li>
+<li>build scripts may need extra setup.</li>
+<li>Git submodules can add workflow complexity.</li>
+<li>new contributors need to understand the repository structure.</li>
+<li>deployment needs to know where content comes from.</li>
+</ul>
+</li>
+<li>
+<p>A good blog post should include these tradeoffs.</p>
+</li>
+<li>
+<p>That makes the decision feel grounded, not like pure preference.</p>
+</li>
+</ul>
+<h2 id="good-blog-post-shape-for-this-story">Good Blog Post Shape for This Story</h2>
+<ul>
+<li>Recommended structure:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>1. Old Hexo workflow</span></span>
+<span class="line"><span>2. New Astro Paper customization needs</span></span>
+<span class="line"><span>3. Problem: content and framework lifecycles diverged</span></span>
+<span class="line"><span>4. Decision: isolate content from framework</span></span>
+<span class="line"><span>5. New repository/workflow structure</span></span>
+<span class="line"><span>6. Tradeoffs</span></span>
+<span class="line"><span>7. Result and future migration benefit</span></span></code></pre>
+<h2 id="minerva-thinking-habits--hcs">Minerva Thinking Habits / HCs</h2>
+<ul>
+<li>Minerva University uses Habits of Mind and Foundational Concepts.</li>
+<li>They are often abbreviated as HCs.</li>
+<li>HCs are thinking tools that can transfer across contexts.</li>
+<li>They are useful as prompts for writing and reviewing an engineering blog post.</li>
+</ul>
+<h2 id="about-the-count">About the Count</h2>
+<ul>
+<li>Some older or secondary descriptions mention about 80 HCs.</li>
+<li>Minerva’s current public intro material says there are more than 100 HCs and that the set changes over time.</li>
+<li>For this note, the important idea is not the exact number.</li>
+<li>The useful idea is:
+<ul>
+<li>build reusable thinking habits.</li>
+<li>apply them across many domains.</li>
+<li>use them to make decisions and explanations clearer.</li>
+</ul>
+</li>
+</ul>
+<h2 id="minerva-four-core-competency-groups">Minerva Four Core Competency Groups</h2>
+<ul>
+<li>
+<p>Minerva groups HCs under broad competencies.</p>
+</li>
+<li>
+<p>A useful writing-oriented summary:</p>
+<ul>
+<li>thinking critically</li>
+<li>thinking creatively</li>
+<li>communicating effectively</li>
+<li>interacting effectively</li>
+</ul>
+</li>
+<li>
+<p>These four groups can become a blog-post review checklist.</p>
+</li>
+</ul>
+<h2 id="thinking-critically-as-blog-review">Thinking Critically as Blog Review</h2>
+<ul>
+<li>
+<p>Use this group to check:</p>
+<ul>
+<li>What claim am I making?</li>
+<li>What evidence supports the claim?</li>
+<li>What assumption am I making?</li>
+<li>Is the problem real or only a preference?</li>
+<li>What alternative explanations exist?</li>
+</ul>
+</li>
+<li>
+<p>For the Hexo-to-Astro story:</p>
+<ul>
+<li>claim:
+<ul>
+<li>content and framework should be isolated.</li>
+</ul>
+</li>
+<li>evidence:
+<ul>
+<li>content edits and frontend changes have different lifecycles.</li>
+</ul>
+</li>
+<li>assumption:
+<ul>
+<li>future framework migration matters.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="thinking-creatively-as-blog-review">Thinking Creatively as Blog Review</h2>
+<ul>
+<li>
+<p>Use this group to check:</p>
+<ul>
+<li>What alternative designs did I consider?</li>
+<li>Can I solve the problem with a smaller change?</li>
+<li>Can I reuse an existing mechanism?</li>
+<li>What new workflow becomes possible?</li>
+</ul>
+</li>
+<li>
+<p>For the blog architecture story:</p>
+<ul>
+<li>alternatives may include:
+<ul>
+<li>keep everything in one repo.</li>
+<li>use a subdirectory boundary.</li>
+<li>use a Git submodule.</li>
+<li>use a separate content repository.</li>
+<li>use an external content path.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="communicating-effectively-as-blog-review">Communicating Effectively as Blog Review</h2>
+<ul>
+<li>
+<p>Use this group to check:</p>
+<ul>
+<li>Is the opening clear?</li>
+<li>Does the reader know why the change matters?</li>
+<li>Are terms like content, framework, source, and site defined?</li>
+<li>Are diagrams or folder trees needed?</li>
+<li>Is the conclusion memorable?</li>
+</ul>
+</li>
+<li>
+<p>For this story, a folder tree may help:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>blog-root/</span></span>
+<span class="line"><span>|-- astro-site/</span></span>
+<span class="line"><span>|   `-- framework code</span></span>
+<span class="line"><span>`-- content/</span></span>
+<span class="line"><span>    `-- posts</span></span></code></pre>
+<h2 id="interacting-effectively-as-blog-review">Interacting Effectively as Blog Review</h2>
+<ul>
+<li>
+<p>Use this group to check stakeholder impact.</p>
+</li>
+<li>
+<p>Possible stakeholders:</p>
+<ul>
+<li>future me</li>
+<li>readers</li>
+<li>collaborators</li>
+<li>deployment flow</li>
+<li>search engines</li>
+<li>framework maintainers</li>
+</ul>
+</li>
+<li>
+<p>Questions:</p>
+<ul>
+<li>Who benefits from this architecture?</li>
+<li>Who pays extra complexity?</li>
+<li>What should be documented so the workflow remains usable?</li>
+</ul>
+</li>
+</ul>
+<h2 id="minerva-style-checklist-for-this-post">Minerva-Style Checklist for This Post</h2>
+<ul>
+<li>Critical thinking:
+<ul>
+<li>Is the architecture problem clearly identified?</li>
+<li>Are the assumptions visible?</li>
+</ul>
+</li>
+<li>Creative thinking:
+<ul>
+<li>Are alternative structures mentioned?</li>
+<li>Is the chosen design explained as a tradeoff?</li>
+</ul>
+</li>
+<li>Communication:
+<ul>
+<li>Is the story readable from old workflow to new workflow?</li>
+<li>Are examples concrete?</li>
+</ul>
+</li>
+<li>Interaction:
+<ul>
+<li>Does the post explain how this helps future maintenance?</li>
+<li>Does it mention complexity added by submodules or external content?</li>
+</ul>
+</li>
+</ul>
+<h2 id="li-jiada-interview-link">Li Jiada Interview Link</h2>
+<ul>
+<li>
+<p>Related interview with Li Jiada, a Minerva graduate:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=yMLMJuHHoIw&#x26;t=1403s">https://www.youtube.com/watch?v=yMLMJuHHoIw&#x26;t=1403s</a></li>
+</ul>
+</li>
+<li>
+<p>Why this belongs in the note:</p>
+<ul>
+<li>it connects the writing structure discussion with Minerva-style learning habits.</li>
+<li>it can be used as background inspiration for thinking tools.</li>
+<li>it reminds me to write not only what changed, but how the reasoning changed.</li>
+</ul>
+</li>
+</ul>
+<h2 id="possible-post-thesis">Possible Post Thesis</h2>
+<ul>
+<li>A strong thesis:
+<ul>
+<li>This migration was not only a framework change.</li>
+<li>It was a workflow boundary change.</li>
+<li>The real insight was separating content lifecycle from framework lifecycle.</li>
+</ul>
+</li>
+</ul>
+<h2 id="possible-final-paragraph">Possible Final Paragraph</h2>
+<ul>
+<li>The final paragraph can say:
+<ul>
+<li>Moving from Hexo to Astro Paper made me realize that a blog is both a knowledge base and a software project.</li>
+<li>The content should be stable and portable.</li>
+<li>The framework should be replaceable and customizable.</li>
+<li>Separating them makes the system easier to reason about, upgrade, and migrate.</li>
+</ul>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Minerva University learning model and HCs:
+<ul>
+<li><a href="https://www.minerva.edu/pedagogy/">https://www.minerva.edu/pedagogy/</a></li>
+</ul>
+</li>
+<li>Minerva introduction to Habits of Mind and Foundational Concepts:
+<ul>
+<li><a href="https://www.minerva.edu/public/media/enrollment-center/Minerva-HCs-Intro.pdf">https://www.minerva.edu/public/media/enrollment-center/Minerva-HCs-Intro.pdf</a></li>
+</ul>
+</li>
+<li>Secondary article mentioning approximately 80 HCs:
+<ul>
+<li><a href="https://ssir.org/articles/entry/creating_a_university_from_scratch">https://ssir.org/articles/entry/creating_a_university_from_scratch</a></li>
+</ul>
+</li>
+<li>Li Jiada Minerva graduate interview:
+<ul>
+<li><a href="https://www.youtube.com/watch?v=yMLMJuHHoIw&#x26;t=1403s">https://www.youtube.com/watch?v=yMLMJuHHoIw&#x26;t=1403s</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="final-summary">Final Summary</h2>
+<ul>
+<li>For a blog post, use story-oriented structures instead of STAR.</li>
+<li>This topic fits <code>Before -> After -> Why</code> very well.</li>
+<li>The core story is content/framework lifecycle separation.</li>
+<li>Minerva-style HCs can be used as thinking prompts for reviewing the post.</li>
+<li>The exact HC count may depend on source/version, but the useful idea is reusable thinking tools.</li>
+</ul> </article> <hr class="my-8 border-dashed"> <ul class="flex flex-wrap gap-3"> <li> <a href="/tags/writing/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> writing </a> </li><li> <a href="/tags/blog/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> blog </a> </li><li> <a href="/tags/engineering-blog/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> engineering-blog </a> </li><li> <a href="/tags/minerva/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> minerva </a> </li><li> <a href="/tags/thinking/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> thinking </a> </li> </ul> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/satnaing/astro-paper" title="Hsufit.dev on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Hsufit.dev on GitHub</span>  </a><a href="https://x.com/username" title="Hsufit.dev on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Hsufit.dev on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="Hsufit.dev on LinkedIn" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">Hsufit.dev on LinkedIn</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to Hsufit.dev" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Hsufit.dev</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html>

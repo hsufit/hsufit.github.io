@@ -1,5 +1,6 @@
 
 User-agent: *
 Allow: /
+Disallow: /draft/
 
 Sitemap: https://hsufit.github.io/sitemap-index.xml

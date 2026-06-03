@@ -1,0 +1,1067 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://hsufit.github.io/draft/conversation-notes/chisel-firrtl-circt-firtool-boom-flow-notes/"><meta name="generator" content="Astro v5.18.2"><!-- Load Font --><style>@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-de078a87b11e4a86","Google Sans Code-de078a87b11e4a86 fallback: Courier New",monospace;}</style><!-- General Meta Tags --><title>Chisel FIRRTL CIRCT firtool and BOOM Flow Notes | Draft | Hsufit.dev</title><meta name="title" content="Chisel FIRRTL CIRCT firtool and BOOM Flow Notes | Draft | Hsufit.dev"><meta name="description" content="Notes about emitCHIRRTL, Chisel elaboration, FIRRTL/CIRCT lowering, firtool, split Verilog, pass pipelines, and how BOOM is built through Chipyard."><meta name="author" content="hsufit"><meta name="robots" content="noindex, nofollow"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Chisel FIRRTL CIRCT firtool and BOOM Flow Notes | Draft | Hsufit.dev"><meta property="og:description" content="Notes about emitCHIRRTL, Chisel elaboration, FIRRTL/CIRCT lowering, firtool, split Verilog, pass pipelines, and how BOOM is built through Chipyard."><meta property="og:url" content="https://hsufit.github.io/draft/conversation-notes/chisel-firrtl-circt-firtool-boom-flow-notes/"><meta property="og:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Article Published/Modified time --><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hsufit.github.io/draft/conversation-notes/chisel-firrtl-circt-firtool-boom-flow-notes/"><meta property="twitter:title" content="Chisel FIRRTL CIRCT firtool and BOOM Flow Notes | Draft | Hsufit.dev"><meta property="twitter:description" content="Notes about emitCHIRRTL, Chisel elaboration, FIRRTL/CIRCT lowering, firtool, split Verilog, pass pipelines, and how BOOM is built through Chipyard."><meta property="twitter:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Chisel FIRRTL CIRCT firtool and BOOM Flow Notes | Draft | Hsufit.dev","image":"https://hsufit.github.io/images/banner.jpg","author":[{"@type":"Person","name":"hsufit","url":"https://hsufit.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Hsufit.dev" href="https://hsufit.github.io/rss.xml"><meta name="theme-color" content=""><meta name="google-site-verification" content="lOXTD09oOxgSJ7OtnDe9hrmLOu1-j4YfCjQjcbaWH1s"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.C-UD7B35.css">
+<style>:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: chisel; }@layer astro { ::view-transition-old(chisel) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(chisel) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(chisel) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(chisel) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: firrtl; }@layer astro { ::view-transition-old(firrtl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(firrtl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(firrtl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(firrtl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: circt; }@layer astro { ::view-transition-old(circt) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(circt) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(circt) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(circt) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: firtool; }@layer astro { ::view-transition-old(firtool) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(firtool) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(firtool) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(firtool) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: boom; }@layer astro { ::view-transition-old(boom) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(boom) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(boom) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(boom) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Hsufit.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/squirrel" title="Squirrel" aria-label="squirrel" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block" transform="translate(0 4)">
+<path d="M10.1 2.3c-1.5.5-2 .9-2 1.7 0 .5-.3.9-1.5 2.1C5 7.7 4.4 9 4.4 10.8c0 .9.2 1.7.5 2.7.2.5.3 1 .3 1.3 0 .7.5 1.1 1.3 1.1.4 0 1.2.2 1.8.4 2.7.8 5-.1 7.8-3 .9-.9 1.2-1 1.6-.9.7.2 1.3-.3 1.8-1.4 1-2.3.5-5.3-1.3-7.1l-.5-.5.7-.7c.4-.4.6-.8.5-1-.2-.4-.3-.4-1.1.4l-.7.7-.9-.5c-2-1.1-4.3-1.4-6.1-.7z" />
+<path d="M9.1 3.3 18 12" />
+</svg> <span class="sm:sr-only">Squirrel</span>  </a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <main id="main-content" class="app-layout py-8" data-pagefind-ignore> <a href="/draft/" class="text-sm text-accent underline-offset-4 hover:underline">
+Back to draft index
+</a> <h1 class="mt-6 text-2xl font-bold text-accent sm:text-3xl"> Chisel FIRRTL CIRCT firtool and BOOM Flow Notes </h1> <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-accent/75">  <span>source/_drafts/conversation-notes/chisel-firrtl-circt-firtool-boom-flow-notes.md</span> </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="question">Question</h2>
+<ul>
+<li>I wanted to understand what <code>emitCHIRRTL</code> does in Chisel.</li>
+<li>I also wanted to understand each compile/emit step:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Chisel</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>CHIRRTL</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>Low FIRRTL</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>Verilog / SystemVerilog</span></span></code></pre>
+<ul>
+<li>Then I wanted the tool names and commands for each step.</li>
+<li>Finally, I wanted to know how BOOM does this flow.</li>
+<li>Related BOOM repository:
+<ul>
+<li><a href="https://github.com/riscv-boom/riscv-boom">https://github.com/riscv-boom/riscv-boom</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="short-answer">Short Answer</h2>
+<ul>
+<li><code>emitCHIRRTL</code> converts a Chisel hardware design into CHIRRTL text.</li>
+<li>CHIRRTL is a high-level FIRRTL representation.</li>
+<li>The modern practical flow is often:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Scala / Chisel elaboration</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>FIRRTL / CHIRRTL (.fir)</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>firtool</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>SystemVerilog (.sv)</span></span></code></pre>
+<ul>
+<li><code>firtool</code> hides many internal lowering steps.</li>
+<li>BOOM usually uses Chipyard to run this kind of flow.</li>
+<li>BOOM is not usually built as a standalone single-module <code>firtool</code> project.</li>
+</ul>
+<h2 id="what-is-chirrtl">What Is CHIRRTL?</h2>
+<ul>
+<li>
+<p>CHIRRTL is a high-level FIRRTL form produced from Chisel.</p>
+</li>
+<li>
+<p>It is closer to the original Chisel semantics than final Verilog.</p>
+</li>
+<li>
+<p>It may still preserve high-level constructs such as:</p>
+<ul>
+<li><code>Mem</code></li>
+<li><code>Vec</code></li>
+<li>aggregate types</li>
+<li><code>Bundle</code></li>
+<li>high-level connects</li>
+<li>width inference</li>
+<li><code>when</code> structure</li>
+<li><code>printf</code></li>
+<li>assertions</li>
+<li>invalid values</li>
+</ul>
+</li>
+<li>
+<p>It is not fully lowered RTL yet.</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Chisel</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>CHIRRTL</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>FIRRTL lowering</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>Low-level RTL IR</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>SystemVerilog</span></span></code></pre>
+<h2 id="what-emitchirrtl-does">What emitCHIRRTL Does</h2>
+<ul>
+<li><code>emitCHIRRTL</code> runs Chisel elaboration and emits CHIRRTL text.</li>
+<li>It is useful for:
+<ul>
+<li>debugging generated hardware</li>
+<li>understanding Chisel lowering</li>
+<li>checking how <code>Vec</code>, <code>Bundle</code>, <code>Mem</code>, and connects are represented</li>
+<li>writing or debugging FIRRTL/CIRCT passes</li>
+</ul>
+</li>
+</ul>
+<h2 id="simple-chisel-example">Simple Chisel Example</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="scala"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">import</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> chisel3._</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">import</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> circt.stage.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">ChiselStage</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">class</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> MyModule</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> extends</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> Module</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  val</span><span style="--shiki-light:#24292EFF;--shiki-dark:#C5E478"> io</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> IO</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">new</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> Bundle</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    val</span><span style="--shiki-light:#24292EFF;--shiki-dark:#C5E478"> a</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> Input</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">UInt</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">8</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">W</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">))</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    val</span><span style="--shiki-light:#24292EFF;--shiki-dark:#C5E478"> b</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> Output</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">UInt</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">8</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">W</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">))</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  })</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  io.b </span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">:=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> io.a </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">+</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">U</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">object</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> Main</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> extends</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> App</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  println(</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">    ChiselStage</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">.emitCHIRRTL(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">new</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> MyModule</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  )</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<ul>
+<li>Example CHIRRTL-like output:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>circuit MyModule :</span></span>
+<span class="line"><span>  module MyModule :</span></span>
+<span class="line"><span>    input clock : Clock</span></span>
+<span class="line"><span>    input reset : UInt&#x3C;1></span></span>
+<span class="line"><span>    input io_a : UInt&#x3C;8></span></span>
+<span class="line"><span>    output io_b : UInt&#x3C;8></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    node _T = add(io_a, UInt&#x3C;1>("h1"))</span></span>
+<span class="line"><span>    io_b &#x3C;= _T</span></span></code></pre>
+<ul>
+<li>This is not Verilog.</li>
+<li>It is an intermediate representation.</li>
+</ul>
+<h2 id="emitchirrtl-vs-emitsystemverilog">emitCHIRRTL vs emitSystemVerilog</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>API</th><th>Main output</th></tr></thead><tbody><tr><td><code>emitCHIRRTL</code></td><td>high-level CHIRRTL / FIRRTL text</td></tr><tr><td><code>emitFIRRTLDialect</code></td><td>FIRRTL dialect IR</td></tr><tr><td><code>emitSystemVerilog</code></td><td>SystemVerilog</td></tr><tr><td><code>emitVerilog</code></td><td>Verilog/SystemVerilog-style RTL, depending on version/flow</td></tr></tbody></table>
+<ul>
+<li>In practice, RTL designers often care most about:
+<ul>
+<li>generated <code>.fir</code></li>
+<li>generated <code>.sv</code></li>
+<li>naming</li>
+<li>memory lowering</li>
+<li>synthesis/lint result</li>
+</ul>
+</li>
+</ul>
+<h2 id="important-concept-elaboration">Important Concept: Elaboration</h2>
+<ul>
+<li>Chisel is not parsed like Verilog.</li>
+<li>Chisel is Scala code that runs on the JVM.</li>
+<li>When the Scala program runs, Chisel constructs a hardware graph.</li>
+<li>This step is called elaboration.</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Scala program executes</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>Chisel objects are created</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>hardware graph is built</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>FIRRTL / CHIRRTL is emitted</span></span></code></pre>
+<ul>
+<li>A Scala loop is executed during elaboration.</li>
+<li>Example:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="scala"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-light-font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">for</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> (i </span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">&#x3C;-</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 0</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> until </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">8</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">  // generate hardware</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<ul>
+<li>This does not become a hardware loop.</li>
+<li>It generates eight pieces of hardware.</li>
+</ul>
+<h2 id="chisel-is-more-like-an-ir-builder">Chisel Is More Like an IR Builder</h2>
+<ul>
+<li>Many people say “Chisel compiler”.</li>
+<li>A more precise mental model:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Scala elaborator</span></span>
+<span class="line"><span>    +</span></span>
+<span class="line"><span>hardware IR generator</span></span>
+<span class="line"><span>    +</span></span>
+<span class="line"><span>FIRRTL/CIRCT compiler backend</span></span></code></pre>
+<ul>
+<li>Chisel creates the hardware IR.</li>
+<li>FIRRTL/CIRCT performs the main lowering work.</li>
+</ul>
+<h2 id="step-1-scala-to-chisel-hardware-graph">Step 1: Scala to Chisel Hardware Graph</h2>
+<ul>
+<li>
+<p>Tools:</p>
+<ul>
+<li>Scala compiler</li>
+<li>JVM</li>
+<li><code>sbt</code></li>
+<li><code>mill</code></li>
+<li><code>scala-cli</code></li>
+</ul>
+</li>
+<li>
+<p>Common commands:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">sbt</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> run</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">sbt</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">runMain mypackage.Main</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span></span></code></pre>
+<ul>
+<li>What happens:
+<ul>
+<li>Scala code executes.</li>
+<li><code>new MyModule</code> constructs the module.</li>
+<li>Chisel records modules, wires, registers, memories, nodes, and connections.</li>
+</ul>
+</li>
+</ul>
+<h2 id="step-2-chisel-to-chirrtl">Step 2: Chisel to CHIRRTL</h2>
+<ul>
+<li>API:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="scala"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">import</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> circt.stage.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">ChiselStage</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">ChiselStage</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">.emitCHIRRTL(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">new</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> MyModule</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">)</span></span></code></pre>
+<ul>
+<li>Older code may use:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="scala"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">import</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> chisel3.stage.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">ChiselStage</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">new</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> ChiselStage</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">).emitCHIRRTL(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">new</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> MyModule</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">)</span></span></code></pre>
+<ul>
+<li>The modern ecosystem is moving toward <code>circt.stage.ChiselStage</code>.</li>
+<li>Exact API style depends on the Chisel version.</li>
+</ul>
+<h2 id="emit-chirrtl-to-a-file">Emit CHIRRTL to a File</h2>
+<ul>
+<li>A build can emit a <code>.fir</code> file.</li>
+<li>Example shape:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="scala"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">import</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> circt.stage.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">ChiselStage</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">import</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> chisel3.stage.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">ChiselGeneratorAnnotation</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">new</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> ChiselStage</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">).execute(</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">  Array</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">--target</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">chirrtl</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">),</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">  Seq</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B">ChiselGeneratorAnnotation</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(() </span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">=></span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> new</span><span style="--shiki-light:#24292EFF;--shiki-dark:#FFCB8B"> MyModule</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">))</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">)</span></span></code></pre>
+<ul>
+<li>Output is usually something like:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>MyModule.fir</span></span></code></pre>
+<h2 id="step-3-firrtl-and-circt-lowering">Step 3: FIRRTL and CIRCT Lowering</h2>
+<ul>
+<li>
+<p>The <code>.fir</code> file is processed by <code>firtool</code>.</p>
+</li>
+<li>
+<p><code>firtool</code> comes from CIRCT.</p>
+</li>
+<li>
+<p>CIRCT is based on LLVM/MLIR infrastructure.</p>
+</li>
+<li>
+<p>Internally, the flow is roughly:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>CHIRRTL / FIRRTL text</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>CIRCT FIRRTL dialect</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>HW / Comb / Seq dialects</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>SV dialect</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>SystemVerilog text</span></span></code></pre>
+<ul>
+<li>Most users do not manually handle each dialect.</li>
+<li><code>firtool</code> wraps the lowering pipeline.</li>
+</ul>
+<h2 id="firrtl-levels">FIRRTL Levels</h2>
+<ul>
+<li>The older mental model is:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>CHIRRTL</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>High FIRRTL</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>Middle FIRRTL</span></span>
+<span class="line"><span>  |</span></span>
+<span class="line"><span>  v</span></span>
+<span class="line"><span>Low FIRRTL</span></span></code></pre>
+<ul>
+<li>High FIRRTL may still preserve:
+<ul>
+<li><code>Bundle</code></li>
+<li><code>Vec</code></li>
+<li>memories</li>
+<li>abstract connects</li>
+</ul>
+</li>
+<li>Middle FIRRTL starts lowering:
+<ul>
+<li>aggregate access</li>
+<li>width inference</li>
+<li>connect expansion</li>
+</ul>
+</li>
+<li>Low FIRRTL is closer to flat RTL:
+<ul>
+<li>explicit widths</li>
+<li>fewer high-level types</li>
+<li>less implicit inference</li>
+</ul>
+</li>
+</ul>
+<h2 id="typical-lowering-passes">Typical Lowering Passes</h2>
+<ul>
+<li>Compiler lowering is not one big step.</li>
+<li>It is many passes.</li>
+<li>Example pass ideas:</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pass idea</th><th>Purpose</th></tr></thead><tbody><tr><td><code>InferWidths</code></td><td>infer bit widths</td></tr><tr><td><code>ExpandWhens</code></td><td>lower <code>when</code> structure</td></tr><tr><td><code>RemoveAccesses</code></td><td>flatten aggregate access</td></tr><tr><td>constant propagation</td><td>simplify constants</td></tr><tr><td>dead code elimination</td><td>remove unused logic</td></tr><tr><td>memory lowering</td><td>rewrite memory constructs</td></tr><tr><td>common subexpression elimination</td><td>share repeated logic</td></tr><tr><td>Verilog export</td><td>emit final RTL text</td></tr></tbody></table>
+<ul>
+<li>This is similar in spirit to LLVM compiler passes.</li>
+</ul>
+<h2 id="step-4-firrtl-to-systemverilog">Step 4: FIRRTL to SystemVerilog</h2>
+<ul>
+<li>Basic <code>firtool</code> command:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> MyModule.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> MyModule.sv</span></span></code></pre>
+<ul>
+<li>This produces a SystemVerilog output file.</li>
+<li>For small designs, one output file is simple.</li>
+<li>For large designs, one huge file is painful.</li>
+</ul>
+<h2 id="split-verilog">split-verilog</h2>
+<ul>
+<li>Without <code>--split-verilog</code>:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> input.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> out.sv</span></span></code></pre>
+<ul>
+<li>The output may put many modules into one file:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>out.sv</span></span></code></pre>
+<ul>
+<li>With <code>--split-verilog</code>:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> input.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --split-verilog</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> generated/</span></span></code></pre>
+<ul>
+<li>The output directory may contain one file per module:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>generated/</span></span>
+<span class="line"><span>|-- Top.sv</span></span>
+<span class="line"><span>|-- ALU.sv</span></span>
+<span class="line"><span>|-- Decoder.sv</span></span>
+<span class="line"><span>`-- RegisterFile.sv</span></span></code></pre>
+<h2 id="why-split-verilog-matters">Why split-verilog Matters</h2>
+<ul>
+<li>Large hardware designs may have hundreds of modules.</li>
+<li>Splitting output helps:
+<ul>
+<li>git diff</li>
+<li>review</li>
+<li>simulator input lists</li>
+<li>synthesis flows</li>
+<li>project organization</li>
+</ul>
+</li>
+<li>This is common in practical RTL flows.</li>
+</ul>
+<h2 id="useful-firtool-commands">Useful firtool Commands</h2>
+<ul>
+<li>Basic output:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> Top.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> Top.sv</span></span></code></pre>
+<ul>
+<li>Split generated SystemVerilog:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> Top.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --split-verilog</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> build/</span></span></code></pre>
+<ul>
+<li>Preserve more names for debug:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> Top.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --preserve-values=all</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> Top.sv</span></span></code></pre>
+<ul>
+<li>Show pass execution:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> Top.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --verbose-pass-executions</span></span></code></pre>
+<ul>
+<li>Print IR after each pass:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> Top.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --mlir-print-ir-after-all</span></span></code></pre>
+<ul>
+<li>Warning:
+<ul>
+<li>firtool flags can change across versions.</li>
+<li>always check the version-specific help:</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --help</span></span></code></pre>
+<h2 id="what-is-verbose-pass-executions">What Is —verbose-pass-executions?</h2>
+<ul>
+<li>
+<p><code>--verbose-pass-executions</code> prints the compiler pass execution process.</p>
+</li>
+<li>
+<p>It is like a compiler construction log.</p>
+</li>
+<li>
+<p>It can show:</p>
+<ul>
+<li>pass names</li>
+<li>pass order</li>
+<li>when a pass starts</li>
+<li>when a pass ends</li>
+</ul>
+</li>
+<li>
+<p>Example idea:</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Running pass: LowerCHIRRTLPass</span></span>
+<span class="line"><span>Running pass: InferWidthsPass</span></span>
+<span class="line"><span>Running pass: CanonicalizerPass</span></span>
+<span class="line"><span>Running pass: CSEPass</span></span>
+<span class="line"><span>Running pass: ExportVerilogPass</span></span></code></pre>
+<h2 id="who-uses-pass-pipeline-debug">Who Uses Pass Pipeline Debug?</h2>
+<ul>
+<li>
+<p>Usually:</p>
+<ul>
+<li>compiler engineers</li>
+<li>FIRRTL/CIRCT developers</li>
+<li>EDA flow developers</li>
+<li>framework developers</li>
+<li>advanced RTL flow debugging</li>
+</ul>
+</li>
+<li>
+<p>Normal RTL designers usually do not need to read every pass.</p>
+</li>
+<li>
+<p>They care more about:</p>
+<ul>
+<li>generated <code>.fir</code></li>
+<li>generated <code>.sv</code></li>
+<li>naming</li>
+<li>lint</li>
+<li>synthesis</li>
+<li>timing</li>
+</ul>
+</li>
+</ul>
+<h2 id="rtl-designer-minimal-flow">RTL Designer Minimal Flow</h2>
+<ul>
+<li>The simplified flow is:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>1. ChiselStage.emitCHIRRTL -> Top.fir</span></span>
+<span class="line"><span>2. firtool Top.fir --split-verilog -o output_dir/</span></span></code></pre>
+<ul>
+<li>This is valid and common.</li>
+<li>A real project may wrap these steps inside <code>sbt</code>, <code>mill</code>, Makefiles, or a larger SoC build system.</li>
+</ul>
+<h2 id="more-precise-modern-view">More Precise Modern View</h2>
+<ul>
+<li>The two visible steps hide more internal work:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>ChiselStage.emitCHIRRTL</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>Top.fir</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>firtool</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    +--> parse FIRRTL</span></span>
+<span class="line"><span>    +--> lower FIRRTL dialect</span></span>
+<span class="line"><span>    +--> optimize</span></span>
+<span class="line"><span>    +--> lower to HW/Comb/Seq dialects</span></span>
+<span class="line"><span>    +--> lower to SV dialect</span></span>
+<span class="line"><span>    +--> emit SystemVerilog</span></span></code></pre>
+<ul>
+<li>So the short workflow is correct.</li>
+<li>It just hides the MLIR/CIRCT backend details.</li>
+</ul>
+<h2 id="common-misunderstandings">Common Misunderstandings</h2>
+<ul>
+<li>
+<p>Misunderstanding:</p>
+<ul>
+<li>FIRRTL to MLIR is always a manual step.</li>
+</ul>
+</li>
+<li>
+<p>Better view:</p>
+<ul>
+<li><code>firtool</code> usually handles this internally.</li>
+</ul>
+</li>
+<li>
+<p>Misunderstanding:</p>
+<ul>
+<li><code>emitCHIRRTL</code> directly emits MLIR.</li>
+</ul>
+</li>
+<li>
+<p>Better view:</p>
+<ul>
+<li><code>emitCHIRRTL</code> emits CHIRRTL/FIRRTL text.</li>
+<li><code>firtool</code> ingests that and uses MLIR internally.</li>
+</ul>
+</li>
+<li>
+<p>Misunderstanding:</p>
+<ul>
+<li><code>emitCHIRRTL</code> is the normal final RTL output.</li>
+</ul>
+</li>
+<li>
+<p>Better view:</p>
+<ul>
+<li>it is mainly for debug or compiler flow input.</li>
+<li>final RTL users usually want <code>.sv</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="production-flow-shape">Production Flow Shape</h2>
+<ul>
+<li>A practical project flow often looks like:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Chisel source</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>sbt / mill elaboration</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>.fir</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>firtool --split-verilog</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>generated RTL directory</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>Verilator / VCS / Xcelium / FPGA tools / synthesis</span></span></code></pre>
+<h2 id="common-backend-tools">Common Backend Tools</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tool</th><th>Use</th></tr></thead><tbody><tr><td>Verilator</td><td>open-source simulation</td></tr><tr><td>Synopsys VCS</td><td>commercial ASIC simulation</td></tr><tr><td>Cadence Xcelium</td><td>commercial ASIC simulation</td></tr><tr><td>AMD Vivado</td><td>FPGA synthesis/implementation</td></tr><tr><td>Intel Quartus</td><td>FPGA synthesis/implementation</td></tr></tbody></table>
+<h2 id="boom-flow">BOOM Flow</h2>
+<ul>
+<li>BOOM means Berkeley Out-of-Order Machine.</li>
+<li>BOOM is written in Chisel.</li>
+<li>BOOM is a parameterized RISC-V out-of-order core generator.</li>
+<li>BOOM is not best understood as one fixed RTL file.</li>
+<li>It is a hardware generator that creates a family of cores.</li>
+</ul>
+<h2 id="important-boom-point">Important BOOM Point</h2>
+<ul>
+<li>The BOOM repository says it is not a self-running repository.</li>
+<li>To instantiate a BOOM core, use Chipyard.</li>
+<li>This is important because BOOM depends on:
+<ul>
+<li>Rocket Chip</li>
+<li>Diplomacy</li>
+<li>TileLink</li>
+<li>Chipyard build infrastructure</li>
+<li>SoC configuration</li>
+</ul>
+</li>
+</ul>
+<h2 id="boom-build-shape">BOOM Build Shape</h2>
+<ul>
+<li>Typical BOOM build flow:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>BOOM Scala / Chisel source</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>Chipyard configuration</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>Chisel elaboration</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>FIRRTL / CHIRRTL</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>FIRRTL/CIRCT/firtool backend</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>Verilog / SystemVerilog</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>Verilator / VCS / FPGA / FireSim / ASIC flow</span></span></code></pre>
+<h2 id="boom-through-chipyard">BOOM Through Chipyard</h2>
+<ul>
+<li>Example shape from the BOOM/Chipyard flow:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">git</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> clone</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> https://github.com/ucb-bar/chipyard.git</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic">cd</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> chipyard</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">./scripts/init-submodules-no-riscv-tools.sh</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic">cd</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> sims/verilator</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">make</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> CONFIG=LargeBoomConfig</span></span></code></pre>
+<ul>
+<li>The exact command can change with Chipyard versions.</li>
+<li>The important idea:
+<ul>
+<li>Chipyard elaborates BOOM as part of a complete SoC generator.</li>
+<li>The generated FIRRTL/SV is part of the Chipyard build output.</li>
+</ul>
+</li>
+</ul>
+<h2 id="why-boom-is-not-just-firtool-inputfir">Why BOOM Is Not Just firtool input.fir</h2>
+<ul>
+<li>BOOM is not usually used like:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">firtool</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> BoomCore.fir</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --split-verilog</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> out/</span></span></code></pre>
+<ul>
+<li>Reasons:
+<ul>
+<li>BOOM is part of a larger SoC generator.</li>
+<li>Rocket Chip and Diplomacy build the system graph.</li>
+<li>TileLink and memory system components are configured together.</li>
+<li>The top-level design depends on a selected Chipyard config.</li>
+<li>The backend compiler step is usually hidden inside the build system.</li>
+</ul>
+</li>
+</ul>
+<h2 id="boom-mental-model">BOOM Mental Model</h2>
+<ul>
+<li>For a small Chisel module:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>MyModule.scala -> MyModule.fir -> firtool -> MyModule.sv</span></span></code></pre>
+<ul>
+<li>For BOOM:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Chipyard config</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>BOOM + Rocket Chip + Diplomacy + TileLink</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>SoC FIRRTL</span></span>
+<span class="line"><span>    |</span></span>
+<span class="line"><span>    v</span></span>
+<span class="line"><span>generated RTL / simulator build</span></span></code></pre>
+<ul>
+<li>BOOM is a generator inside a SoC generator.</li>
+<li>That is why the build feels different from a small Chisel example.</li>
+</ul>
+<h2 id="rtl-designer-takeaway">RTL Designer Takeaway</h2>
+<ul>
+<li>For a small project, this is a reasonable minimal flow:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>emitCHIRRTL -> .fir</span></span>
+<span class="line"><span>firtool .fir --split-verilog -o out/</span></span></code></pre>
+<ul>
+<li>For BOOM, use Chipyard.</li>
+<li>In BOOM, <code>firtool</code> is usually a backend step controlled by the build system.</li>
+<li>The designer usually interacts with:
+<ul>
+<li>configs</li>
+<li>generated source directories</li>
+<li>simulator make targets</li>
+<li>waveform/debug output</li>
+<li>final Verilog/SystemVerilog</li>
+</ul>
+</li>
+</ul>
+<h2 id="further-topics-mentioned">Further Topics Mentioned</h2>
+<ul>
+<li>How the firtool pass pipeline lowers FIRRTL dialect into HW/SV dialects.</li>
+<li>How Rocket Chip, Diplomacy, and TileLink influence the FIRRTL graph.</li>
+<li>Why BOOM’s generated hardware depends heavily on configuration.</li>
+<li>How to inspect generated BOOM FIRRTL or generated SystemVerilog.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>BOOM repository:
+<ul>
+<li><a href="https://github.com/riscv-boom/riscv-boom">https://github.com/riscv-boom/riscv-boom</a></li>
+</ul>
+</li>
+<li>BOOM documentation:
+<ul>
+<li><a href="https://docs.boom-core.org/">https://docs.boom-core.org/</a></li>
+</ul>
+</li>
+<li>BOOM overview:
+<ul>
+<li><a href="https://docs.boom-core.org/en/latest/sections/intro-overview/boom.html">https://docs.boom-core.org/en/latest/sections/intro-overview/boom.html</a></li>
+</ul>
+</li>
+<li>BOOM development ecosystem:
+<ul>
+<li><a href="https://docs.boom-core.org/en/latest/sections/boom-ecosystem.html">https://docs.boom-core.org/en/latest/sections/boom-ecosystem.html</a></li>
+</ul>
+</li>
+<li>Chipyard BOOM getting-started reference:
+<ul>
+<li><a href="https://docs.boom-core.org/">https://docs.boom-core.org/</a></li>
+</ul>
+</li>
+<li>Chipyard repository:
+<ul>
+<li><a href="https://github.com/ucb-bar/chipyard">https://github.com/ucb-bar/chipyard</a></li>
+</ul>
+</li>
+<li>Chipyard heterogeneous SoCs / BOOM config fragments:
+<ul>
+<li><a href="https://chipyard.readthedocs.io/en/latest/Customization/Heterogeneous-SoCs.html">https://chipyard.readthedocs.io/en/latest/Customization/Heterogeneous-SoCs.html</a></li>
+</ul>
+</li>
+<li>Chisel testing docs with <code>emitCHIRRTL</code> examples:
+<ul>
+<li><a href="https://www.chisel-lang.org/docs/explanations/testing">https://www.chisel-lang.org/docs/explanations/testing</a></li>
+</ul>
+</li>
+<li>Chisel <code>circt.stage</code> API:
+<ul>
+<li><a href="https://www.chisel-lang.org/api/latest/circt/stage/index.html">https://www.chisel-lang.org/api/latest/circt/stage/index.html</a></li>
+</ul>
+</li>
+<li>CIRCT FIRRTL dialect:
+<ul>
+<li><a href="https://circt.llvm.org/docs/Dialects/FIRRTL/">https://circt.llvm.org/docs/Dialects/FIRRTL/</a></li>
+</ul>
+</li>
+<li>CIRCT FIRRTL dialect rationale:
+<ul>
+<li><a href="https://circt.llvm.org/docs/Dialects/FIRRTL/RationaleFIRRTL/">https://circt.llvm.org/docs/Dialects/FIRRTL/RationaleFIRRTL/</a></li>
+</ul>
+</li>
+<li>CIRCT dialect list:
+<ul>
+<li><a href="https://circt.llvm.org/docs/Dialects/">https://circt.llvm.org/docs/Dialects/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="final-summary">Final Summary</h2>
+<ul>
+<li><code>emitCHIRRTL</code> emits high-level FIRRTL/CHIRRTL, not final Verilog.</li>
+<li>Chisel first elaborates Scala code into a hardware graph.</li>
+<li><code>firtool</code> lowers FIRRTL through CIRCT/MLIR internals and emits SystemVerilog.</li>
+<li><code>--split-verilog</code> makes large generated RTL easier to manage.</li>
+<li><code>--verbose-pass-executions</code> is mainly for compiler/debug work.</li>
+<li>RTL designers usually use a simple <code>.fir -> firtool -> .sv</code> flow.</li>
+<li>BOOM uses the same broad compiler ideas, but it is built through Chipyard as a configurable SoC generator.</li>
+</ul> </article> <hr class="my-8 border-dashed"> <ul class="flex flex-wrap gap-3"> <li> <a href="/tags/chisel/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> chisel </a> </li><li> <a href="/tags/firrtl/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> firrtl </a> </li><li> <a href="/tags/circt/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> circt </a> </li><li> <a href="/tags/firtool/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> firtool </a> </li><li> <a href="/tags/boom/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> boom </a> </li> </ul> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/satnaing/astro-paper" title="Hsufit.dev on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Hsufit.dev on GitHub</span>  </a><a href="https://x.com/username" title="Hsufit.dev on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Hsufit.dev on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="Hsufit.dev on LinkedIn" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">Hsufit.dev on LinkedIn</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to Hsufit.dev" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Hsufit.dev</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html>

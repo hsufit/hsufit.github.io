@@ -1,0 +1,982 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://hsufit.github.io/draft/conversation-notes/cpp-stl-container-member-function-cheatsheet/"><meta name="generator" content="Astro v5.18.2"><!-- Load Font --><style>@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-de078a87b11e4a86","Google Sans Code-de078a87b11e4a86 fallback: Courier New",monospace;}</style><!-- General Meta Tags --><title>C++ STL Container Member Function Cheatsheet | Draft | Hsufit.dev</title><meta name="title" content="C++ STL Container Member Function Cheatsheet | Draft | Hsufit.dev"><meta name="description" content="Notes for quickly remembering common C++ STL container member functions by grouping containers by their underlying data structure and operation patterns."><meta name="author" content="hsufit"><meta name="robots" content="noindex, nofollow"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="C++ STL Container Member Function Cheatsheet | Draft | Hsufit.dev"><meta property="og:description" content="Notes for quickly remembering common C++ STL container member functions by grouping containers by their underlying data structure and operation patterns."><meta property="og:url" content="https://hsufit.github.io/draft/conversation-notes/cpp-stl-container-member-function-cheatsheet/"><meta property="og:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Article Published/Modified time --><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hsufit.github.io/draft/conversation-notes/cpp-stl-container-member-function-cheatsheet/"><meta property="twitter:title" content="C++ STL Container Member Function Cheatsheet | Draft | Hsufit.dev"><meta property="twitter:description" content="Notes for quickly remembering common C++ STL container member functions by grouping containers by their underlying data structure and operation patterns."><meta property="twitter:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"C++ STL Container Member Function Cheatsheet | Draft | Hsufit.dev","image":"https://hsufit.github.io/images/banner.jpg","author":[{"@type":"Person","name":"hsufit","url":"https://hsufit.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Hsufit.dev" href="https://hsufit.github.io/rss.xml"><meta name="theme-color" content=""><meta name="google-site-verification" content="lOXTD09oOxgSJ7OtnDe9hrmLOu1-j4YfCjQjcbaWH1s"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.C-UD7B35.css">
+<style>:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: cpp; }@layer astro { ::view-transition-old(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cpp) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: stl; }@layer astro { ::view-transition-old(stl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(stl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(stl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(stl) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: data-structure; }@layer astro { ::view-transition-old(data-structure) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(data-structure) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(data-structure) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(data-structure) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: cheatsheet; }@layer astro { ::view-transition-old(cheatsheet) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cheatsheet) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cheatsheet) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cheatsheet) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: competitive-programming; }@layer astro { ::view-transition-old(competitive-programming) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(competitive-programming) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(competitive-programming) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(competitive-programming) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Hsufit.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/squirrel" title="Squirrel" aria-label="squirrel" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block" transform="translate(0 4)">
+<path d="M10.1 2.3c-1.5.5-2 .9-2 1.7 0 .5-.3.9-1.5 2.1C5 7.7 4.4 9 4.4 10.8c0 .9.2 1.7.5 2.7.2.5.3 1 .3 1.3 0 .7.5 1.1 1.3 1.1.4 0 1.2.2 1.8.4 2.7.8 5-.1 7.8-3 .9-.9 1.2-1 1.6-.9.7.2 1.3-.3 1.8-1.4 1-2.3.5-5.3-1.3-7.1l-.5-.5.7-.7c.4-.4.6-.8.5-1-.2-.4-.3-.4-1.1.4l-.7.7-.9-.5c-2-1.1-4.3-1.4-6.1-.7z" />
+<path d="M9.1 3.3 18 12" />
+</svg> <span class="sm:sr-only">Squirrel</span>  </a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <main id="main-content" class="app-layout py-8" data-pagefind-ignore> <a href="/draft/" class="text-sm text-accent underline-offset-4 hover:underline">
+Back to draft index
+</a> <h1 class="mt-6 text-2xl font-bold text-accent sm:text-3xl"> C++ STL Container Member Function Cheatsheet </h1> <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-accent/75">  <span>source/_drafts/conversation-notes/cpp-stl-container-member-function-cheatsheet.md</span> </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="question">Question</h2>
+<ul>
+<li>
+<p>I wanted a fast way to remember C++ STL member functions.</p>
+</li>
+<li>
+<p>The goal is not to memorize the full reference.</p>
+</li>
+<li>
+<p>The goal is to remember enough for:</p>
+<ul>
+<li>coding interviews</li>
+<li>competitive programming</li>
+<li>LeetCode</li>
+<li>Codeforces</li>
+<li>quick problem solving</li>
+</ul>
+</li>
+<li>
+<p>The better memory method is:</p>
+<ul>
+<li>group containers by data structure</li>
+<li>remember each container’s ability</li>
+<li>map the ability to member functions</li>
+</ul>
+</li>
+</ul>
+<h2 id="core-idea">Core Idea</h2>
+<ul>
+<li>Do not memorize STL as a flat function list.</li>
+<li>Memorize it as container families.</li>
+<li>Each family answers four questions:
+<ul>
+<li>how to insert</li>
+<li>how to erase</li>
+<li>how to access</li>
+<li>how to search</li>
+</ul>
+</li>
+</ul>
+<h2 id="common-functions-shared-by-many-containers">Common Functions Shared by Many Containers</h2>
+<ul>
+<li>
+<p>Most STL containers support:</p>
+<ul>
+<li>number of elements -> <code>size()</code></li>
+<li>is empty -> <code>empty()</code></li>
+<li>remove all -> <code>clear()</code></li>
+<li>iterate -> <code>begin()</code>, <code>end()</code></li>
+<li>add/remove -> <code>insert()</code>, <code>erase()</code></li>
+</ul>
+</li>
+<li>
+<p>Special cases:</p>
+<ul>
+<li><code>stack</code>, <code>queue</code>, and <code>priority_queue</code> are adapters.</li>
+<li>adapters expose a smaller interface.</li>
+<li>adapters do not expose normal iterators.</li>
+</ul>
+</li>
+</ul>
+<h2 id="big-stl-memory-table">Big STL Memory Table</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>Dynamic Array</th><th>Double-ended Dynamic Array</th><th>Doubly Linked List</th><th>Ordered Tree</th><th>Ordered Tree KV</th><th>Hash Table</th><th>Hash Table KV</th><th>Heap</th><th>Adapter</th><th>Adapter</th></tr></thead><tbody><tr><td>STL container</td><td><code>vector</code></td><td><code>deque</code></td><td><code>list</code></td><td><code>set</code> / <code>multiset</code></td><td><code>map</code> / <code>multimap</code></td><td><code>unordered_set</code></td><td><code>unordered_map</code></td><td><code>priority_queue</code></td><td><code>stack</code></td><td><code>queue</code></td></tr><tr><td>Insert</td><td><code>push_back</code></td><td><code>push_back</code>, <code>push_front</code></td><td><code>push_back</code>, <code>push_front</code></td><td><code>insert</code></td><td><code>insert</code>, <code>operator[]</code></td><td><code>insert</code></td><td><code>insert</code>, <code>operator[]</code></td><td><code>push</code></td><td><code>push</code></td><td><code>push</code></td></tr><tr><td>Erase</td><td><code>pop_back</code></td><td><code>pop_back</code>, <code>pop_front</code></td><td><code>pop_back</code>, <code>pop_front</code>, <code>remove</code></td><td><code>erase</code></td><td><code>erase</code></td><td><code>erase</code></td><td><code>erase</code></td><td><code>pop</code></td><td><code>pop</code></td><td><code>pop</code></td></tr><tr><td>Access</td><td><code>[]</code>, <code>at</code>, <code>front</code>, <code>back</code></td><td><code>[]</code>, <code>front</code>, <code>back</code></td><td><code>front</code>, <code>back</code></td><td>none</td><td><code>[]</code></td><td>none</td><td><code>[]</code></td><td><code>top</code></td><td><code>top</code></td><td><code>front</code>, <code>back</code></td></tr><tr><td>Search</td><td>linear search</td><td>linear search</td><td>linear search</td><td><code>find</code></td><td><code>find</code></td><td><code>find</code></td><td><code>find</code></td><td>none</td><td>none</td><td>none</td></tr><tr><td>Count</td><td>none</td><td>none</td><td>none</td><td><code>count</code></td><td><code>count</code></td><td><code>count</code></td><td><code>count</code></td><td>none</td><td>none</td><td>none</td></tr><tr><td>Range query</td><td>none</td><td>none</td><td>none</td><td><code>lower_bound</code>, <code>upper_bound</code></td><td><code>lower_bound</code>, <code>upper_bound</code></td><td>none</td><td>none</td><td>none</td><td>none</td><td>none</td></tr><tr><td>Iterator</td><td>random access</td><td>random access</td><td>bidirectional</td><td>bidirectional</td><td>bidirectional</td><td>forward</td><td>forward</td><td>none</td><td>none</td><td>none</td></tr><tr><td>Special feature</td><td><code>resize</code>, <code>reserve</code></td><td>front operations</td><td><code>sort</code>, <code>reverse</code>, <code>unique</code></td><td>sorted keys</td><td>key-value</td><td>average O(1) lookup</td><td>average O(1) lookup</td><td>max first</td><td>LIFO</td><td>FIFO</td></tr></tbody></table>
+<h2 id="linear-containers">Linear Containers</h2>
+<ul>
+<li>The memory chain:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>vector -> deque -> list</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>Dynamic Array</th><th>Double-ended Dynamic Array</th><th>Doubly Linked List</th></tr></thead><tbody><tr><td>STL container</td><td><code>vector</code></td><td><code>deque</code></td><td><code>list</code></td></tr><tr><td>Insert at back</td><td><code>push_back</code></td><td><code>push_back</code></td><td><code>push_back</code></td></tr><tr><td>Delete at back</td><td><code>pop_back</code></td><td><code>pop_back</code></td><td><code>pop_back</code></td></tr><tr><td>Insert at front</td><td>none</td><td><code>push_front</code></td><td><code>push_front</code></td></tr><tr><td>Delete at front</td><td>none</td><td><code>pop_front</code></td><td><code>pop_front</code></td></tr><tr><td>Access first</td><td><code>front</code></td><td><code>front</code></td><td><code>front</code></td></tr><tr><td>Access last</td><td><code>back</code></td><td><code>back</code></td><td><code>back</code></td></tr><tr><td>Random access</td><td><code>operator[]</code>, <code>at</code></td><td><code>operator[]</code>, <code>at</code></td><td>none</td></tr><tr><td>Resize</td><td><code>resize</code></td><td><code>resize</code></td><td><code>resize</code></td></tr><tr><td>Reserve capacity</td><td><code>reserve</code></td><td>none</td><td>none</td></tr><tr><td>Remove by value</td><td>none</td><td>none</td><td><code>remove</code></td></tr><tr><td>Sort inside container</td><td>use <code>std::sort</code></td><td>use <code>std::sort</code></td><td><code>sort</code></td></tr><tr><td>Reverse inside container</td><td>use <code>std::reverse</code></td><td>use <code>std::reverse</code></td><td><code>reverse</code></td></tr><tr><td>Remove consecutive duplicates</td><td>use algorithm after sorting</td><td>use algorithm after sorting</td><td><code>unique</code></td></tr><tr><td>Iterator</td><td>random access</td><td>random access</td><td>bidirectional</td></tr><tr><td>Main strength</td><td>cache-friendly indexed array</td><td>both-end operations</td><td>cheap insert/delete after position</td></tr><tr><td>Main weakness</td><td>slow front insert/delete</td><td>more complex than <code>vector</code></td><td>no random access</td></tr></tbody></table>
+<ul>
+<li>Memory rule:
+<ul>
+<li>append at tail -> <code>push_back</code></li>
+<li>remove tail -> <code>pop_back</code></li>
+<li>first element -> <code>front</code></li>
+<li>last element -> <code>back</code></li>
+<li>indexed access -> <code>[]</code> or <code>at</code></li>
+<li><code>vector</code> + front operations = <code>deque</code></li>
+<li><code>deque</code> - random access focus + linked-list operations = <code>list</code></li>
+<li>linked-list-only value removal -> <code>remove</code></li>
+<li>linked-list-only internal sort -> <code>sort</code></li>
+<li>linked-list-only internal reverse -> <code>reverse</code></li>
+<li>linked-list-only consecutive duplicate removal -> <code>unique</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="ordered-set-family">Ordered Set Family</h2>
+<ul>
+<li><code>set</code> and <code>multiset</code> are ordered tree containers.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>Ordered Tree</th><th>Ordered Tree with Duplicates</th></tr></thead><tbody><tr><td>STL container</td><td><code>set</code></td><td><code>multiset</code></td></tr><tr><td>Stores</td><td>unique keys</td><td>duplicate keys</td></tr><tr><td>Insert</td><td><code>insert</code></td><td><code>insert</code></td></tr><tr><td>Erase</td><td><code>erase</code></td><td><code>erase</code></td></tr><tr><td>Search</td><td><code>find</code></td><td><code>find</code></td></tr><tr><td>Count</td><td><code>count</code> returns <code>0</code> or <code>1</code></td><td><code>count</code> can return more than <code>1</code></td></tr><tr><td>Lower bound</td><td><code>lower_bound</code></td><td><code>lower_bound</code></td></tr><tr><td>Upper bound</td><td><code>upper_bound</code></td><td><code>upper_bound</code></td></tr><tr><td>Random access</td><td>none</td><td>none</td></tr><tr><td>Iterator</td><td>bidirectional</td><td>bidirectional</td></tr><tr><td>Ordering</td><td>sorted by key</td><td>sorted by key</td></tr><tr><td>Typical complexity</td><td>O(log n)</td><td>O(log n)</td></tr><tr><td>Main strength</td><td>unique sorted keys</td><td>sorted keys with duplicates</td></tr><tr><td>Main weakness</td><td>no direct index access</td><td>no direct index access</td></tr></tbody></table>
+<ul>
+<li>Memory rule:
+<ul>
+<li>insert -> <code>insert</code></li>
+<li>erase -> <code>erase</code></li>
+<li>find value -> <code>find</code></li>
+<li>count existence -> <code>count</code></li>
+<li>range query -> <code>lower_bound</code>, <code>upper_bound</code></li>
+<li>most competitive programming cases use <code>insert</code>, <code>erase</code>, <code>find</code>, and <code>lower_bound</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="ordered-map-family">Ordered Map Family</h2>
+<ul>
+<li><code>map</code> and <code>multimap</code> are ordered key-value tree containers.</li>
+<li>Think:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>map = set + value</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>Ordered Tree KV</th><th>Ordered Tree KV with Duplicates</th></tr></thead><tbody><tr><td>STL container</td><td><code>map</code></td><td><code>multimap</code></td></tr><tr><td>Stores</td><td>unique key-value pairs</td><td>duplicate-key key-value pairs</td></tr><tr><td>Insert</td><td><code>insert</code>, <code>operator[]</code></td><td><code>insert</code></td></tr><tr><td>Erase</td><td><code>erase</code></td><td><code>erase</code></td></tr><tr><td>Search</td><td><code>find</code></td><td><code>find</code></td></tr><tr><td>Count</td><td><code>count</code> returns <code>0</code> or <code>1</code></td><td><code>count</code> can return more than <code>1</code></td></tr><tr><td>Lower bound</td><td><code>lower_bound</code></td><td><code>lower_bound</code></td></tr><tr><td>Upper bound</td><td><code>upper_bound</code></td><td><code>upper_bound</code></td></tr><tr><td>Value access by key</td><td><code>operator[]</code>, <code>at</code></td><td>none</td></tr><tr><td>Random access</td><td>none</td><td>none</td></tr><tr><td>Iterator</td><td>bidirectional</td><td>bidirectional</td></tr><tr><td>Ordering</td><td>sorted by key</td><td>sorted by key</td></tr><tr><td>Typical complexity</td><td>O(log n)</td><td>O(log n)</td></tr><tr><td>Main strength</td><td>sorted key-value lookup</td><td>sorted duplicate-key records</td></tr><tr><td>Main weakness</td><td><code>operator[]</code> inserts missing keys</td><td>no <code>operator[]</code></td></tr></tbody></table>
+<ul>
+<li>Common problem-solving patterns:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="cpp"><code><span class="line"><span style="--shiki-light:#1976D2;--shiki-dark:#C5E478">mp</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">[x]</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">++</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#1976D2;--shiki-dark:#C5E478">mp</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">[x]</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">--</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-light-font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">if</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> (</span><span style="--shiki-light:#1976D2;--shiki-dark:#C5E478">mp</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">count</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(x)) {</span></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">  // key exists</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">auto</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> it </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#1976D2;--shiki-dark:#C5E478"> mp</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">find</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(x);</span></span></code></pre>
+<h2 id="set-vs-map">set vs map</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Function / Idea</th><th><code>set</code></th><th><code>map</code></th></tr></thead><tbody><tr><td><code>insert</code></td><td>yes</td><td>yes</td></tr><tr><td><code>erase</code></td><td>yes</td><td>yes</td></tr><tr><td><code>find</code></td><td>yes</td><td>yes</td></tr><tr><td><code>count</code></td><td>yes</td><td>yes</td></tr><tr><td><code>lower_bound</code></td><td>yes</td><td>yes</td></tr><tr><td><code>upper_bound</code></td><td>yes</td><td>yes</td></tr><tr><td>stores</td><td>key only</td><td>key-value</td></tr><tr><td>common access</td><td>value itself</td><td><code>mp[key]</code></td></tr></tbody></table>
+<ul>
+<li>Memory rule:
+<ul>
+<li><code>set</code> = key only</li>
+<li><code>map</code> = key + value</li>
+</ul>
+</li>
+</ul>
+<h2 id="hash-family">Hash Family</h2>
+<ul>
+<li>Hash containers are unordered versions of set/map.</li>
+<li>Main containers are <code>unordered_set</code> and <code>unordered_map</code>.</li>
+<li>Common functions are similar to ordered containers:
+<ul>
+<li>insert -> <code>insert</code></li>
+<li>erase -> <code>erase</code></li>
+<li>search -> <code>find</code></li>
+<li>count existence -> <code>count</code></li>
+<li>key access for <code>unordered_map</code> -> <code>operator[]</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="ordered-vs-hash">Ordered vs Hash</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Ordered</th><th>Hash</th></tr></thead><tbody><tr><td>set type</td><td><code>set</code></td><td><code>unordered_set</code></td></tr><tr><td>map type</td><td><code>map</code></td><td><code>unordered_map</code></td></tr><tr><td>sorted</td><td>yes</td><td>no</td></tr><tr><td><code>lower_bound</code></td><td>yes</td><td>no</td></tr><tr><td><code>upper_bound</code></td><td>yes</td><td>no</td></tr><tr><td>typical complexity</td><td>O(log n)</td><td>average O(1)</td></tr></tbody></table>
+<ul>
+<li>Memory rule:</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>unordered_xxx = xxx - sorted order + hash lookup</span></span></code></pre>
+<h2 id="adapters">Adapters</h2>
+<ul>
+<li>Adapters expose a small interface.</li>
+<li>Most problems only need a few functions.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Container</th><th>Main Idea</th><th>Insert</th><th>Remove</th><th>Access</th></tr></thead><tbody><tr><td><code>stack</code></td><td>LIFO</td><td><code>push</code></td><td><code>pop</code></td><td><code>top</code></td></tr><tr><td><code>queue</code></td><td>FIFO</td><td><code>push</code></td><td><code>pop</code></td><td><code>front</code>, <code>back</code></td></tr><tr><td><code>priority_queue</code></td><td>heap</td><td><code>push</code></td><td><code>pop</code></td><td><code>top</code></td></tr></tbody></table>
+<ul>
+<li>Memory rule:
+<ul>
+<li><code>stack</code> -> last in, first out</li>
+<li><code>queue</code> -> first in, first out</li>
+<li><code>priority_queue</code> -> largest element at <code>top</code> by default</li>
+</ul>
+</li>
+</ul>
+<h2 id="90-percent-competitive-programming-table">90 Percent Competitive Programming Table</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category</th><th>Must-remember functions</th></tr></thead><tbody><tr><td><code>vector</code></td><td><code>push_back()</code>, <code>pop_back()</code>, <code>size()</code>, <code>begin()</code>, <code>end()</code></td></tr><tr><td><code>deque</code></td><td><code>push_front()</code>, <code>push_back()</code>, <code>pop_front()</code>, <code>pop_back()</code></td></tr><tr><td><code>set</code></td><td><code>insert()</code>, <code>erase()</code>, <code>find()</code>, <code>lower_bound()</code></td></tr><tr><td><code>map</code></td><td><code>operator[]</code>, <code>find()</code>, <code>count()</code></td></tr><tr><td><code>unordered_map</code></td><td><code>operator[]</code>, <code>find()</code>, <code>count()</code></td></tr><tr><td><code>stack</code></td><td><code>push()</code>, <code>pop()</code>, <code>top()</code></td></tr><tr><td><code>queue</code></td><td><code>push()</code>, <code>pop()</code>, <code>front()</code></td></tr><tr><td><code>priority_queue</code></td><td><code>push()</code>, <code>pop()</code>, <code>top()</code></td></tr></tbody></table>
+<h2 id="final-summary">Final Summary</h2>
+<ul>
+<li>Remember the container’s data structure first.</li>
+<li>Then remember its ability.</li>
+<li>Then map ability to member functions.</li>
+<li><code>vector</code> is the dynamic array baseline.</li>
+<li><code>deque</code> extends <code>vector</code> with front operations.</li>
+<li><code>list</code> is the linked-list version.</li>
+<li><code>set</code> stores ordered keys.</li>
+<li><code>map</code> stores ordered key-value pairs.</li>
+<li><code>unordered_*</code> removes ordering and uses hash lookup.</li>
+<li><code>stack</code>, <code>queue</code>, and <code>priority_queue</code> are small adapters.</li>
+<li>After solving 20 to 30 problems, these member functions become natural.</li>
+</ul> </article> <hr class="my-8 border-dashed"> <ul class="flex flex-wrap gap-3"> <li> <a href="/tags/cpp/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> cpp </a> </li><li> <a href="/tags/stl/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> stl </a> </li><li> <a href="/tags/data-structure/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> data-structure </a> </li><li> <a href="/tags/cheatsheet/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> cheatsheet </a> </li><li> <a href="/tags/competitive-programming/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> competitive-programming </a> </li> </ul> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/satnaing/astro-paper" title="Hsufit.dev on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Hsufit.dev on GitHub</span>  </a><a href="https://x.com/username" title="Hsufit.dev on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Hsufit.dev on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="Hsufit.dev on LinkedIn" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">Hsufit.dev on LinkedIn</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to Hsufit.dev" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Hsufit.dev</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html>
