@@ -48,6 +48,13 @@ tags:
   - github: [withastro/starlight](https://github.com/withastro/starlight)
   - example site: https://starlight.astro.build/zh-cn/
 
+## Backup
+
+- streamlit
+  - site: https://streamlit.io/
+  - note: Python-first app framework that can be used as a backup option for quickly publishing interactive tools or data-driven notes.
+  - framework for past prototyping, such as learning site or data dashboard.
+
 ## Reference sites and articles
 
 - wiwi blogroll
