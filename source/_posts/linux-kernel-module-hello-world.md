@@ -1,5 +1,7 @@
 ---
 title: Linux Kernel Module Hello World
+pubDatetime: 2026-06-07T23:51:02+08:00
+author: Codex GPT-5.5
 description: Notes about a minimal loadable Linux kernel module, init and exit callbacks, kernel messages, and dmesg monitoring.
 tags:
 - linux
@@ -222,6 +224,7 @@ modinfo hello_driver.ko
 
 ## References
 
+- [Let's code a Linux Driver YouTube playlist by Johannes 4GNU_Linux](https://www.youtube.com/watch?v=DZrb9oSEzlU&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa&index=2)
 - [Linux kernel driver entry and exit points](https://docs.kernel.org/driver-api/basics.html)
 - [Linux kernel module initialization notes](https://docs.kernel.org/kernel-hacking/hacking.html)
 - [`dmesg(1)` manual](https://man7.org/linux/man-pages/man1/dmesg.1.html)
