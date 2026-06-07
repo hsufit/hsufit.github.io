@@ -394,6 +394,7 @@ Ctrl-A, then L
 
 ## References
 
+- [Let's code a Linux Driver YouTube playlist by Johannes 4GNU_Linux](https://www.youtube.com/watch?v=DZrb9oSEzlU&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa&index=2)
 - [Minicom manual page](https://man7.org/linux/man-pages/man1/minicom.1.html)
 - [Linux TTY ioctl documentation](https://docs.kernel.org/userspace-api/ioctl/tty.html)
 - [Bash history interaction](https://www.gnu.org/software/bash/manual/html_node/Using-History-Interactively.html)

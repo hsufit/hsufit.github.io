@@ -377,6 +377,7 @@ device_destroy()
 
 ## References
 
+- [Let's code a Linux Driver YouTube playlist by Johannes 4GNU_Linux](https://www.youtube.com/watch?v=DZrb9oSEzlU&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa&index=2)
 - [Linux kernel character-device API](https://docs.kernel.org/core-api/kernel-api.html)
 - [Linux VFS overview](https://docs.kernel.org/filesystems/vfs.html)
 - [Kernel example of major/minor numbers and `mknod`](https://docs.kernel.org/powerpc/hvcs.html)

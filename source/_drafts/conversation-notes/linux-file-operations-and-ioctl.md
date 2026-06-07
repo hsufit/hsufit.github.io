@@ -437,6 +437,7 @@ return -EINVAL;
 
 ## References
 
+- [Let's code a Linux Driver YouTube playlist by Johannes 4GNU_Linux](https://www.youtube.com/watch?v=DZrb9oSEzlU&list=PLCGpd0Do5-I3b5TtyqeF1UdyD4C-S-dMa&index=2)
 - [`struct file_operations` in Linux `fs.h`](https://elixir.bootlin.com/linux/v7.0.11/source/include/linux/fs.h#L1926)
 - [Linux VFS documentation](https://docs.kernel.org/filesystems/vfs.html)
 - [Linux ioctl design documentation](https://docs.kernel.org/driver-api/ioctl.html)
