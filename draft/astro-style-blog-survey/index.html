@@ -209,10 +209,20 @@ Back to draft index
 </ul>
 <h2 id="documentation-style">Documentation style</h2>
 <ul>
-<li>starlight
+<li>
+<p>starlight</p>
 <ul>
 <li>github: <a href="https://github.com/withastro/starlight">withastro/starlight</a></li>
 <li>example site: <a href="https://starlight.astro.build/zh-cn/">https://starlight.astro.build/zh-cn/</a></li>
+</ul>
+</li>
+<li>
+<p>docusaurus</p>
+<ul>
+<li>site: <a href="https://docusaurus.io/">https://docusaurus.io/</a></li>
+<li>note: Documentation-first static site generator; useful when the content model needs sidebars, docs pages, blog posts, and long-lived reference sections.</li>
+<li>example site: <a href="https://wiwi.blog/">https://wiwi.blog/</a></li>
+<li>example note: Wiwi.Blog is built with Docusaurus, based on the site generator metadata and the <code>/use</code> page.</li>
 </ul>
 </li>
 </ul>
@@ -229,9 +239,33 @@ Back to draft index
 <h2 id="reference-sites-and-articles">Reference sites and articles</h2>
 <ul>
 <li>
+<p>pinchlime</p>
+<ul>
+<li>site: <a href="https://pinchlime.com/about/">https://pinchlime.com/about/</a></li>
+<li>engine: Zola.</li>
+<li>hosting/deploy: Netlify, according to the about page.</li>
+<li>reference: <a href="https://www.owenyoung.com/">https://www.owenyoung.com/</a></li>
+<li>note: Current Pinchlime is a Zola-based personal blog with writing, newsletter backups, and snapshots. The about page says the Zola implementation and CSS were heavily inspired by Owen Young’s blog and source code.</li>
+</ul>
+</li>
+<li>
+<p>pinchlime docusaurus snapshot</p>
+<ul>
+<li>article: <a href="https://pinchlime.com/snapshots/why/why-do-i-want-to-build-another-website-by-docusaurus/">https://pinchlime.com/snapshots/why/why-do-i-want-to-build-another-website-by-docusaurus/</a></li>
+<li>status: archived/outdated reference from the same website.</li>
+<li>framework discussed: Docusaurus.</li>
+<li>reference: <a href="https://brianlovin.com/">https://brianlovin.com/</a></li>
+<li>note: The article considered Docusaurus for a separate docs/list-style subsite, especially for a two-column docs layout inspired by Brian Lovin’s <code>Stack</code> page. Do not treat this as the current main Pinchlime stack.</li>
+</ul>
+</li>
+<li>
 <p>wiwi blogroll</p>
 <ul>
 <li>example site: <a href="https://wiwi.blog/blogroll">https://wiwi.blog/blogroll</a></li>
+<li>site: <a href="https://wiwi.blog/">https://wiwi.blog/</a></li>
+<li>engine: Docusaurus.</li>
+<li>evidence: site generator metadata in the index page, and the <code>/use</code> page says the site is built with Docusaurus.</li>
+<li>note: Useful reference for a Docusaurus-powered personal blog with blog, docs, <code>/use</code>, <code>/now</code>, and blogroll sections.</li>
 </ul>
 </li>
 <li>
@@ -268,6 +302,26 @@ Back to draft index
 <li>strength: clean docs navigation.</li>
 <li>tradeoff: blog features need extra work.</li>
 <li>fit: learning notes and structured guides.</li>
+</ul>
+</li>
+<li>
+<p>Docusaurus</p>
+<ul>
+<li>style: documentation-first site with blog support.</li>
+<li>content: Markdown/MDX-first.</li>
+<li>strength: sidebar docs, structured reference pages, blog, and SEO-oriented static output.</li>
+<li>tradeoff: React/Node toolchain and docs-first assumptions.</li>
+<li>fit: long-lived notes, <code>/docs</code>, <code>/use</code>, tool lists, and reference pages.</li>
+</ul>
+</li>
+<li>
+<p>Zola</p>
+<ul>
+<li>style: fast static site generator.</li>
+<li>content: Markdown-first.</li>
+<li>strength: lightweight static blog with portable content.</li>
+<li>tradeoff: more template/theme work when building docs-like layouts.</li>
+<li>fit: independent personal blogs with simple static deployment.</li>
 </ul>
 </li>
 <li>
