@@ -1,6 +1,6 @@
 ---
-title: Linux Device Driver Memory Mapping Notes
-description: Notes about copy_to_user, ioremap, iounmap, mmap, and how userspace and kernel space cooperate in Linux memory mapping.
+title: Linux Userspace, Kernel Space, Physical Memory, and mmap
+description: Notes about copy_to_user, copy_from_user, ioremap, mmap, and how userspace, kernel virtual addresses, physical memory, and device memory relate.
 tags:
 - linux
 - device-driver
@@ -9,27 +9,46 @@ tags:
 - memory
 ---
 
-## Question
+## Goal
 
-- I wanted to understand common memory-related APIs in Linux device driver development.
-- The APIs include:
+- Understand how a Linux driver moves or maps data across:
+  - userspace virtual memory
+  - kernel virtual memory
+  - physical RAM
+  - device MMIO address ranges
+- Connect these memory-related APIs to the earlier file-operation callbacks:
   - `copy_to_user()`
   - `copy_from_user()`
   - `ioremap()`
   - `iounmap()`
   - `mmap()`
-- I also wanted to know:
+- Explain:
   - what `mmap()` means in a userspace program
   - whether `mmap()` runs in userspace or kernel space
+  - when copying is more appropriate than sharing a mapping
 
-## Big Picture
+## Address-Space Big Picture
 
-- Linux separates memory into:
-  - userspace
-  - kernel space
-  - hardware physical address space
-- Device driver APIs often bridge these worlds.
-- A simple mental model:
+- A pointer is interpreted in an address space.
+- A userspace pointer normally contains a process virtual address.
+- A normal kernel pointer contains a kernel virtual address.
+- A physical address identifies RAM or a device bus address from the hardware's perspective.
+- Virtual addresses are translated through page tables before reaching physical memory.
+
+```txt
+Process virtual address
+    -> process page tables
+    -> physical RAM page
+
+Kernel virtual address
+    -> kernel mapping
+    -> physical RAM page or mapped device resource
+```
+
+- User and kernel virtual addresses can refer to the same physical page through different mappings.
+- A driver must not treat userspace, kernel virtual, and physical addresses as interchangeable numbers.
+
+## API Relationship
 
 ```txt
 User space
@@ -47,6 +66,13 @@ Hardware MMIO registers / physical memory
 - `ioremap()` maps hardware physical addresses into kernel virtual addresses.
 - `mmap()` maps files, device memory, or buffers into a process virtual address space.
 
+| Operation | Source | Destination | Main Result |
+|---|---|---|---|
+| `copy_to_user()` | kernel buffer | userspace buffer | bytes are copied |
+| `copy_from_user()` | userspace buffer | kernel buffer | bytes are copied |
+| `ioremap()` | MMIO physical range | kernel virtual range | kernel mapping is created |
+| driver `.mmap` | driver-selected pages or PFNs | process virtual range | userspace mapping is created |
+
 ## copy_to_user and copy_from_user
 
 - These APIs safely copy data between kernel space and userspace.
@@ -56,8 +82,11 @@ Hardware MMIO registers / physical memory
 - The Linux kernel hacking reference in the References section documents the important return-value and sleep caveats.
 
 ```c
-copy_to_user(user_buf, kernel_buf, len);
-copy_from_user(kernel_buf, user_buf, len);
+if (copy_to_user(user_buf, kernel_buf, len))
+    return -EFAULT;
+
+if (copy_from_user(kernel_buf, user_buf, len))
+    return -EFAULT;
 ```
 
 - The kernel should not directly trust a user pointer.
@@ -69,6 +98,9 @@ copy_from_user(kernel_buf, user_buf, len);
   - `read()`
   - `write()`
   - `ioctl()`
+- Their return value is the number of bytes that could not be copied.
+- Therefore, `0` means the complete copy succeeded.
+- These helpers may fault and sleep, so they must only be used from a context where sleeping is permitted.
 
 ## ioremap
 
@@ -102,6 +134,7 @@ hardware physical address -> kernel virtual address
 
 - The returned pointer should usually be marked as `__iomem`.
 - Drivers should use MMIO accessors like `readl()` and `writel()`, not normal pointer dereference.
+- `ioremap()` is intended for I/O resources; it is not a general replacement for mapping ordinary RAM.
 
 ## iounmap
 
@@ -130,10 +163,15 @@ iounmap(reg_base);
 ```c
 static int my_mmap(struct file *file, struct vm_area_struct *vma)
 {
+    unsigned long requested_size = vma->vm_end - vma->vm_start;
+
+    if (requested_size > size)
+        return -EINVAL;
+
     return remap_pfn_range(vma,
                            vma->vm_start,
                            phys_addr >> PAGE_SHIFT,
-                           size,
+                           requested_size,
                            vma->vm_page_prot);
 }
 ```
@@ -142,6 +180,14 @@ static int my_mmap(struct file *file, struct vm_area_struct *vma)
 - It creates a mapping into the process address space.
 - Userspace can then access the mapped region with normal memory loads and stores.
 - The kernel memory-management API reference below is the place to check `remap_pfn_range()`.
+- The driver must validate:
+  - requested length
+  - offset
+  - page alignment
+  - access permissions
+  - whether the physical range is safe to expose
+- `remap_pfn_range()` maps page frame numbers into the userspace VMA.
+- It must not be used blindly for arbitrary kernel virtual memory.
 
 ## Userspace mmap
 
@@ -188,6 +234,37 @@ printf("%c", p[10]);
 | `read()` / `write()` | explicit I/O copy | simple but may copy more | normal I/O |
 | `mmap()` | memory access | good for large or random access | files, buffers, devices |
 | `copy_to_user()` | kernel-to-user copy | good for small data | driver `read()` or `ioctl()` |
+
+## Copying Versus Mapping
+
+- Copy-based path:
+
+```txt
+device or kernel buffer
+    -> driver read()
+    -> copy_to_user()
+    -> userspace buffer
+```
+
+- Mapping-based path:
+
+```txt
+driver-managed pages or device range
+    -> driver .mmap()
+    -> process virtual address
+    -> userspace loads and stores
+```
+
+- Copying is often preferable when:
+  - transfers are small
+  - the interface is naturally message- or stream-oriented
+  - the driver must validate or transform each transfer
+  - simple ownership and lifetime rules matter most
+- Mapping is often preferable when:
+  - buffers are large
+  - access is frequent or random
+  - repeated copies are expensive
+  - the memory can be exposed safely for the mapping lifetime
 
 ## Userspace mmap Use Cases
 
@@ -362,6 +439,10 @@ Mapped device / buffer pages
   - cache attributes
   - lifetime of mapped memory
   - security of exposing device memory to userspace
+- A mapping is not automatically safe or truly zero-cost:
+  - page faults and page-table setup still have costs
+  - synchronization may still be required
+  - the driver must not free mapped backing memory while userspace can access it
 
 ## References
 
@@ -395,3 +476,10 @@ Mapped device / buffer pages
 - The kernel creates the mapping and handles page faults.
 - Userspace later accesses the mapped region like normal memory.
 - In device drivers, `mmap()` is useful when repeated copying is too expensive.
+- User virtual, kernel virtual, and physical addresses belong to different address spaces and cannot be used interchangeably.
+
+## Previous Reading
+
+- [Linux Kernel Module Hello World](./linux-kernel-module-hello-world)
+- [Linux Device Numbers, Nodes, Inodes, and TTY Modes](./linux-device-numbers-nodes-inodes-and-tty-modes)
+- [Linux File Operations and ioctl](./linux-file-operations-and-ioctl)
