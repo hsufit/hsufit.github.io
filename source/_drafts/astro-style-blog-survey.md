@@ -48,6 +48,12 @@ tags:
   - github: [withastro/starlight](https://github.com/withastro/starlight)
   - example site: https://starlight.astro.build/zh-cn/
 
+- docusaurus
+  - site: https://docusaurus.io/
+  - note: Documentation-first static site generator; useful when the content model needs sidebars, docs pages, blog posts, and long-lived reference sections.
+  - example site: https://wiwi.blog/
+  - example note: Wiwi.Blog is built with Docusaurus, based on the site generator metadata and the `/use` page.
+
 ## Backup
 
 - streamlit
@@ -57,8 +63,26 @@ tags:
 
 ## Reference sites and articles
 
+- pinchlime
+  - site: https://pinchlime.com/about/
+  - engine: Zola.
+  - hosting/deploy: Netlify, according to the about page.
+  - reference: https://www.owenyoung.com/
+  - note: Current Pinchlime is a Zola-based personal blog with writing, newsletter backups, and snapshots. The about page says the Zola implementation and CSS were heavily inspired by Owen Young's blog and source code.
+
+- pinchlime docusaurus snapshot
+  - article: https://pinchlime.com/snapshots/why/why-do-i-want-to-build-another-website-by-docusaurus/
+  - status: archived/outdated reference from the same website.
+  - framework discussed: Docusaurus.
+  - reference: https://brianlovin.com/
+  - note: The article considered Docusaurus for a separate docs/list-style subsite, especially for a two-column docs layout inspired by Brian Lovin's `Stack` page. Do not treat this as the current main Pinchlime stack.
+
 - wiwi blogroll
   - example site: https://wiwi.blog/blogroll
+  - site: https://wiwi.blog/
+  - engine: Docusaurus.
+  - evidence: site generator metadata in the index page, and the `/use` page says the site is built with Docusaurus.
+  - note: Useful reference for a Docusaurus-powered personal blog with blog, docs, `/use`, `/now`, and blogroll sections.
 
 - rian astro choice article
   - example site: https://rian.cc/blog/explore-wordpress-hexo-vitepress-astro-choice
@@ -82,6 +106,20 @@ tags:
   - strength: clean docs navigation.
   - tradeoff: blog features need extra work.
   - fit: learning notes and structured guides.
+
+- Docusaurus
+  - style: documentation-first site with blog support.
+  - content: Markdown/MDX-first.
+  - strength: sidebar docs, structured reference pages, blog, and SEO-oriented static output.
+  - tradeoff: React/Node toolchain and docs-first assumptions.
+  - fit: long-lived notes, `/docs`, `/use`, tool lists, and reference pages.
+
+- Zola
+  - style: fast static site generator.
+  - content: Markdown-first.
+  - strength: lightweight static blog with portable content.
+  - tradeoff: more template/theme work when building docs-like layouts.
+  - fit: independent personal blogs with simple static deployment.
 
 - Astro
   - style: flexible content site.
