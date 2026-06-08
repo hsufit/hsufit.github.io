@@ -1,11 +1,13 @@
 ---
-title: Linux Device Numbers, Nodes, Inodes, and TTY Modes
-description: Notes about character and block device nodes, major and minor numbers, mknod, inodes, cdev registration, and TTY raw and canonical modes.
+title: How Linux Device Nodes Reach A Driver
+description: Notes about how a /dev node maps through device inodes, dev_t, major and minor numbers, cdev registration, and file_operations callbacks, with TTY behavior as a character-device example.
 tags:
 - linux
 - kernel
 - device-driver
 - character-device
+- device-node
+- cdev
 - inode
 - tty
 ---
@@ -14,12 +16,15 @@ tags:
 
 - Understand how a pathname such as `/dev/mydev0` reaches a kernel driver.
 - Learn the roles of:
+  - device node
   - device type
   - major number
   - minor number
   - device inode
+  - `dev_t`
   - `struct cdev`
   - `mknod`
+- Keep TTY raw and canonical behavior as an example of a character-device stack, not as the main topic.
 
 ## Device Access Path
 
@@ -176,6 +181,42 @@ ls -l /dev/mydev0
 stat /dev/mydev0
 ```
 
+## `mknod` Versus Kernel Registration
+
+- `mknod` creates a filesystem entry.
+- It records:
+  - file type, such as character device or block device
+  - major number
+  - minor number
+- It does not register a kernel driver.
+- It does not create a `struct cdev`.
+- It does not create hardware or a device instance.
+
+```txt
+mknod
+    -> create pathname and device inode
+    -> store type + dev_t
+
+driver registration
+    -> alloc_chrdev_region()
+    -> cdev_init()
+    -> cdev_add()
+    -> connect dev_t to file_operations
+```
+
+- Both sides must match for userspace access to work:
+
+```txt
+/dev/mydev0 contains dev_t
+    +
+kernel has cdev registered for that dev_t
+    =
+open() can reach the driver
+```
+
+- If the node exists but no driver registered that number, `open()` fails.
+- If the driver is registered but no node exists, userspace has no convenient pathname to open unless one is created by `mknod`, `devtmpfs`, or `udev`.
+
 ## Manual Nodes Versus `udev`
 
 - `mknod` is useful for learning and debugging.
@@ -233,40 +274,50 @@ sudo mknod /tmp/mydev c <major> 0
 - Per-open state can still differ because each `open()` creates a separate `struct file`.
 - Shared hardware state normally remains shared.
 
-## Inode Overview
+## File Names, Paths, And Device Inodes
 
-- A directory maps a filename to an inode number.
-- The inode represents the filesystem object:
+- A directory maps a filename to an inode.
+- For a device driver, the important point is:
 
 ```txt
-filename
+device pathname
     -> directory entry
-    -> inode number
-    -> inode
+    -> device inode
+    -> dev_t
+    -> driver lookup
 ```
 
-- A regular-file inode commonly stores:
+- A regular-file inode can point to ordinary file data blocks.
+- A device inode is different.
+- It stores:
   - file type and permissions
   - owner and group
-  - file size
-  - timestamps
-  - hard-link count
-  - references to data blocks
+  - special-file type, such as character device or block device
+  - device identity, stored as `dev_t`
 - The filename itself is stored in the directory entry, not in the inode.
+- Renaming a device node changes the directory entry, not the driver registration.
+- Linux path lookup involves structures such as:
+  - `struct dentry`: directory-entry cache object for a name component
+  - `struct inode`: filesystem object metadata
+  - `struct path`: pair of mount and dentry used to identify a resolved path
+  - `struct file`: one open file description after `open()`
 
-## Hard Links And File Lifetime
+- This note only needs the short version:
 
-```sh
-ln a.txt b.txt
-ls -li a.txt b.txt
+```txt
+path string
+    -> dentry lookup
+    -> inode
+    -> device inode's dev_t
+    -> cdev lookup
 ```
 
-- Both names can point to the same inode.
-- Removing one name decrements the inode's link count.
-- File storage is reclaimed only when:
-  - the hard-link count reaches zero
-  - no open file description still references it
-- This explains why deleting an open log file may not immediately release disk space.
+- A deeper filesystem note could separately cover:
+  - dentries
+  - mount namespaces
+  - path lookup
+  - hard links
+  - how open files can outlive path removal
 
 ## Device Inodes
 
@@ -292,7 +343,7 @@ open("/dev/mydev0")
 - The inode identifies the opened device.
 - The file object represents this particular open instance.
 
-## TTY Character Devices And Line Discipline
+## TTY As A Character-Device Example
 
 - Serial ports such as these are character devices:
 
@@ -316,7 +367,8 @@ userspace
   - echo characters
   - process editing keys
   - translate control characters
-- This explains why TTY reads can behave differently from a minimal custom character device.
+- This explains why TTY reads can behave differently from a minimal custom character driver.
+- The extra behavior comes from the TTY layer, not from the basic `cdev` registration mechanism.
 
 ## Canonical Mode
 
@@ -373,7 +425,7 @@ device_destroy()
 - A device node is a filesystem name and inode containing that identity.
 - `struct cdev` connects the device number to `file_operations`.
 - `mknod` creates a node but does not create or register the driver.
-- TTY raw/canonical behavior is an additional processing layer over character-device I/O.
+- TTY raw/canonical behavior is a useful example of extra processing above character-device I/O.
 
 ## References
 

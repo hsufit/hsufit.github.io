@@ -481,5 +481,5 @@ Mapped device / buffer pages
 ## Previous Reading
 
 - [Linux Kernel Module Hello World](./linux-kernel-module-hello-world)
-- [Linux Device Numbers, Nodes, Inodes, and TTY Modes](./linux-device-numbers-nodes-inodes-and-tty-modes)
+- [How Linux Device Nodes Reach A Driver](./linux-device-numbers-nodes-inodes-and-tty-modes)
 - [Linux File Operations and ioctl](./linux-file-operations-and-ioctl)
