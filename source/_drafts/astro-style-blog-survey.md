@@ -61,6 +61,15 @@ tags:
   - note: Python-first app framework that can be used as a backup option for quickly publishing interactive tools or data-driven notes.
   - framework for past prototyping, such as learning site or data dashboard.
 
+## Animation references
+
+- math curve loaders
+  - site: https://paidax01.github.io/math-curve-loaders/
+  - github: [Paidax01/math-curve-loaders](https://github.com/Paidax01/math-curve-loaders)
+  - note: Lightweight plain HTML/CSS/JavaScript gallery of mathematical curve based loading animations.
+  - useful for: loading states, empty-state motion ideas, interactive visual accents, and code-copyable animation references.
+  - details: Includes curve variants such as rose curves, Lissajous curves, hypotrochoids, cardioids, Cassini ovals, and Fourier-style paths, with formula notes and modal previews.
+
 ## Reference sites and articles
 
 - pinchlime
