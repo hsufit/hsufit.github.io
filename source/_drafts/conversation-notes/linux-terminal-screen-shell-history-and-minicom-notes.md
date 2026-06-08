@@ -378,7 +378,7 @@ Ctrl-A, then L
 - `minicom` configures the local serial TTY for interactive byte-oriented communication.
 - Raw and canonical processing belong to the TTY/line-discipline layer.
 - Their driver-oriented behavior remains documented in:
-  - [How Linux Device Nodes Reach A Driver](./linux-device-numbers-nodes-inodes-and-tty-modes)
+  - [How Linux Device Nodes Reach A Driver](../../_posts/how-linux-device-nodes-reach-a-driver)
 
 - This note focuses on operating terminal tools rather than implementing the underlying character driver.
 

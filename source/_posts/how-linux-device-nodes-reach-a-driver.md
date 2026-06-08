@@ -1,5 +1,7 @@
 ---
 title: How Linux Device Nodes Reach A Driver
+pubDatetime: 2026-06-09T02:33:51+08:00
+author: Codex GPT-5.5
 description: Notes about how a /dev node maps through device inodes, dev_t, major and minor numbers, cdev registration, and file_operations callbacks, with TTY behavior as a character-device example.
 tags:
 - linux
