@@ -1,0 +1,1600 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://hsufit.github.io/draft/conversation-notes/arm-riscv-cpu-performance-architect-skill-map/"><meta name="generator" content="Astro v5.18.2"><!-- Load Font --><style>@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/ebe081c5cf2bc9bf.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86";src:url("/_astro/fonts/dfc33a259d798962.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-de078a87b11e4a86 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-de078a87b11e4a86","Google Sans Code-de078a87b11e4a86 fallback: Courier New",monospace;}</style><!-- General Meta Tags --><title>ARM RISC-V CPU Performance Architect Skill Map | Draft | Hsufit.dev</title><meta name="title" content="ARM RISC-V CPU Performance Architect Skill Map | Draft | Hsufit.dev"><meta name="description" content="從 ARM/RISC-V 系統角度整理 CPU Performance Architect 需要具備的能力、分析方法與設計取捨。"><meta name="author" content="hsufit"><meta name="robots" content="noindex, nofollow"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="ARM RISC-V CPU Performance Architect Skill Map | Draft | Hsufit.dev"><meta property="og:description" content="從 ARM/RISC-V 系統角度整理 CPU Performance Architect 需要具備的能力、分析方法與設計取捨。"><meta property="og:url" content="https://hsufit.github.io/draft/conversation-notes/arm-riscv-cpu-performance-architect-skill-map/"><meta property="og:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Article Published/Modified time --><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://hsufit.github.io/draft/conversation-notes/arm-riscv-cpu-performance-architect-skill-map/"><meta property="twitter:title" content="ARM RISC-V CPU Performance Architect Skill Map | Draft | Hsufit.dev"><meta property="twitter:description" content="從 ARM/RISC-V 系統角度整理 CPU Performance Architect 需要具備的能力、分析方法與設計取捨。"><meta property="twitter:image" content="https://hsufit.github.io/images/banner.jpg"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ARM RISC-V CPU Performance Architect Skill Map | Draft | Hsufit.dev","image":"https://hsufit.github.io/images/banner.jpg","author":[{"@type":"Person","name":"hsufit","url":"https://hsufit.github.io/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Hsufit.dev" href="https://hsufit.github.io/rss.xml"><meta name="theme-color" content=""><meta name="google-site-verification" content="lOXTD09oOxgSJ7OtnDe9hrmLOu1-j4YfCjQjcbaWH1s"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.C-UD7B35.css">
+<style>:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: cpu; }@layer astro { ::view-transition-old(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cpu) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: microarchitecture; }@layer astro { ::view-transition-old(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(microarchitecture) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: performance; }@layer astro { ::view-transition-old(performance) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(performance) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(performance) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(performance) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: architect; }@layer astro { ::view-transition-old(architect) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(architect) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(architect) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(architect) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: arm; }@layer astro { ::view-transition-old(arm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(arm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(arm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(arm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-6"] { view-transition-name: riscv; }@layer astro { ::view-transition-old(riscv) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(riscv) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(riscv) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(riscv) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-7"] { view-transition-name: research-notes; }@layer astro { ::view-transition-old(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(research-notes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-7"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-7"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-7"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-7"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-7"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-7"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-7"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-7"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Hsufit.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/squirrel" title="Squirrel" aria-label="squirrel" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block" transform="translate(0 4)">
+<path d="M10.1 2.3c-1.5.5-2 .9-2 1.7 0 .5-.3.9-1.5 2.1C5 7.7 4.4 9 4.4 10.8c0 .9.2 1.7.5 2.7.2.5.3 1 .3 1.3 0 .7.5 1.1 1.3 1.1.4 0 1.2.2 1.8.4 2.7.8 5-.1 7.8-3 .9-.9 1.2-1 1.6-.9.7.2 1.3-.3 1.8-1.4 1-2.3.5-5.3-1.3-7.1l-.5-.5.7-.7c.4-.4.6-.8.5-1-.2-.4-.3-.4-1.1.4l-.7.7-.9-.5c-2-1.1-4.3-1.4-6.1-.7z" />
+<path d="M9.1 3.3 18 12" />
+</svg> <span class="sm:sr-only">Squirrel</span>  </a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <main id="main-content" class="app-layout py-8" data-pagefind-ignore> <a href="/draft/" class="text-sm text-accent underline-offset-4 hover:underline">
+Back to draft index
+</a> <h1 class="mt-6 text-2xl font-bold text-accent sm:text-3xl"> ARM RISC-V CPU Performance Architect Skill Map </h1> <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-accent/75">  <span>source/_drafts/conversation-notes/arm-riscv-cpu-performance-architect-skill-map.md</span> </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="目的">目的</h2>
+<ul>
+<li>這篇 note 把原本偏題庫分析的討論，整理成一份通用的 CPU Performance Architect 能力地圖。</li>
+<li>不綁定特定公司、產品線或招募描述。</li>
+<li>目標系統假設是 ARM/RISC-V SoC。</li>
+<li>重點不是背 CPU 名詞，而是回答：
+<ul>
+<li>architect 具體要會什麼？</li>
+<li>拿到 performance data 要怎麼分析？</li>
+<li>看到 IPC drop、cache miss、branch miss、model mismatch，要如何一步一步找 root cause？</li>
+<li>做 CPU subsystem 定義時，要如何把 performance、power、area、thermal 放在一起取捨？</li>
+</ul>
+</li>
+</ul>
+<h2 id="cpu-performance-architect-的定位">CPU Performance Architect 的定位</h2>
+<ul>
+<li>
+<p>CPU Performance Architect 的工作不是單純寫 RTL。</p>
+</li>
+<li>
+<p>也不是只會說出 pipeline stage 或 cache hierarchy。</p>
+</li>
+<li>
+<p>核心工作是：</p>
+<ul>
+<li>定義 CPU 或 CPU subsystem 的 performance target</li>
+<li>建立 performance model</li>
+<li>分析 workload 的特性</li>
+<li>找出 bottleneck</li>
+<li>預測 microarchitecture feature 的收益</li>
+<li>做 pre-silicon / post-silicon correlation</li>
+<li>和 RTL、DV、compiler、OS、firmware、physical design、power/thermal 團隊一起收斂設計</li>
+</ul>
+</li>
+<li>
+<p>一句話：</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>CPU Designer 可能實作一個 feature。</span></span>
+<span class="line"><span>CPU Performance Architect 要回答這個 feature 值不值得做。</span></span></code></pre>
+<h2 id="能力層級">能力層級</h2>
+<ul>
+<li>
+<p>Junior engineer 常停在：</p>
+<ul>
+<li>cache 是什麼</li>
+<li>branch predictor 是什麼</li>
+<li>OoO pipeline 有哪些 stage</li>
+</ul>
+</li>
+<li>
+<p>Senior engineer 應該能回答：</p>
+<ul>
+<li>為什麼這個 workload 慢</li>
+<li>bottleneck 在 frontend、backend、memory，還是 branch speculation</li>
+<li>哪些 counter 可以支持這個判斷</li>
+</ul>
+</li>
+<li>
+<p>Architect 要再往前一步：</p>
+<ul>
+<li>如果把 L2 從 2 MiB 改成 4 MiB，IPC 會提升多少？</li>
+<li>latency、power、area 會增加多少？</li>
+<li>如果 branch predictor accuracy 提升 2%，值不值得增加 predictor storage？</li>
+<li>如果 model IPC 是 3.2，但 RTL IPC 是 2.6，差異要怎麼定位？</li>
+<li>如果 workload 是 memory bandwidth bound，增加 issue width 還有沒有用？</li>
+</ul>
+</li>
+<li>
+<p>準備或訓練時，每個主題都要提升到這個層級：</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>知道原理</span></span>
+<span class="line"><span>  -> 知道如何量測</span></span>
+<span class="line"><span>  -> 知道如何分析</span></span>
+<span class="line"><span>  -> 知道如何建模</span></span>
+<span class="line"><span>  -> 知道如何做設計取捨</span></span></code></pre>
+<h2 id="1-microarchitecture">1. Microarchitecture</h2>
+<h3 id="architect-要會什麼">Architect 要會什麼</h3>
+<ul>
+<li>
+<p>要理解現代 OoO CPU pipeline：</p>
+<ul>
+<li>fetch</li>
+<li>decode</li>
+<li>rename</li>
+<li>dispatch</li>
+<li>issue</li>
+<li>execute</li>
+<li>writeback</li>
+<li>retire</li>
+</ul>
+</li>
+<li>
+<p>要理解每個 stage 的限制如何影響 IPC：</p>
+<ul>
+<li>fetch width</li>
+<li>decode width</li>
+<li>rename bandwidth</li>
+<li>issue width</li>
+<li>execution port</li>
+<li>load/store bandwidth</li>
+<li>ROB size</li>
+<li>physical register file size</li>
+<li>branch recovery latency</li>
+<li>cache and TLB latency</li>
+</ul>
+</li>
+<li>
+<p>不只要知道 8-wide CPU 代表什麼。</p>
+</li>
+<li>
+<p>還要知道 8-wide 不代表 IPC 一定可以到 8。</p>
+</li>
+<li>
+<p>真正限制可能來自：</p>
+<ul>
+<li>workload ILP 不足</li>
+<li>branch misprediction</li>
+<li>I-cache miss</li>
+<li>load miss</li>
+<li>dependency chain</li>
+<li>execution port contention</li>
+<li>ROB 滿</li>
+<li>load queue / store queue 滿</li>
+<li>memory ordering replay</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做">對應要怎麼做</h3>
+<ul>
+<li>給定一個低 IPC case，先不要直接猜原因。</li>
+<li>先建立 bottleneck map：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>low IPC</span></span>
+<span class="line"><span>  -> frontend bound?</span></span>
+<span class="line"><span>  -> bad speculation?</span></span>
+<span class="line"><span>  -> backend core bound?</span></span>
+<span class="line"><span>  -> backend memory bound?</span></span>
+<span class="line"><span>  -> retire or commit limitation?</span></span></code></pre>
+<ul>
+<li>
+<p>先看 high-level counter：</p>
+<ul>
+<li>instructions retired</li>
+<li>cycles</li>
+<li>IPC</li>
+<li>branch MPKI</li>
+<li>I-cache MPKI</li>
+<li>D-cache MPKI</li>
+<li>L2 / LLC MPKI</li>
+<li>ITLB / DTLB miss</li>
+<li>frontend stall cycles</li>
+<li>backend stall cycles</li>
+<li>ROB full cycles</li>
+<li>issue queue full cycles</li>
+<li>load queue / store queue full cycles</li>
+</ul>
+</li>
+<li>
+<p>再把現象映射到可能原因：</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>現象</th><th>可能原因</th><th>下一步</th></tr></thead><tbody><tr><td>frontend stall 高</td><td>fetch bandwidth、I-cache、ITLB、branch redirect</td><td>看 I-cache MPKI、ITLB miss、BTB miss、taken branch density</td></tr><tr><td>branch MPKI 高</td><td>predictor 不準、BTB/RAS/indirect target 問題</td><td>分 branch type、看 hot PC、做 predictor sensitivity</td></tr><tr><td>backend stall 高但 port utilization 低</td><td>memory latency 或 dependency chain</td><td>看 ROB occupancy、load miss、critical path</td></tr><tr><td>backend stall 高且 port utilization 高</td><td>execution resource 不夠</td><td>看 ALU/FPU/vector/load/store port 使用率</td></tr><tr><td>ROB 常滿</td><td>long-latency load、retire 卡住、speculation 卡住</td><td>看 oldest instruction、load miss、exception/replay</td></tr><tr><td>LSQ 滿或 replay 多</td><td>memory dependence、store forwarding、ordering</td><td>做 memory microbenchmark 和 replay 分類</td></tr></tbody></table>
+<h2 id="2-ipc-drop-mapping">2. IPC Drop Mapping</h2>
+<h3 id="architect-要會什麼-1">Architect 要會什麼</h3>
+<ul>
+<li>IPC drop mapping 是 performance architect 很核心的能力。</li>
+<li>目標是把「IPC 變低」轉換成「哪一類硬體事件造成多少 CPI 增加」。</li>
+<li>不是只說：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>IPC dropped, so performance is bad.</span></span></code></pre>
+<ul>
+<li>而是要能說：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>IPC 從 3.0 掉到 1.2。</span></span>
+<span class="line"><span>CPI 從 0.333 增加到 0.833。</span></span>
+<span class="line"><span>多出來的 0.5 cycles/instruction</span></span>
+<span class="line"><span>主要來自 L2 miss latency 和 branch recovery。</span></span></code></pre>
+<h3 id="對應要怎麼做-1">對應要怎麼做</h3>
+<ul>
+<li>
+<p>Step 1: 確認比較條件一致。</p>
+<ul>
+<li>same binary</li>
+<li>same input</li>
+<li>same compiler flags</li>
+<li>same CPU frequency</li>
+<li>same DVFS / thermal state</li>
+<li>same core affinity</li>
+<li>same OS noise level</li>
+<li>same benchmark phase</li>
+</ul>
+</li>
+<li>
+<p>Step 2: 把 IPC 轉成 CPI。</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>CPI = cycles / instructions = 1 / IPC</span></span></code></pre>
+<ul>
+<li>例如：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>baseline IPC = 3.0 -> CPI = 0.333</span></span>
+<span class="line"><span>new IPC      = 1.2 -> CPI = 0.833</span></span>
+<span class="line"><span>extra CPI    = 0.500</span></span></code></pre>
+<ul>
+<li>Step 3: 建 CPI stack。</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>CPI</span></span>
+<span class="line"><span>  = base execution</span></span>
+<span class="line"><span>  + frontend stalls</span></span>
+<span class="line"><span>  + bad speculation penalty</span></span>
+<span class="line"><span>  + backend core stalls</span></span>
+<span class="line"><span>  + memory stalls</span></span>
+<span class="line"><span>  + synchronization / OS noise</span></span></code></pre>
+<ul>
+<li>Step 4: 用 top-down 分類。</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Retiring</span></span>
+<span class="line"><span>Bad Speculation</span></span>
+<span class="line"><span>Frontend Bound</span></span>
+<span class="line"><span>Backend Bound</span></span></code></pre>
+<ul>
+<li>Step 5: 繼續往下切。</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Frontend Bound</span></span>
+<span class="line"><span>  -> I-cache miss</span></span>
+<span class="line"><span>  -> ITLB miss</span></span>
+<span class="line"><span>  -> branch redirect bubble</span></span>
+<span class="line"><span>  -> decode bandwidth</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Bad Speculation</span></span>
+<span class="line"><span>  -> branch misprediction</span></span>
+<span class="line"><span>  -> machine clear / pipeline flush</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Backend Bound</span></span>
+<span class="line"><span>  -> Core Bound</span></span>
+<span class="line"><span>      -> execution port contention</span></span>
+<span class="line"><span>      -> scheduler / ROB / physical register limit</span></span>
+<span class="line"><span>      -> dependency chain</span></span>
+<span class="line"><span>  -> Memory Bound</span></span>
+<span class="line"><span>      -> L1D miss</span></span>
+<span class="line"><span>      -> L2 miss</span></span>
+<span class="line"><span>      -> LLC miss</span></span>
+<span class="line"><span>      -> DRAM latency</span></span>
+<span class="line"><span>      -> bandwidth saturation</span></span>
+<span class="line"><span>      -> TLB page walk</span></span></code></pre>
+<ul>
+<li>Step 6: 用實驗驗證假設。
+<ul>
+<li>如果懷疑 branch：改成 branch-friendly microbenchmark 或看 hot branch PC。</li>
+<li>如果懷疑 cache：做 cache size sweep、working set sweep、prefetch on/off。</li>
+<li>如果懷疑 memory latency：做 pointer chasing。</li>
+<li>如果懷疑 bandwidth：做 streaming bandwidth test。</li>
+<li>如果懷疑 TLB：改 page size 或做 stride/page footprint sweep。</li>
+<li>如果懷疑 dependency chain：看 data dependency depth 或做 instruction scheduling experiment。</li>
+</ul>
+</li>
+</ul>
+<h3 id="ipc-drop-mapping-範例表">IPC Drop Mapping 範例表</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>IPC drop 線索</th><th>可能 root cause</th><th>需要看的資料</th><th>可做的驗證</th></tr></thead><tbody><tr><td>branch MPKI 上升</td><td>predictor accuracy 下降</td><td>branch type、hot branch PC、BTB/RAS/indirect miss</td><td>branch trace、predictor size sensitivity</td></tr><tr><td>I-cache MPKI 上升</td><td>code footprint 或 layout 問題</td><td>I-cache miss PC、ITLB miss、binary layout</td><td>function layout、code size、LTO/PGO</td></tr><tr><td>L2 MPKI 上升</td><td>working set 超過 L2</td><td>miss curve、reuse distance</td><td>L2 size sensitivity、cache simulator</td></tr><tr><td>LLC miss 多但 bandwidth 不滿</td><td>latency bound</td><td>MLP、average miss latency、ROB full</td><td>pointer chasing、增加 outstanding miss</td></tr><tr><td>bandwidth 接近上限</td><td>bandwidth bound</td><td>DRAM bandwidth、queue occupancy</td><td>streaming test、prefetch throttling</td></tr><tr><td>port utilization 高</td><td>execution resource bottleneck</td><td>per-port utilization、instruction mix</td><td>改 instruction mix 或增加 execution unit model</td></tr><tr><td>ROB full 高</td><td>long-latency operation 卡住</td><td>oldest instruction、load miss、replay</td><td>trace oldest blocking instruction</td></tr><tr><td>DTLB miss 高</td><td>page walk cost</td><td>page walk cycles、page size、working set</td><td>huge page、TLB reach sweep</td></tr></tbody></table>
+<h2 id="3-branch-prediction">3. Branch Prediction</h2>
+<h3 id="architect-要會什麼-2">Architect 要會什麼</h3>
+<ul>
+<li>不只要知道 predictor 名稱：
+<ul>
+<li>bimodal</li>
+<li>gshare</li>
+<li>TAGE</li>
+<li>perceptron</li>
+<li>indirect predictor</li>
+<li>RAS</li>
+</ul>
+</li>
+<li>還要知道 branch prediction 對 performance 的量化影響。</li>
+<li>Branch predictor 不是越大越好。</li>
+<li>它會影響：
+<ul>
+<li>area</li>
+<li>power</li>
+<li>frontend timing</li>
+<li>access latency</li>
+<li>recovery behavior</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-2">對應要怎麼做</h3>
+<ul>
+<li>基本估算公式：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>branch penalty CPI</span></span>
+<span class="line"><span>  = branch frequency</span></span>
+<span class="line"><span>  * mispredict rate</span></span>
+<span class="line"><span>  * mispredict penalty</span></span></code></pre>
+<ul>
+<li>例子：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>branch frequency = 20%</span></span>
+<span class="line"><span>mispredict rate  = 5%</span></span>
+<span class="line"><span>penalty          = 20 cycles</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>branch penalty CPI = 0.20 * 0.05 * 20 = 0.20</span></span></code></pre>
+<ul>
+<li>如果 accuracy 從 95% 提升到 97%：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>old penalty = 0.20 * 0.05 * 20 = 0.20 CPI</span></span>
+<span class="line"><span>new penalty = 0.20 * 0.03 * 20 = 0.12 CPI</span></span>
+<span class="line"><span>gain        = 0.08 CPI</span></span></code></pre>
+<ul>
+<li>
+<p>Architect 要能接著問：</p>
+<ul>
+<li>這 0.08 CPI 對目標 workload 代表多少 performance gain？</li>
+<li>predictor storage 要增加多少？</li>
+<li>power 增加多少？</li>
+<li>timing 會不會讓 frontend cycle time 變差？</li>
+<li>哪些 branch 類型真的受益？</li>
+<li>是 direction miss、target miss、indirect miss，還是 RAS miss？</li>
+</ul>
+</li>
+<li>
+<p>實作分析時要看：</p>
+<ul>
+<li>branch frequency</li>
+<li>branch MPKI</li>
+<li>taken / not-taken ratio</li>
+<li>conditional / indirect / return branch 分布</li>
+<li>mispredict penalty</li>
+<li>hot branch PC</li>
+<li>predictor table aliasing</li>
+<li>BTB miss</li>
+<li>RAS overflow / underflow</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-cache-and-tlb">4. Cache and TLB</h2>
+<h3 id="architect-要會什麼-3">Architect 要會什麼</h3>
+<ul>
+<li>不只要會背 AMAT：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>AMAT = hit time + miss rate * miss penalty</span></span></code></pre>
+<ul>
+<li>Architect 要能回答：
+<ul>
+<li>L1D 要多大？</li>
+<li>L2 要選 2 MiB 還是 4 MiB？</li>
+<li>LLC 要不要加大？</li>
+<li>associativity 增加是否值得？</li>
+<li>line size 對 bandwidth 和 pollution 的影響是什麼？</li>
+<li>latency 增加會不會抵消 miss rate 改善？</li>
+<li>prefetcher 會不會造成 cache pollution？</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-3">對應要怎麼做</h3>
+<ul>
+<li>
+<p>做 cache tradeoff 時，不只看 miss rate。</p>
+</li>
+<li>
+<p>要看：</p>
+<ul>
+<li>hit latency</li>
+<li>miss rate</li>
+<li>miss penalty</li>
+<li>MLP</li>
+<li>area</li>
+<li>dynamic power</li>
+<li>leakage power</li>
+<li>timing closure risk</li>
+<li>physical distance and wire delay</li>
+</ul>
+</li>
+<li>
+<p>粗略估算可以從這個式子開始：</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Delta CPI</span></span>
+<span class="line"><span>  ~= access_per_inst * Delta hit_latency</span></span>
+<span class="line"><span>   + (Delta MPKI / 1000) * effective_miss_penalty</span></span></code></pre>
+<ul>
+<li>其中：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>effective_miss_penalty = raw_miss_latency / MLP</span></span></code></pre>
+<ul>
+<li>例子：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>L2 size: 2 MiB -> 4 MiB</span></span>
+<span class="line"><span>L2 MPKI: 10 -> 8</span></span>
+<span class="line"><span>L2 hit latency: 12 cycles -> 15 cycles</span></span>
+<span class="line"><span>L2 access per instruction: 0.30</span></span>
+<span class="line"><span>effective miss penalty: 80 cycles</span></span></code></pre>
+<ul>
+<li>Miss 改善收益：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>(10 - 8) / 1000 * 80 = 0.16 CPI saved</span></span></code></pre>
+<ul>
+<li>Hit latency 成本：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>0.30 * (15 - 12) = 0.90 CPI cost</span></span></code></pre>
+<ul>
+<li>在這個簡化例子中，加大 L2 可能不值得。</li>
+<li>實際模型要更細，因為 L2 latency 不一定完全暴露在 CPI 上，也可能被 OoO hide。</li>
+<li>但 architect 必須有這種 tradeoff 直覺。</li>
+</ul>
+<h3 id="tlb-和-page-walk">TLB 和 Page Walk</h3>
+<ul>
+<li>
+<p>TLB 不是 OS 細節而已。</p>
+</li>
+<li>
+<p>TLB miss 會造成 page walk，可能帶來很高 latency。</p>
+</li>
+<li>
+<p>要看：</p>
+<ul>
+<li>ITLB MPKI</li>
+<li>DTLB MPKI</li>
+<li>page walk cycles</li>
+<li>page size</li>
+<li>working set</li>
+<li>ASID / context switch effect</li>
+</ul>
+</li>
+<li>
+<p>在 ARM/RISC-V 系統中，還要理解：</p>
+<ul>
+<li>virtual memory translation</li>
+<li>page table level</li>
+<li>ASID</li>
+<li>memory attribute</li>
+<li>cacheability</li>
+<li>privilege level</li>
+<li>TLB shootdown</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-memory-system">5. Memory System</h2>
+<h3 id="architect-要會什麼-4">Architect 要會什麼</h3>
+<ul>
+<li>
+<p>要能判斷 workload 是：</p>
+<ul>
+<li>latency bound</li>
+<li>bandwidth bound</li>
+<li>MLP bound</li>
+<li>prefetch bound</li>
+<li>TLB bound</li>
+<li>synchronization bound</li>
+</ul>
+</li>
+<li>
+<p>兩個 workload 就算 L2 miss rate 一樣，performance 也可能差很多。</p>
+</li>
+<li>
+<p>常見原因是 MLP 不同。</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>workload A:</span></span>
+<span class="line"><span>  one miss blocks the critical path</span></span>
+<span class="line"><span>  MLP low</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>workload B:</span></span>
+<span class="line"><span>  many misses overlap</span></span>
+<span class="line"><span>  MLP high</span></span></code></pre>
+<h3 id="對應要怎麼做-4">對應要怎麼做</h3>
+<ul>
+<li>
+<p>要看的資料：</p>
+<ul>
+<li>L1D / L2 / LLC MPKI</li>
+<li>average memory latency</li>
+<li>outstanding misses</li>
+<li>MSHR occupancy</li>
+<li>load queue occupancy</li>
+<li>store queue occupancy</li>
+<li>DRAM bandwidth</li>
+<li>memory controller queue occupancy</li>
+<li>row buffer hit rate</li>
+<li>prefetch accuracy</li>
+<li>prefetch coverage</li>
+<li>prefetch timeliness</li>
+<li>useless prefetch traffic</li>
+</ul>
+</li>
+<li>
+<p>判斷 latency bound：</p>
+<ul>
+<li>bandwidth 沒滿</li>
+<li>ROB 常被 load miss 卡住</li>
+<li>MLP 低</li>
+<li>pointer chasing 類 workload 慢</li>
+</ul>
+</li>
+<li>
+<p>判斷 bandwidth bound：</p>
+<ul>
+<li>DRAM bandwidth 接近平台上限</li>
+<li>memory queue 滿</li>
+<li>prefetch 和 demand request 競爭頻寬</li>
+<li>增加 cache 或 MLP 不再改善</li>
+</ul>
+</li>
+<li>
+<p>判斷 prefetch 是否有用：</p>
+<ul>
+<li>coverage 高不一定好</li>
+<li>accuracy 低會浪費 bandwidth</li>
+<li>timeliness 差可能太早或太晚</li>
+<li>cache pollution 可能讓 useful data 被趕走</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-core-backend-and-ooo-limits">6. Core Backend and OoO Limits</h2>
+<h3 id="architect-要會什麼-5">Architect 要會什麼</h3>
+<ul>
+<li>OoO 的價值是：
+<ul>
+<li>hide memory latency</li>
+<li>exploit ILP</li>
+<li>improve resource utilization</li>
+</ul>
+</li>
+<li>但 OoO 不是魔法。</li>
+<li>無法被有效 hide 的情況包括：
+<ul>
+<li>critical dependency chain</li>
+<li>serial code</li>
+<li>pointer chasing</li>
+<li>branch-dependent control flow</li>
+<li>memory ordering restriction</li>
+<li>atomic and lock-heavy code</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-5">對應要怎麼做</h3>
+<ul>
+<li>
+<p>分析 backend 時，要把 core bound 和 memory bound 分開。</p>
+</li>
+<li>
+<p>Core bound 常見線索：</p>
+<ul>
+<li>ALU/FPU/vector port utilization 高</li>
+<li>issue queue 滿</li>
+<li>scheduler wakeup/select 壓力高</li>
+<li>physical register pressure 高</li>
+<li>rename / dispatch stall</li>
+</ul>
+</li>
+<li>
+<p>Memory bound 常見線索：</p>
+<ul>
+<li>load miss 多</li>
+<li>ROB 滿但 execution port 不忙</li>
+<li>LSQ 滿</li>
+<li>replay 多</li>
+<li>store-to-load forwarding fail</li>
+<li>memory dependence violation</li>
+</ul>
+</li>
+<li>
+<p>如果考慮加大 ROB 或 scheduler：</p>
+<ul>
+<li>要先看有沒有足夠 ILP 或 MLP 可以利用</li>
+<li>要看 wakeup/select timing 是否可收斂</li>
+<li>要看 CAM/search power 是否可接受</li>
+<li>要看 physical register file 和 bypass network 成本</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-performance-analysis-workflow">7. Performance Analysis Workflow</h2>
+<h3 id="architect-要會什麼-6">Architect 要會什麼</h3>
+<ul>
+<li>要把 performance analysis 做成可重複的流程。</li>
+<li>不是每次都憑直覺猜。</li>
+</ul>
+<h3 id="對應要怎麼做-6">對應要怎麼做</h3>
+<ul>
+<li>一個實用流程：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>1. Define the question</span></span>
+<span class="line"><span>2. Reproduce the workload</span></span>
+<span class="line"><span>3. Lock down measurement conditions</span></span>
+<span class="line"><span>4. Collect high-level counters</span></span>
+<span class="line"><span>5. Build CPI stack</span></span>
+<span class="line"><span>6. Classify top-down bottleneck</span></span>
+<span class="line"><span>7. Attribute to PC / function / phase</span></span>
+<span class="line"><span>8. Build hypotheses</span></span>
+<span class="line"><span>9. Run microbench or sensitivity experiment</span></span>
+<span class="line"><span>10. Decide whether it is model issue, RTL issue, software issue, or workload property</span></span></code></pre>
+<ul>
+<li>需要輸出的不是一堆 counter。</li>
+<li>需要輸出的是這種結論：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Root cause:</span></span>
+<span class="line"><span>  L2 miss latency dominates the extra CPI.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Evidence:</span></span>
+<span class="line"><span>  L2 MPKI increased from 4 to 13.</span></span>
+<span class="line"><span>  ROB full cycles increased by 28%.</span></span>
+<span class="line"><span>  DRAM bandwidth is only 45% of peak, so it is latency bound.</span></span>
+<span class="line"><span>  Hot miss PCs are in pointer-chasing code.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Next action:</span></span>
+<span class="line"><span>  Evaluate data prefetcher improvement.</span></span>
+<span class="line"><span>  Try larger L2 only after checking miss curve.</span></span>
+<span class="line"><span>  Build pointer-chasing microbenchmark for model/RTL correlation.</span></span></code></pre>
+<h2 id="8-performance-modeling">8. Performance Modeling</h2>
+<h3 id="architect-要會什麼-7">Architect 要會什麼</h3>
+<ul>
+<li>
+<p>Performance model 是在 RTL 還沒有完成，甚至還不存在時，用來預測設計方向的工具。</p>
+</li>
+<li>
+<p>它不是只有一種形式。</p>
+</li>
+<li>
+<p>常見模型：</p>
+<ul>
+<li>analytical model</li>
+<li>trace-driven model</li>
+<li>execution-driven simulator</li>
+<li>cycle-level model</li>
+<li>hybrid model</li>
+</ul>
+</li>
+<li>
+<p>不同模型適合不同階段：</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>模型</th><th>適合用途</th><th>風險</th></tr></thead><tbody><tr><td>analytical model</td><td>快速估算 feature ROI</td><td>過度簡化</td></tr><tr><td>trace-driven model</td><td>cache、branch、memory sensitivity</td><td>trace 可能缺少 timing feedback</td></tr><tr><td>cycle-level model</td><td>pipeline 和 resource contention</td><td>建模成本高</td></tr><tr><td>execution-driven simulator</td><td>軟體行為更完整</td><td>速度慢、維護成本高</td></tr></tbody></table>
+<h3 id="對應要怎麼做-7">對應要怎麼做</h3>
+<ul>
+<li>
+<p>建 model 時要先定義：</p>
+<ul>
+<li>target workload</li>
+<li>target metric</li>
+<li>baseline CPU config</li>
+<li>design knobs</li>
+<li>event taxonomy</li>
+<li>calibration data</li>
+<li>acceptable error range</li>
+</ul>
+</li>
+<li>
+<p>常見 design knobs：</p>
+<ul>
+<li>fetch/decode/issue/retire width</li>
+<li>ROB size</li>
+<li>scheduler size</li>
+<li>branch predictor size</li>
+<li>load/store queue size</li>
+<li>L1/L2/LLC size</li>
+<li>cache latency</li>
+<li>prefetcher aggressiveness</li>
+<li>memory bandwidth</li>
+<li>vector width</li>
+</ul>
+</li>
+<li>
+<p>一個 model study 應該輸出：</p>
+<ul>
+<li>baseline IPC</li>
+<li>feature-on IPC</li>
+<li>delta CPI breakdown</li>
+<li>sensitivity curve</li>
+<li>workload coverage</li>
+<li>model assumptions</li>
+<li>risk and unknowns</li>
+</ul>
+</li>
+<li>
+<p>例子：</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Question:</span></span>
+<span class="line"><span>  Should we increase ROB from 192 to 256 entries?</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Need to measure:</span></span>
+<span class="line"><span>  ROB full cycles</span></span>
+<span class="line"><span>  long-latency miss overlap</span></span>
+<span class="line"><span>  branch misprediction recovery cost</span></span>
+<span class="line"><span>  physical register pressure</span></span>
+<span class="line"><span>  scheduler pressure</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Decision:</span></span>
+<span class="line"><span>  If workload is mostly frontend bound, larger ROB may not help.</span></span>
+<span class="line"><span>  If workload has high MLP and frequent long-latency loads, larger ROB may help.</span></span></code></pre>
+<h2 id="9-correlation-model-vs-rtl-vs-silicon">9. Correlation: Model vs RTL vs Silicon</h2>
+<h3 id="architect-要會什麼-8">Architect 要會什麼</h3>
+<ul>
+<li>Correlation 是 performance architect 的核心工作。</li>
+<li>Model、RTL、FPGA/emulation、silicon 之間一定會有差異。</li>
+<li>重要的是能定位差異來源。</li>
+</ul>
+<h3 id="對應要怎麼做-8">對應要怎麼做</h3>
+<ul>
+<li>
+<p>Step 1: 先確認比較條件一致。</p>
+<ul>
+<li>same benchmark</li>
+<li>same input</li>
+<li>same binary</li>
+<li>same compiler</li>
+<li>same ISA extension setting</li>
+<li>same cache/memory config</li>
+<li>same warm-up policy</li>
+<li>same simulation window</li>
+<li>same counter definition</li>
+</ul>
+</li>
+<li>
+<p>Step 2: 從 IPC 開始，但不要停在 IPC。</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Model IPC = 3.2</span></span>
+<span class="line"><span>RTL IPC   = 2.6</span></span></code></pre>
+<ul>
+<li>Step 3: 分解成 CPI stack。</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Model extra CPI:</span></span>
+<span class="line"><span>  frontend 0.05</span></span>
+<span class="line"><span>  branch   0.10</span></span>
+<span class="line"><span>  memory   0.25</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RTL extra CPI:</span></span>
+<span class="line"><span>  frontend 0.08</span></span>
+<span class="line"><span>  branch   0.12</span></span>
+<span class="line"><span>  memory   0.70</span></span></code></pre>
+<ul>
+<li>Step 4: 定位 mismatch。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Mismatch</th><th>可能原因</th></tr></thead><tbody><tr><td>RTL branch penalty 比 model 高</td><td>recovery path 建模太樂觀、frontend refill latency 被低估</td></tr><tr><td>RTL L2 latency 比 model 高</td><td>interconnect、bank conflict、physical timing、queueing 沒建進去</td></tr><tr><td>RTL rename stall 多</td><td>model 沒有 physical register 或 rename bandwidth 限制</td></tr><tr><td>RTL LSQ full 多</td><td>model 沒有 store/load ordering、replay、MSHR 限制</td></tr><tr><td>RTL IPC phase 差異大</td><td>simulation window 沒對齊或 workload phase 不同</td></tr></tbody></table>
+<ul>
+<li>
+<p>Step 5: 建 microbenchmark 隔離。</p>
+<ul>
+<li>branch microbenchmark</li>
+<li>I-cache footprint microbenchmark</li>
+<li>pointer chasing</li>
+<li>streaming bandwidth</li>
+<li>load/store forwarding test</li>
+<li>atomic/lock contention test</li>
+</ul>
+</li>
+<li>
+<p>Step 6: 判斷是哪一種問題：</p>
+<ul>
+<li>model assumption wrong</li>
+<li>RTL implementation bug</li>
+<li>counter definition mismatch</li>
+<li>workload setup mismatch</li>
+<li>real hardware limitation</li>
+<li>software/compiler behavior different</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-workload-characterization">10. Workload Characterization</h2>
+<h3 id="architect-要會什麼-9">Architect 要會什麼</h3>
+<ul>
+<li>
+<p>不只是會跑 benchmark。</p>
+</li>
+<li>
+<p>要能把 workload 變成 profile。</p>
+</li>
+<li>
+<p>一個有用的 workload profile 應包含：</p>
+<ul>
+<li>IPC / CPI</li>
+<li>instruction mix</li>
+<li>load/store ratio</li>
+<li>branch frequency</li>
+<li>branch MPKI</li>
+<li>I-cache / D-cache / L2 / LLC MPKI</li>
+<li>ITLB / DTLB MPKI</li>
+<li>MLP</li>
+<li>memory bandwidth</li>
+<li>working set size</li>
+<li>vector utilization</li>
+<li>atomic / lock frequency</li>
+<li>kernel time vs user time</li>
+<li>phase behavior</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-9">對應要怎麼做</h3>
+<ul>
+<li>先做分類：</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Workload 類型</th><th>常見特徵</th><th>常見瓶頸</th></tr></thead><tbody><tr><td>compute bound</td><td>port utilization 高、cache miss 低</td><td>execution unit、dependency chain</td></tr><tr><td>memory latency bound</td><td>bandwidth 不滿、ROB 被 load miss 卡住</td><td>DRAM latency、MLP 低</td></tr><tr><td>memory bandwidth bound</td><td>bandwidth 接近上限</td><td>DRAM/channel/interconnect bandwidth</td></tr><tr><td>branch bound</td><td>branch MPKI 高</td><td>predictor、BTB、frontend recovery</td></tr><tr><td>frontend bound</td><td>I-cache/ITLB miss、decode 壓力</td><td>code footprint、instruction fetch</td></tr><tr><td>synchronization bound</td><td>atomic/lock 多</td><td>coherence、memory ordering、OS scheduling</td></tr><tr><td>vector bound</td><td>vector utilization 高</td><td>vector width、load/store bandwidth、alignment</td></tr></tbody></table>
+<ul>
+<li>
+<p>再做 hot spot attribution：</p>
+<ul>
+<li>找 hot function</li>
+<li>找 hot loop</li>
+<li>找 hot PC</li>
+<li>分 workload phase</li>
+<li>把 counter 對到 code region</li>
+</ul>
+</li>
+<li>
+<p>對 ARM/RISC-V 系統，還要看：</p>
+<ul>
+<li>是否使用 vector extension</li>
+<li>compiler 是否產生預期的 instruction</li>
+<li>atomic 是否造成 coherence 壓力</li>
+<li>page size 是否影響 TLB</li>
+<li>Linux scheduler 是否造成 migration</li>
+<li>driver/runtime 是否進入 kernel hot path</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-cpu-subsystem-definition">11. CPU Subsystem Definition</h2>
+<h3 id="architect-要會什麼-10">Architect 要會什麼</h3>
+<ul>
+<li>CPU subsystem definition 是 architect 真正的產出之一。</li>
+<li>需要決定：
+<ul>
+<li>core count</li>
+<li>cluster topology</li>
+<li>private L2 size</li>
+<li>shared LLC size</li>
+<li>coherence fabric</li>
+<li>interconnect bandwidth</li>
+<li>memory bandwidth target</li>
+<li>prefetcher policy</li>
+<li>branch predictor class</li>
+<li>PMU event definition</li>
+<li>power state and DVFS behavior</li>
+<li>security and isolation feature interaction</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-10">對應要怎麼做</h3>
+<ul>
+<li>每個決策都要能用資料支撐。</li>
+<li>例如要選 4 MiB LLC 還是 8 MiB LLC，不應只說「8 MiB 比較快」。</li>
+<li>應該整理成：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Option A: 4 MiB LLC</span></span>
+<span class="line"><span>  performance: baseline</span></span>
+<span class="line"><span>  area: lower</span></span>
+<span class="line"><span>  leakage: lower</span></span>
+<span class="line"><span>  workload risk: memory-footprint-heavy workload loses performance</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Option B: 8 MiB LLC</span></span>
+<span class="line"><span>  performance: +X% on workload group A</span></span>
+<span class="line"><span>  area: +Y%</span></span>
+<span class="line"><span>  leakage: +Z%</span></span>
+<span class="line"><span>  latency: +N cycles or possible timing risk</span></span>
+<span class="line"><span>  workload risk: little gain on streaming or branch-bound workloads</span></span></code></pre>
+<ul>
+<li>最後給出 decision：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Choose 8 MiB only if:</span></span>
+<span class="line"><span>  target workloads show enough LLC miss reduction</span></span>
+<span class="line"><span>  latency increase is hidden or small</span></span>
+<span class="line"><span>  area/power budget accepts the cost</span></span>
+<span class="line"><span>  thermal impact does not reduce sustained frequency</span></span></code></pre>
+<h2 id="12-armrisc-v-isa-and-system-features">12. ARM/RISC-V ISA and System Features</h2>
+<h3 id="architect-要會什麼-11">Architect 要會什麼</h3>
+<ul>
+<li>
+<p>ISA 不是只背 instruction syntax。</p>
+</li>
+<li>
+<p>Architect 要知道 ISA feature 為什麼存在，以及它對 performance model 的影響。</p>
+</li>
+<li>
+<p>ARM 方向要熟：</p>
+<ul>
+<li>AArch64 execution model</li>
+<li>NEON</li>
+<li>SVE / SVE2</li>
+<li>load/store pair</li>
+<li>prefetch hint</li>
+<li>atomics</li>
+<li>acquire/release semantics</li>
+<li>memory barrier</li>
+<li>exception level</li>
+<li>page table and memory attribute</li>
+</ul>
+</li>
+<li>
+<p>RISC-V 方向要熟：</p>
+<ul>
+<li>RV64GC baseline</li>
+<li>compressed instruction extension</li>
+<li>atomic extension</li>
+<li>vector extension</li>
+<li>bit manipulation extension</li>
+<li>custom extension tradeoff</li>
+<li>RVWMO memory model</li>
+<li>fence / acquire-release</li>
+<li>Sv39 / Sv48 virtual memory</li>
+<li>PMP and privilege model</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-11">對應要怎麼做</h3>
+<ul>
+<li>
+<p>評估 ISA feature 時，不是問「支不支援」而已。</p>
+</li>
+<li>
+<p>要問：</p>
+<ul>
+<li>dynamic instruction count 是否下降？</li>
+<li>vector utilization 是否提高？</li>
+<li>memory bandwidth 是否變成新的瓶頸？</li>
+<li>compiler 是否能穩定產生該 feature？</li>
+<li>runtime / OS 是否需要改？</li>
+<li>verification cost 是否可接受？</li>
+<li>backward compatibility 如何處理？</li>
+</ul>
+</li>
+<li>
+<p>例子：</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>Feature:</span></span>
+<span class="line"><span>  RISC-V vector extension or ARM SVE2</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Possible gain:</span></span>
+<span class="line"><span>  lower instruction count</span></span>
+<span class="line"><span>  better data-level parallelism</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Possible new bottleneck:</span></span>
+<span class="line"><span>  load/store bandwidth</span></span>
+<span class="line"><span>  cache bandwidth</span></span>
+<span class="line"><span>  register file power</span></span>
+<span class="line"><span>  vector pipeline occupancy</span></span>
+<span class="line"><span>  compiler auto-vectorization quality</span></span></code></pre>
+<h2 id="13-benchmarks-and-real-applications">13. Benchmarks and Real Applications</h2>
+<h3 id="architect-要會什麼-12">Architect 要會什麼</h3>
+<ul>
+<li>
+<p>要知道 benchmark 的用途，也要知道 benchmark 的限制。</p>
+</li>
+<li>
+<p>常見 benchmark 類型：</p>
+<ul>
+<li>SPEC CPU</li>
+<li>CoreMark</li>
+<li>Geekbench</li>
+<li>MLPerf</li>
+<li>browser / JavaScript benchmark</li>
+<li>internal microbenchmark</li>
+<li>real application trace</li>
+</ul>
+</li>
+<li>
+<p>Benchmark 提升不代表 real app 一定提升。</p>
+</li>
+<li>
+<p>可能原因：</p>
+<ul>
+<li>workload mix 不同</li>
+<li>dataset 不同</li>
+<li>phase behavior 不同</li>
+<li>compiler path 不同</li>
+<li>OS/runtime overhead 不同</li>
+<li>thermal throttling</li>
+<li>memory footprint 不同</li>
+<li>benchmark 只打到某個 feature</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-12">對應要怎麼做</h3>
+<ul>
+<li>評估 CPU 時要建立 benchmark matrix：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>single-thread latency workload</span></span>
+<span class="line"><span>multi-thread throughput workload</span></span>
+<span class="line"><span>branch-heavy workload</span></span>
+<span class="line"><span>memory-latency workload</span></span>
+<span class="line"><span>memory-bandwidth workload</span></span>
+<span class="line"><span>vector / ML workload</span></span>
+<span class="line"><span>OS / driver / runtime-sensitive workload</span></span></code></pre>
+<ul>
+<li>每個 benchmark 都要搭配 counter profile。</li>
+<li>不要只看 score。</li>
+<li>要能回答：</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>這個分數提升是來自 instruction count 下降？</span></span>
+<span class="line"><span>還是 IPC 上升？</span></span>
+<span class="line"><span>還是 frequency 上升？</span></span>
+<span class="line"><span>還是 memory stalls 下降？</span></span>
+<span class="line"><span>還是 benchmark phase 剛好改變？</span></span></code></pre>
+<h2 id="14-coding-and-tooling">14. Coding and Tooling</h2>
+<h3 id="architect-要會什麼-13">Architect 要會什麼</h3>
+<ul>
+<li>
+<p>不一定要像純 SWE 一樣考很難的 algorithm。</p>
+</li>
+<li>
+<p>但一定要能用程式處理 performance data。</p>
+</li>
+<li>
+<p>Python 常見用途：</p>
+<ul>
+<li>parse PMU counter</li>
+<li>parse trace</li>
+<li>build CPI stack</li>
+<li>plot sensitivity curve</li>
+<li>compare model vs RTL result</li>
+<li>identify outlier workload</li>
+</ul>
+</li>
+<li>
+<p>C/C++ 常見用途：</p>
+<ul>
+<li>寫 microbenchmark</li>
+<li>寫簡單 cache simulator</li>
+<li>寫 branch trace analyzer</li>
+<li>建立簡化 performance model</li>
+<li>控制 memory layout 和 access pattern</li>
+</ul>
+</li>
+</ul>
+<h3 id="對應要怎麼做-13">對應要怎麼做</h3>
+<ul>
+<li>可以練這些小工具：
+<ul>
+<li>IPC/CPI 報表產生器</li>
+<li>MPKI summary script</li>
+<li>CPI stack visualizer</li>
+<li>cache miss curve simulator</li>
+<li>branch predictor toy simulator</li>
+<li>pointer-chasing benchmark</li>
+<li>streaming bandwidth benchmark</li>
+<li>false-sharing benchmark</li>
+<li>atomic/lock contention benchmark</li>
+</ul>
+</li>
+</ul>
+<h2 id="15-architect-應該能交付的結果">15. Architect 應該能交付的結果</h2>
+<ul>
+<li>
+<p>一個 CPU Performance Architect 最後要能交付的不只是口頭分析。</p>
+</li>
+<li>
+<p>應該能產出：</p>
+<ul>
+<li>workload characterization report</li>
+<li>performance model</li>
+<li>model assumption document</li>
+<li>bottleneck analysis</li>
+<li>CPI stack</li>
+<li>model vs RTL correlation report</li>
+<li>pre-silicon bug triage</li>
+<li>post-silicon performance triage</li>
+<li>CPU subsystem architecture specification</li>
+<li>feature ROI analysis</li>
+<li>benchmark methodology</li>
+</ul>
+</li>
+<li>
+<p>好的結論長這樣：</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>The IPC drop is mainly memory-latency bound.</span></span>
+<span class="line"><span>The extra 0.42 CPI comes from L2/LLC miss latency.</span></span>
+<span class="line"><span>Branch MPKI is unchanged.</span></span>
+<span class="line"><span>Frontend stalls are not dominant.</span></span>
+<span class="line"><span>DRAM bandwidth is below saturation, so this is not bandwidth bound.</span></span>
+<span class="line"><span>The hot PCs are pointer-chasing loads in phase 3.</span></span>
+<span class="line"><span>Increasing issue width is unlikely to help.</span></span>
+<span class="line"><span>Useful next options are prefetcher tuning, data layout change, or larger effective cache capacity.</span></span></code></pre>
+<h2 id="最後總結">最後總結</h2>
+<ul>
+<li>
+<p>CPU Performance Architect 的重點是從資料做決策。</p>
+</li>
+<li>
+<p>不是只知道 pipeline、cache、branch predictor。</p>
+</li>
+<li>
+<p>而是要能把這些概念連到：</p>
+<ul>
+<li>measurement</li>
+<li>bottleneck mapping</li>
+<li>modeling</li>
+<li>correlation</li>
+<li>feature ROI</li>
+<li>subsystem specification</li>
+</ul>
+</li>
+<li>
+<p>面對 ARM/RISC-V 系統時，architect 還要能把 ISA、compiler、Linux、driver、runtime、memory model、cache coherency、power/thermal 一起納入考量。</p>
+</li>
+<li>
+<p>最核心的能力可以濃縮成一句話：</p>
+</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="txt"><code><span class="line"><span>看到 performance 現象，能量化原因；</span></span>
+<span class="line"><span>看到設計選項，能估算收益與成本；</span></span>
+<span class="line"><span>看到 model 和 RTL 不一致，能定位 mismatch。</span></span></code></pre> </article> <hr class="my-8 border-dashed"> <ul class="flex flex-wrap gap-3"> <li> <a href="/tags/cpu/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> cpu </a> </li><li> <a href="/tags/microarchitecture/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> microarchitecture </a> </li><li> <a href="/tags/performance/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> performance </a> </li><li> <a href="/tags/architect/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> architect </a> </li><li> <a href="/tags/arm/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> arm </a> </li><li> <a href="/tags/riscv/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-6"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> riscv </a> </li><li> <a href="/tags/research-notes/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-7"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> research-notes </a> </li> </ul> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/satnaing/astro-paper" title="Hsufit.dev on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Hsufit.dev on GitHub</span>  </a><a href="https://x.com/username" title="Hsufit.dev on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Hsufit.dev on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="Hsufit.dev on LinkedIn" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">Hsufit.dev on LinkedIn</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to Hsufit.dev" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to Hsufit.dev</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html>
