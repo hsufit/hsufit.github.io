@@ -1,0 +1,973 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="京都・東京 2027 旅遊規劃，包含十個一日候選方案、和服花火行程，以及十四天推薦行程表。"
+    />
+    <title>京都・東京 2027 旅遊規劃</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f4efe5;
+        --paper-deep: #e9e1d2;
+        --card: rgba(255, 253, 248, 0.94);
+        --ink: #202822;
+        --muted: #687069;
+        --red: #963f30;
+        --red-deep: #702e24;
+        --green: #3f6658;
+        --green-soft: #dfe9e2;
+        --line: rgba(48, 61, 52, 0.16);
+        --shadow: 0 20px 60px rgba(66, 53, 38, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 8% 0%, rgba(167, 69, 47, 0.12), transparent 28rem),
+          radial-gradient(circle at 95% 18%, rgba(63, 102, 88, 0.13), transparent 32rem),
+          var(--paper);
+        font-family:
+          "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", ui-sans-serif,
+          system-ui, sans-serif;
+        line-height: 1.75;
+      }
+
+      a {
+        color: var(--red-deep);
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--red);
+        outline-offset: 4px;
+        border-radius: 0.2rem;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 20;
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.65rem 0.9rem;
+        color: white;
+        background: var(--red-deep);
+        border-radius: 0.5rem;
+        transform: translateY(-150%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .top-nav {
+        padding: 1.25rem 0 0;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--red-deep);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(15rem, 0.5fr);
+        gap: clamp(2rem, 7vw, 6rem);
+        align-items: end;
+        padding: clamp(3rem, 9vw, 7rem) 0 clamp(2.5rem, 7vw, 5rem);
+      }
+
+      .eyebrow {
+        margin: 0 0 0.65rem;
+        color: var(--red);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        text-wrap: balance;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+        font-size: clamp(2.6rem, 8vw, 5.6rem);
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 1.06;
+      }
+
+      .lead {
+        max-width: 45rem;
+        margin: 1.35rem 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.15rem);
+      }
+
+      .trip-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin: 0;
+      }
+
+      .trip-facts div {
+        padding: 1rem;
+        background: rgba(255, 253, 248, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+      }
+
+      .trip-facts div:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .trip-facts dt {
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .trip-facts dd {
+        margin: 0.2rem 0 0;
+        font-size: 1.05rem;
+        font-weight: 800;
+      }
+
+      section {
+        scroll-margin-top: 1.5rem;
+      }
+
+      .section-heading {
+        display: flex;
+        gap: 1rem;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 1.2rem;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        letter-spacing: -0.035em;
+      }
+
+      .section-heading p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .map-card {
+        overflow: hidden;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+
+      .map-frame {
+        width: 100%;
+        height: clamp(28rem, 68vh, 46rem);
+        display: block;
+        border: 0;
+      }
+
+      .map-footer {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.2rem;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .map-footer p {
+        margin: 0;
+      }
+
+      .map-footer a {
+        flex: 0 0 auto;
+        font-weight: 800;
+      }
+
+      .overview-section,
+      .itinerary-section,
+      .recommended-section,
+      .notes-section {
+        padding-top: clamp(4rem, 9vw, 7rem);
+      }
+
+      .plan-callout {
+        margin: 0 0 1.4rem;
+        padding: 1.1rem 1.25rem;
+        color: var(--green);
+        background: var(--green-soft);
+        border: 1px solid rgba(63, 102, 88, 0.18);
+        border-radius: 1rem;
+      }
+
+      .plan-callout strong {
+        color: var(--ink);
+      }
+
+      .plan-callout p {
+        margin: 0;
+      }
+
+      .plan-callout p + p {
+        margin-top: 0.4rem;
+      }
+
+      .route-overview {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(8.5rem, 1fr));
+        gap: 0.7rem;
+        overflow-x: auto;
+        margin: 0;
+        padding: 0.25rem 0.2rem 1rem;
+        list-style: none;
+        counter-reset: route-day;
+        scrollbar-color: var(--red) transparent;
+      }
+
+      .route-overview li {
+        position: relative;
+        counter-increment: route-day;
+      }
+
+      .route-overview li:not(:last-child)::after {
+        position: absolute;
+        z-index: 2;
+        top: 2rem;
+        right: -0.68rem;
+        content: "→";
+        color: var(--red);
+        font-weight: 900;
+      }
+
+      .route-overview a {
+        min-height: 9.5rem;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        color: inherit;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        text-decoration: none;
+      }
+
+      .route-overview a::before {
+        content: "DAY " counter(route-day, decimal-leading-zero);
+        color: var(--red);
+        font-size: 0.72rem;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+      }
+
+      .route-overview strong {
+        margin-top: auto;
+        font-size: 1.02rem;
+      }
+
+      .route-overview span {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .itinerary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .day-card {
+        display: flex;
+        flex-direction: column;
+        padding: clamp(1.35rem, 4vw, 2rem);
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1.35rem;
+        box-shadow: 0 10px 35px rgba(66, 53, 38, 0.055);
+      }
+
+      .day-card.transfer-day {
+        background:
+          linear-gradient(135deg, rgba(63, 102, 88, 0.09), transparent 65%),
+          var(--card);
+        border-color: rgba(63, 102, 88, 0.28);
+      }
+
+      .day-card.fireworks-day {
+        background:
+          linear-gradient(135deg, rgba(150, 63, 48, 0.09), transparent 65%),
+          var(--card);
+        border-color: rgba(150, 63, 48, 0.3);
+      }
+
+      .plan-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin: 0 0 0.45rem;
+      }
+
+      .plan-tag {
+        display: inline-flex;
+        padding: 0.22rem 0.55rem;
+        color: var(--green);
+        background: var(--green-soft);
+        border-radius: 999px;
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+      }
+
+      .plan-tag.must {
+        color: white;
+        background: var(--red);
+      }
+
+      .plan-tag.choice {
+        color: var(--red-deep);
+        background: #f1ddd5;
+      }
+
+      .day-header {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .day-number {
+        width: 3.4rem;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: var(--red);
+        border-radius: 50%;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+      }
+
+      .day-label {
+        margin: 0;
+        color: var(--green);
+        font-size: 0.75rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .day-card h3 {
+        margin: 0.1rem 0 0;
+        font-size: clamp(1.2rem, 3vw, 1.55rem);
+        line-height: 1.3;
+      }
+
+      .stop-flow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        align-items: center;
+        margin: 1.4rem 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .stop-flow li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--green);
+        font-size: 0.86rem;
+        font-weight: 750;
+      }
+
+      .stop-flow li:not(:last-child)::after {
+        content: "→";
+        color: var(--muted);
+      }
+
+      .details {
+        margin: 1.25rem 0 0;
+        padding-left: 1.25rem;
+      }
+
+      .details li + li {
+        margin-top: 0.55rem;
+      }
+
+      .card-note {
+        margin: auto 0 0;
+        padding-top: 1.2rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .notes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .note-card {
+        padding: 1.3rem;
+        background: var(--green-soft);
+        border-radius: 1rem;
+      }
+
+      .note-card h3 {
+        margin: 0 0 0.55rem;
+        color: var(--green);
+        font-size: 1rem;
+      }
+
+      .note-card p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .status-note {
+        margin-top: 1.25rem;
+        padding: 1rem 1.2rem;
+        color: var(--muted);
+        background: rgba(255, 253, 248, 0.6);
+        border-left: 4px solid var(--red);
+        border-radius: 0 0.75rem 0.75rem 0;
+        font-size: 0.88rem;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1.25rem;
+        box-shadow: var(--shadow);
+      }
+
+      .trip-table {
+        width: 100%;
+        min-width: 780px;
+        border-collapse: collapse;
+        font-size: 0.92rem;
+      }
+
+      .trip-table th,
+      .trip-table td {
+        padding: 1rem;
+        text-align: left;
+        vertical-align: top;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .trip-table thead th {
+        color: white;
+        background: var(--green);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+      }
+
+      .trip-table tbody tr:last-child th,
+      .trip-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .trip-table tbody th {
+        width: 5rem;
+        color: var(--red-deep);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      .trip-table .must-row {
+        background: rgba(150, 63, 48, 0.045);
+      }
+
+      .trip-table .fireworks-row {
+        background: rgba(63, 102, 88, 0.08);
+      }
+
+      .table-note {
+        margin: 1rem 0 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .source-links {
+        margin: 1rem 0 0;
+        padding-left: 1.25rem;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .source-links li + li {
+        margin-top: 0.35rem;
+      }
+
+      footer {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: clamp(4rem, 9vw, 7rem);
+        padding: 1.5rem 0 2.5rem;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        font-size: 0.82rem;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 760px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .trip-facts {
+          max-width: 28rem;
+        }
+
+        .section-heading,
+        .map-footer,
+        footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .itinerary-grid,
+        .notes-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .map-frame {
+          height: 65vh;
+          min-height: 26rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+
+        .top-nav,
+        .map-section,
+        footer {
+          display: none;
+        }
+
+        .shell {
+          width: 100%;
+        }
+
+        .hero {
+          padding: 0 0 1.5rem;
+        }
+
+        .overview-section,
+        .itinerary-section,
+        .recommended-section,
+        .notes-section {
+          padding-top: 1.5rem;
+        }
+
+        .day-card {
+          break-inside: avoid;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳至主要內容</a>
+
+    <div class="shell">
+      <nav class="top-nav" aria-label="頁面導覽">
+        <a class="back-link" href="/html_page/">
+          <span aria-hidden="true">←</span>
+          返回獨立網頁列表
+        </a>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Japan · 2027</p>
+          <h1>京都・東京<br />旅遊規劃</h1>
+          <p class="lead">
+            依照必去清單與和服花火候選點重新整理。上半部是十個可以獨立挑選、替換的一日方案；下半部則是把所有必去地點與第一次造訪日本的經典景點整合成十四天推薦行程。
+          </p>
+        </div>
+
+        <dl class="trip-facts" aria-label="旅程摘要">
+          <div>
+            <dt>候選方案</dt>
+            <dd>10 個一日行程</dd>
+          </div>
+          <div>
+            <dt>推薦版本</dt>
+            <dd>14 天完整行程</dd>
+          </div>
+          <div>
+            <dt>主要動線</dt>
+            <dd>KIX → 京都 → 東京 → NRT</dd>
+          </div>
+        </dl>
+      </header>
+
+      <main id="main-content">
+        <section class="map-section" aria-labelledby="map-title">
+          <div class="section-heading">
+            <h2 id="map-title">景點地圖</h2>
+            <p>拖曳、縮放地圖，查看已收藏的地點</p>
+          </div>
+
+          <div class="map-card">
+            <iframe
+              class="map-frame"
+              src="https://www.google.com/maps/d/embed?mid=1kYKusLK_saz6HFt5Xb_0LQ0kceaBg7w&amp;ehbc=2E312F"
+              title="東京與京都旅遊景點 Google My Maps 地圖"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <div class="map-footer">
+              <p>若嵌入地圖無法顯示，可改用 Google My Maps 開啟。</p>
+              <a
+                href="https://www.google.com/maps/d/viewer?mid=1kYKusLK_saz6HFt5Xb_0LQ0kceaBg7w&amp;ehbc=2E312F"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                在 Google 地圖開啟
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="overview-section" aria-labelledby="overview-title">
+          <div class="section-heading">
+            <h2 id="overview-title">十個一日候選方案</h2>
+            <p>先選想要的主題日，再依 2027 正式日期排序</p>
+          </div>
+
+          <div class="plan-callout">
+            <p><strong>怎麼使用：</strong>方案 01–03 包含全部必去地點；方案 04–07 是四選一的和服＋花火日；方案 08–10 是第一次到日本的經典景點。</p>
+            <p>花火日期目前只以 CSV 與 2026 官方活動作為參考，2027 年正式日期、售票與交通公告發布後再決定最終順序。</p>
+          </div>
+
+          <ol class="route-overview">
+            <li><a href="#day-1"><span>必去・動漫</span><strong>瀧野川・池袋</strong></a></li>
+            <li><a href="#day-2"><span>必去・小新</span><strong>春日部巡禮</strong></a></li>
+            <li><a href="#day-3"><span>必去・神社</span><strong>東京大神宮</strong></a></li>
+            <li><a href="#day-4"><span>花火 A</span><strong>淺草・足立</strong></a></li>
+            <li><a href="#day-5"><span>花火 B</span><strong>日枝・台場</strong></a></li>
+            <li><a href="#day-6"><span>花火 C</span><strong>姬路・相生</strong></a></li>
+            <li><a href="#day-7"><span>花火 D</span><strong>祇園・琵琶湖</strong></a></li>
+            <li><a href="#day-8"><span>京都經典</span><strong>伏見・東山</strong></a></li>
+            <li><a href="#day-9"><span>東京經典</span><strong>淺草・上野</strong></a></li>
+            <li><a href="#day-10"><span>東京經典</span><strong>原宿・澀谷</strong></a></li>
+          </ol>
+        </section>
+
+        <section class="itinerary-section" aria-labelledby="itinerary-title">
+          <div class="section-heading">
+            <h2 id="itinerary-title">一天一天的行程</h2>
+            <p>每張卡都是可以獨立放進旅程的一整天</p>
+          </div>
+
+          <div class="itinerary-grid">
+            <!-- Future Markdown itinerary updates should replace the content inside these day cards. -->
+            <article class="day-card transfer-day" id="day-1">
+              <div class="plan-tags"><span class="plan-tag must">一定要去</span><span class="plan-tag">動漫・推活</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">01</span>
+                <div><p class="day-label">東京・北區／池袋</p><h3>《鬼滅之刃》推活與池袋動漫日</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第一個候選方案動線">
+                <li>瀧野川八幡神社</li><li>池袋</li><li>animate 池袋總店</li><li>乙女路</li>
+              </ol>
+              <ul class="details">
+                <li>09:00 先到瀧野川八幡神社參拜、拍照與留御朱印時間；可用胡蝶忍推活／聖地巡禮角度安排。</li>
+                <li>11:00 前往池袋，在 Sunshine City 周邊用餐並逛扭蛋、角色商店。</li>
+                <li>13:30 起留至少兩至三小時給 animate 池袋總店，再走乙女路與周邊動漫店。</li>
+                <li>晚上留在池袋吃飯，避免再跨區趕行程。</li>
+              </ul>
+              <p class="card-note">兩個動漫二次元必去點排在同一天；神社社務時間與限定御朱印請出發前確認。</p>
+            </article>
+
+            <article class="day-card transfer-day" id="day-2">
+              <div class="plan-tags"><span class="plan-tag must">一定要去</span><span class="plan-tag">蠟筆小新</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">02</span>
+                <div><p class="day-label">埼玉・春日部</p><h3>蠟筆小新春日部一日巡禮</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第二個候選方案動線">
+                <li>春日部車站</li><li>ぷらっとかすかべ</li><li>市區散步</li><li>龍 Q 館候選</li>
+              </ol>
+              <ul class="details">
+                <li>上午抵達春日部車站，先找車站內外的小新裝飾與拍照點。</li>
+                <li>到春日部資訊發信館「ぷらっとかすかべ」取得官方繁體中文散步地圖。</li>
+                <li>依官方地圖走訪當期展示、紀念物與商品點，中途安排春日部午餐。</li>
+                <li>若預約與交通時間合適，下午加入首都圈外郭放水路／龍 Q 館的小新像；否則留在市中心慢慢巡禮。</li>
+              </ul>
+              <p class="card-note">春日部店家與展示可能調整，2027 年以市政府最新版「蠟筆小新春日部散步地圖」為準。</p>
+            </article>
+
+            <article class="day-card transfer-day" id="day-3">
+              <div class="plan-tags"><span class="plan-tag must">一定要去</span><span class="plan-tag">神社・東京初訪</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">03</span>
+                <div><p class="day-label">東京・飯田橋／丸之內</p><h3>東京大神宮與東京市中心</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第三個候選方案動線">
+                <li>東京大神宮</li><li>神樂坂</li><li>皇居外苑</li><li>東京車站</li>
+              </ol>
+              <ul class="details">
+                <li>09:00 前往東京大神宮參拜，預留御守、御神籤與御朱印時間。</li>
+                <li>步行到神樂坂散步、吃午餐，感受巷弄與老街氣氛。</li>
+                <li>下午到皇居外苑或東御苑；若遇休園日，改走丸之內建築與車站周邊。</li>
+                <li>傍晚拍東京車站夜景，再到銀座或有樂町吃晚餐。</li>
+              </ul>
+              <p class="card-note">東京大神宮是本日必去核心；御朱印受理時間通常短於一般參拜時間。</p>
+            </article>
+
+            <article class="day-card fireworks-day" id="day-4">
+              <div class="plan-tags"><span class="plan-tag choice">花火四選一</span><span class="plan-tag">和服・東京</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">04</span>
+                <div><p class="day-label">方案 A・東京東區</p><h3>淺草和服攝影＋足立花火</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第四個候選方案動線">
+                <li>淺草租和服</li><li>雷門・淺草寺</li><li>隅田公園</li><li>足立花火</li>
+              </ol>
+              <ul class="details">
+                <li>09:00 在淺草完成和服著裝，早上先拍雷門、仲見世與淺草寺。</li>
+                <li>中午走到隅田公園淺草側拍河岸景色，提早吃午餐並補充水分。</li>
+                <li>15:00 前依方案歸還和服；若希望穿去花火，必須預約晚歸或隔日歸還方案。</li>
+                <li>16:30 前往北千住／荒川河川敷，先吃簡單晚餐、確認觀賞區，晚上看花火。</li>
+              </ul>
+              <p class="card-note">2027 日期未公告；足立花火近年安排在五月底且遇惡劣天候不順延，須保留備案。</p>
+            </article>
+
+            <article class="day-card fireworks-day" id="day-5">
+              <div class="plan-tags"><span class="plan-tag choice">花火四選一</span><span class="plan-tag">和服・東京</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">05</span>
+                <div><p class="day-label">方案 B・東京中央／台場</p><h3>日枝神社和服攝影＋STAR ISLAND</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第五個候選方案動線">
+                <li>和服著裝</li><li>日枝神社</li><li>赤坂</li><li>御台場海濱公園</li>
+              </ol>
+              <ul class="details">
+                <li>09:00 完成和服著裝，前往日枝神社，以鳥居、石階與境內作主要拍攝場景。</li>
+                <li>中午在赤坂用餐；視體力補拍東京車站或銀座街景。</li>
+                <li>15:00 前歸還和服並換成方便久站的衣物，再經新橋前往御台場。</li>
+                <li>提早依票種進場，晚上欣賞 STAR ISLAND 音樂與花火演出。</li>
+              </ul>
+              <p class="card-note">這是售票型演出。CSV 的 5/23 為既有年度資料，2027 是否舉辦及日期須等待官方公告。</p>
+            </article>
+
+            <article class="day-card fireworks-day" id="day-6">
+              <div class="plan-tags"><span class="plan-tag choice">花火四選一</span><span class="plan-tag">和服・關西</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">06</span>
+                <div><p class="day-label">方案 C・兵庫</p><h3>姬路和服攝影＋相生佩隆祭海上花火</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第六個候選方案動線">
+                <li>京都</li><li>姬路和服</li><li>姬路城</li><li>相生灣</li>
+              </ol>
+              <ul class="details">
+                <li>早上從京都前往姬路，在姬路站周邊預約和服著裝。</li>
+                <li>以姬路城、好古園外圍與城下町為拍照主線，午餐也留在姬路。</li>
+                <li>14:30 左右歸還和服，再搭 JR 前往相生，避開傍晚最擁擠時段。</li>
+                <li>先完成觀賞區報到與晚餐，晚上欣賞相生灣海上花火，散場後再返回住宿地。</li>
+              </ul>
+              <p class="card-note">相生佩隆祭通常在五月最後一個週末；部分觀賞區需購票，2027 日期與回程末班車都要先確認。</p>
+            </article>
+
+            <article class="day-card fireworks-day" id="day-7">
+              <div class="plan-tags"><span class="plan-tag choice">花火四選一</span><span class="plan-tag">和服・京都</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">07</span>
+                <div><p class="day-label">方案 D・京都／滋賀</p><h3>祇園和服攝影＋Symphonic Starmine</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第七個候選方案動線">
+                <li>祇園白川</li><li>二寧坂</li><li>產寧坂</li><li>烏丸半島</li>
+              </ol>
+              <ul class="details">
+                <li>09:00 在祇園完成和服著裝，趁早拍祇園白川與巽橋。</li>
+                <li>接著前往二寧坂、產寧坂拍照，中午前回到祇園用餐。</li>
+                <li>13:30 左右歸還和服，回住宿取保暖衣物，再前往滋賀草津的烏丸半島。</li>
+                <li>依指定交通與票種入場，下午參加活動並留到晚上的音樂花火演出。</li>
+              </ul>
+              <p class="card-note">四個方案中地理動線最適合京都住宿；活動為全區售票制，2027 是否舉辦仍待公告。</p>
+            </article>
+
+            <article class="day-card" id="day-8">
+              <div class="plan-tags"><span class="plan-tag">第一次日本</span><span class="plan-tag">京都經典</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">08</span>
+                <div><p class="day-label">京都・東南區</p><h3>伏見稻荷、清水寺與祇園</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第八個候選方案動線">
+                <li>伏見稻荷</li><li>清水寺</li><li>二寧坂</li><li>祇園</li>
+              </ol>
+              <ul class="details">
+                <li>清晨先走伏見稻荷大社與千本鳥居，避開主要人潮。</li>
+                <li>中午前移動到清水寺，沿產寧坂、二寧坂一路慢慢下行。</li>
+                <li>經八坂神社到祇園白川，傍晚在鴨川或先斗町用餐。</li>
+              </ul>
+              <p class="card-note">若已選方案 07，可縮短重複的二寧坂與祇園，把時間留給伏見稻荷。</p>
+            </article>
+
+            <article class="day-card" id="day-9">
+              <div class="plan-tags"><span class="plan-tag">第一次日本</span><span class="plan-tag">東京經典</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">09</span>
+                <div><p class="day-label">東京・東區</p><h3>淺草、上野與秋葉原</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第九個候選方案動線">
+                <li>淺草寺</li><li>上野</li><li>阿美橫町</li><li>秋葉原</li>
+              </ol>
+              <ul class="details">
+                <li>早晨逛雷門、仲見世通與淺草寺，也可登淺草文化觀光中心看街景。</li>
+                <li>下午在上野公園選一間博物館，或改逛阿美橫町。</li>
+                <li>晚上到秋葉原，依興趣安排電器、模型、遊戲與動漫商店。</li>
+              </ul>
+              <p class="card-note">若選方案 04，淺草會重複，可把本日淺草改成東京晴空塔。</p>
+            </article>
+
+            <article class="day-card" id="day-10">
+              <div class="plan-tags"><span class="plan-tag">第一次日本</span><span class="plan-tag">東京經典</span></div>
+              <header class="day-header">
+                <span class="day-number" aria-hidden="true">10</span>
+                <div><p class="day-label">東京・西區</p><h3>明治神宮、原宿、澀谷與新宿</h3></div>
+              </header>
+              <ol class="stop-flow" aria-label="第十個候選方案動線">
+                <li>明治神宮</li><li>原宿</li><li>澀谷</li><li>新宿</li>
+              </ol>
+              <ul class="details">
+                <li>上午先走明治神宮，再到原宿竹下通、表參道與 Cat Street。</li>
+                <li>下午前往澀谷十字路口與商場；展望台若想去需事先預約。</li>
+                <li>晚上到新宿看夜景、吃晚餐，依喜好選擇歌舞伎町或較安靜的都廳周邊。</li>
+              </ul>
+              <p class="card-note">若選方案 05，明治神宮可改為新宿御苑或留更多時間逛澀谷。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="recommended-section" aria-labelledby="recommended-title">
+          <div class="section-heading">
+            <h2 id="recommended-title">推薦的十四天行程表</h2>
+            <p>所有必去點都已排入；花火先保留一個選擇日</p>
+          </div>
+
+          <div class="plan-callout">
+            <p><strong>我的優先推薦：</strong>若 2027 年日期能配合，選「方案 D：祇園和服＋Symphonic Starmine」，因為京都拍照後前往滋賀最順路。</p>
+            <p>若最後選東京的足立花火或 STAR ISLAND，把花火日移到東京住宿期間，並與第 12 或第 13 天互換即可。</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="trip-table">
+              <thead><tr><th scope="col">日期</th><th scope="col">住宿／區域</th><th scope="col">主要行程</th><th scope="col">安排理由與提醒</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Day 01</th><td>京都</td><td>關西國際機場 → 京都車站 → 入住 → 車站周邊</td><td>抵達日只排輕鬆散步，避免班機延誤影響預約。</td></tr>
+                <tr><th scope="row">Day 02</th><td>京都東南</td><td>伏見稻荷 → 清水寺 → 產寧坂／二寧坂 → 八坂神社 → 祇園</td><td>第一次京都的核心路線，清晨先去伏見稻荷。</td></tr>
+                <tr><th scope="row">Day 03</th><td>京都西區</td><td>嵐山竹林 → 天龍寺 → 渡月橋 → 金閣寺</td><td>早到嵐山；下午跨區去金閣寺，晚上不要再排遠程景點。</td></tr>
+                <tr><th scope="row">Day 04</th><td>奈良</td><td>奈良公園 → 東大寺 → 春日大社 → 奈良町</td><td>從京都往返的一日經典行程，補足第一次日本的古都體驗。</td></tr>
+                <tr><th scope="row">Day 05</th><td>京都中央</td><td>二條城 → 京都御苑 → 錦市場 → 四條河原町／先斗町</td><td>以室內、庭園與購物混排，讓步行量稍微下降。</td></tr>
+                <tr><th scope="row">Day 06</th><td>宇治／伏見</td><td>平等院 → 宇治川 → 茶街 → 伏見酒藏區</td><td>作為京都近郊緩衝日，也能依體力改成自由活動。</td></tr>
+                <tr class="fireworks-row"><th scope="row">Day 07</th><td>京都／花火地點</td><td>和服攝影＋方案 04–07 擇一＋晚上花火</td><td>優先選方案 D；實際放在第幾天完全依 2027 官方日期調整。</td></tr>
+                <tr><th scope="row">Day 08</th><td>東京</td><td>京都 → 東京 → 入住 → 東京車站 → 丸之內 → 銀座</td><td>跨城市移動日，行李多時可考慮宅配。</td></tr>
+                <tr class="must-row"><th scope="row">Day 09</th><td>飯田橋／中央區</td><td>東京大神宮 → 神樂坂 → 皇居外苑 → 東京車站夜景</td><td><strong>必去：</strong>東京大神宮；御朱印與授與所時間先確認。</td></tr>
+                <tr class="must-row"><th scope="row">Day 10</th><td>北區／池袋</td><td>瀧野川八幡神社 → Sunshine City → animate 池袋總店 → 乙女路</td><td><strong>必去：</strong>兩個動漫二次元地點合併成推活日。</td></tr>
+                <tr class="must-row"><th scope="row">Day 11</th><td>春日部</td><td>春日部車站 → 官方小新散步地圖路線 → 小新展示／商品點</td><td><strong>必去：</strong>完整保留一天給蠟筆小新巡禮。</td></tr>
+                <tr><th scope="row">Day 12</th><td>東京東區</td><td>淺草寺 → 隅田公園 → 上野／阿美橫町 → 秋葉原</td><td>若花火方案已走過淺草，就把上午替換成晴空塔。</td></tr>
+                <tr><th scope="row">Day 13</th><td>東京西區</td><td>明治神宮 → 原宿 → 表參道 → 澀谷 → 新宿</td><td>東京經典街區日；展望台與熱門餐廳提前預約。</td></tr>
+                <tr><th scope="row">Day 14</th><td>東京 → 成田</td><td>住宿附近採買 → 退房 → 成田國際機場</td><td>依航班時間決定是否能排早上活動，至少保留完整機場交通時間。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">花火活動不一定每年固定同一週；選定 2027 正式場次後，應先鎖定花火日，再把其餘行程依區域前後移動。</p>
+        </section>
+
+        <section class="notes-section" aria-labelledby="notes-title">
+          <div class="section-heading">
+            <h2 id="notes-title">行前確認與資料來源</h2>
+            <p>2027 正式公告發布後再完成最後排程</p>
+          </div>
+
+          <div class="notes-grid">
+            <article class="note-card"><h3>花火日期</h3><p>CSV 內的五月日期先視為候選，不當成 2027 已確認日期。先確認舉辦、售票、雨天政策，再訂住宿與跨城車票。</p></article>
+            <article class="note-card"><h3>和服歸還</h3><p>一般租借店傍晚前歸還；若要穿去花火，必須預約晚歸或隔日歸還。長距離方案建議拍完先歸還再移動。</p></article>
+            <article class="note-card"><h3>交通與散場</h3><p>花火散場與末班車是關鍵。相生、琵琶湖方案需先確認回程；東京方案則提早決定車站與步行出口。</p></article>
+          </div>
+
+          <ul class="source-links">
+            <li>行程清單：<code>京都-東京2027- 一定要去.csv</code>、<code>京都-東京2027- 東京和服點.csv</code></li>
+            <li><a href="https://www.animate.co.jp/shop/ikebukuro/" target="_blank" rel="noopener noreferrer">animate 池袋總店官方資訊</a>、<a href="https://www.takinogawahachiman.com/" target="_blank" rel="noopener noreferrer">瀧野川八幡神社官方網站</a></li>
+            <li><a href="https://www.city.kasukabe.lg.jp/soshikikarasagasu/shokou_kanko/gyomuannai/1/3/20292.html" target="_blank" rel="noopener noreferrer">春日部市蠟筆小新散步地圖</a>、<a href="https://www.tokyodaijingu.or.jp/" target="_blank" rel="noopener noreferrer">東京大神宮官方網站</a></li>
+            <li><a href="https://www.city.adachi.tokyo.jp/hisho/ku/kucho/20251225-mainichi.html" target="_blank" rel="noopener noreferrer">足立花火參考公告</a>、<a href="https://star-island.jp/" target="_blank" rel="noopener noreferrer">STAR ISLAND 官方網站</a></li>
+            <li><a href="https://aioi-peron.jp/" target="_blank" rel="noopener noreferrer">相生佩隆祭官方網站</a>、<a href="https://biwakolaa.com/" target="_blank" rel="noopener noreferrer">Symphonic Starmine 官方網站</a></li>
+          </ul>
+
+          <p class="status-note">本頁是選擇行程用的草案，不代表 2027 花火、交通、票價或營業資訊已確定。正式出發前請以活動主辦方、交通業者及景點官方公告為準。</p>
+        </section>
+      </main>
+
+      <footer>
+        <p>京都・東京 2027 旅遊規劃</p>
+        <a href="#main-content">回到頁面頂端 ↑</a>
+      </footer>
+    </div>
+  </body>
+</html>
